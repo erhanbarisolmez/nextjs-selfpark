@@ -1,4 +1,3 @@
-
 import {
   Pathnames,
   createLocalizedPathnamesNavigation
@@ -11,11 +10,11 @@ export const localePrefix = 'always'; // Default
 export const pathnames = {
   '/login' : {
     en: '/login',
-    tr: '/giris'
+    tr: '/giris',
    },
  '/dashboard' : {
   en: '/dashboard',
-  tr: '/gosterge-paneli'
+  tr: '/gosterge-paneli',
  }
 } satisfies Pathnames<typeof locales>;
 

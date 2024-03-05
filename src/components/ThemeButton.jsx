@@ -1,10 +1,7 @@
 'use client'
-import {
-  DarkMode as DarkIcon,
-  LightMode as LightIcon
-} from "@mui/icons-material"
-import { useTheme } from "next-themes"
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import ThumbChildDarkMode from "./ThumbChildDarkMode";
 export const ThemeButton = () => {
   const {resolvedTheme, setTheme} = useTheme();
   const [mounted, setMounted] = useState(false)
@@ -14,12 +11,24 @@ export const ThemeButton = () => {
     return null
   }
 
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'dark' ? 'light': 'dark')
+  }
+
+
   return (
-    <button 
-    onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}>
+    <>
+    {/* <button 
+    onClick={toggleTheme}>
       {resolvedTheme === 'dark' ? (
         <LightIcon />
       ) :( <DarkIcon />)}
-    </button>
+    </button> */}
+    <ThumbChildDarkMode
+     onChange={toggleTheme}
+     childIcon={resolvedTheme === 'light' ? 'light' : 'dark'} 
+     />
+
+    </>
   )
 }

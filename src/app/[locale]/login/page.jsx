@@ -1,16 +1,19 @@
-import { ButtonComponent } from "@/components/ButtonComponent"
-import Link from 'next/link'
-const LoginPage = () => {
+import LoginPage from "@/components/login";
+import { useTranslations } from "next-intl";
+const LoginPageDefault = () => {
+  const t = useTranslations();
   return (
     <>
-    <div>Login Page</div>
+    {/* <div>{t('login-page')}</div>
     <Link href="dashboard">
       <ButtonComponent  />
-      </Link>
+      </Link> */}
+
+      <LoginPage />
     </>
   )
 }
 
-export default LoginPage
+export default LoginPageDefault
 
 

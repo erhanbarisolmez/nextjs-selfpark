@@ -149,5 +149,11 @@
   "status-1": "status",
   "actions": "actions",
   "price": "price",
-  "dashboardpage": "DashboardPage"
+  "dashboardpage": "DashboardPage",
+  "login-page": "Login Page",
+  "asd": {
+    "login-page": "Login Page",
+    "dashboard": "Dashboard"
+  },
+  "test": "test"
 }

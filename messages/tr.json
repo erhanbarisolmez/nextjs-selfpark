@@ -147,5 +147,10 @@
   "actions": "hareketler",
   "status-1": "durum",
   "price": "fiyat",
-  "dashboardpage": "Kontrol Paneli Sayfası"
+  "dashboardpage": "Kontrol Paneli Sayfası",
+  "login-page": "Giriş sayfası",
+  "asd": {
+    "dashboard": "Gösterge Paneli"
+  },
+  "test": "Ölçek"
 }

@@ -1,11 +1,11 @@
 import { useTranslations } from "next-intl";
-const DashboardPage = () => {
+const DashboardDefault= () => {
   const t = useTranslations();
   return (
-    <p>
-        {t('dashboardpage')}
-    </p>
+    <>
+    asdsad
+    </>
   )
 }
 
-export default DashboardPage
+export default DashboardDefault
