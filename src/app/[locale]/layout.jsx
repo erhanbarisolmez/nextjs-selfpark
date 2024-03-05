@@ -1,6 +1,8 @@
 import { locales } from "@/navigation";
 import { Inter } from "next/font/google";
 
+import { ThemeButton } from "@/components/ThemeButton";
+import { TranslateButton } from "@/components/TranslateButton";
 import { Providers } from "./providers";
 // Inter fontunu yalnızca bir obje olarak içe aktarın
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +22,9 @@ export default function RootLayout({ children, params: { locale } }) {
     <html lang={locale} suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <header></header>
+          
+          <ThemeButton />
+          <TranslateButton />
           <main>{children}</main>
           <footer></footer>
         </Providers>

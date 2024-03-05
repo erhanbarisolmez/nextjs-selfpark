@@ -152,5 +152,6 @@
   "asd": {
     "dashboard": "Gösterge Paneli"
   },
-  "test": "Ölçek"
+  "test": "Ölçek",
+  "hello": "Merhaba"
 }

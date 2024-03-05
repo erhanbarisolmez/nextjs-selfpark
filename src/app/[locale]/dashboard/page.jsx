@@ -3,7 +3,7 @@ const DashboardDefault= () => {
   const t = useTranslations();
   return (
     <>
-    asdsad
+    asd
     </>
   )
 }
