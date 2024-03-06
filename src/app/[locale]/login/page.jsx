@@ -1,21 +1,34 @@
+import LoginUI from '@/components/ui/login';
+import { Grid } from '@mui/joy';
 import { useTranslations } from "next-intl";
-import Link from 'next/link';
-import { ButtonComponent } from "@/components/ButtonComponent";
 
-const LoginPageDefault = () => {
+const LoginPage = () => {
   const t = useTranslations();
   return (
     <>
-    <div>{t('login-page')}</div>
-    <Link href="dashboard">
-      <ButtonComponent  />
-      </Link>
+      <Grid
+        container spacing={2}
+        sx={{
+          display:'flex',
+          justifyContent:'center',
+          alignContent:'center',
+          alignItems:'center',
+  
+     
+        }}
+      >
+  
+        <LoginUI />
+        
+      </Grid>
 
- 
+    
+
+
     </>
   )
 }
 
-export default LoginPageDefault
+export default LoginPage
 
 

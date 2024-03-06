@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import { useEffect, useState } from 'react';
 export const TranslateButton = ({ locale }) => {
   const pathname = usePathname();
-  const [translate, setTranslate] = useState(locale); // Başlangıç dilini 'en' olarak ayarlayın
+  const [translate, setTranslate] = useState(); // Başlangıç dilini 'en' olarak ayarlayın
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

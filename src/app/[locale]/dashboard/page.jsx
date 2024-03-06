@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-const DashboardDefault= () => {
+const DashboardPage= () => {
   const t = useTranslations();
   return (
     <>
@@ -8,4 +8,4 @@ const DashboardDefault= () => {
   )
 }
 
-export default DashboardDefault
+export default DashboardPage
