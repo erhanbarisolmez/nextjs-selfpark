@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 
 import { ThemeButton } from "@/components/ThemeButton";
 import { TranslateButton } from "@/components/TranslateButton";
+import { Box } from '@mui/material';
 import { Providers } from "./providers";
-
 
 // Inter fontunu yalnızca bir obje olarak içe aktarın
 const inter = Inter({ subsets: ["latin"] });
@@ -24,10 +24,17 @@ export default function RootLayout({ children, params: { locale } }) {
 
 
       <body className={inter.className}>
-        <Providers>
-
-          <ThemeButton />
-          <TranslateButton />
+        <Providers >
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            minHeight: '200px',
+            gap: 2,
+            justifyContent:'flex-end'
+          }}>
+            <Box><ThemeButton /></Box>
+            <Box><TranslateButton /> </Box>
+          </Box>
           <main>{children}</main>
           <footer></footer>
         </Providers>

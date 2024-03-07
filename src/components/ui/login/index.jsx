@@ -1,11 +1,17 @@
 'use client'
-import LoginCard from "./login-card"
-
+import { Box } from '@mui/material'
+import LoginCard from './login-card'
 const LoginUI = () => {
   return (
     <>
-  <LoginCard />
-
+        <Box sx={{
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center'
+        }}
+        >
+        <LoginCard />
+        </Box>
     </>
   )
 }

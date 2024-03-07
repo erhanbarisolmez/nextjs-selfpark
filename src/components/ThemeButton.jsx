@@ -2,33 +2,36 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import ThumbChildDarkMode from "./ThumbChildDarkMode";
-export const ThemeButton = () => {
-  const {resolvedTheme, setTheme} = useTheme();
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => setMounted(true), [])
-  if(!mounted){
-    return null
-  }
+export const ThemeButton = () => {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light': 'dark')
+    const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
   }
 
+  useEffect(() => {
+    if (mounted) {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme && savedTheme !== resolvedTheme) {
+        setTheme(savedTheme);
+      }
+    }
+  }, [mounted, resolvedTheme, setTheme]);
 
   return (
     <>
-    {/* <button 
-    onClick={toggleTheme}>
-      {resolvedTheme === 'dark' ? (
-        <LightIcon />
-      ) :( <DarkIcon />)}
-    </button> */}
-    <ThumbChildDarkMode
-     onChange={toggleTheme}
-     childIcon={resolvedTheme === 'light' ? 'light' : 'dark'} 
-     />
-
+      <ThumbChildDarkMode
+        onChange={toggleTheme}
+        childIcon={resolvedTheme === 'light' ? 'light' : 'dark'} 
+      />
     </>
   )
 }
