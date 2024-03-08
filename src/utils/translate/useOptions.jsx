@@ -5,23 +5,20 @@
 import { useTranslations } from "next-intl";
 
 export const useOptions = () => {
+  
+  const t = useTranslations();
 
   const useTranslateOptions = () => {
-    const t = useTranslations();
+  
 
     const options = [
       { value: '1', label: t('english'), src: '/images/uk.png' },
       { value: '2', label: t('turkey'), src: '/images/turkey.png' },
       { value: '3', label: t('france'), src: '/images/france.png' },
     ];
-    return {
-      options
-    };
+    return {options};
   }
 
 
-  return {
-    useTranslateOptions,
-
-  }
+  return {useTranslateOptions}
 }
