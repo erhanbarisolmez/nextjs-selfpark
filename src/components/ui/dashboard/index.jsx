@@ -1,10 +1,12 @@
-import DashboardCard from "../login/login-card"
+import { TranslateButton } from "@/components/TranslateButton"
 
-const DashboardUI = () => {
+const DashboardUI = ({translateOptions}) => {
   return (
     <>
-      <DashboardCard />
-     
+      <TranslateButton 
+          translateOptions={translateOptions}
+      
+      />
     </>
   )
 }

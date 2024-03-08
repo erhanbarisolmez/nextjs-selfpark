@@ -7,7 +7,9 @@ const LoginUI = () => {
         <Box sx={{
           display:'flex',
           justifyContent:'center',
-          alignItems:'center'
+          alignItems:'center',
+          alignContent:'center',
+          height:'80vh'
         }}
         >
         <LoginCard />
