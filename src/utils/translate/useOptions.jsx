@@ -12,9 +12,9 @@ export const useOptions = () => {
   
 
     const options = [
-      { value: '1', label: t('english'), src: '/images/uk.png' },
-      { value: '2', label: t('turkey'), src: '/images/turkey.png' },
-      { value: '3', label: t('france'), src: '/images/france.png' },
+      { value: 'en', label: t('english'), src: '/images/uk.png' },
+      { value: 'tr', label: t('turkey'), src: '/images/turkey.png' },
+      { value: 'fr', label: t('france'), src: '/images/france.png' },
     ];
     return {options};
   }

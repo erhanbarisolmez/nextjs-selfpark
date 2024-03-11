@@ -14,6 +14,7 @@ const nextConfig = {
         destination: '/en/login',
         permanent: true,
       },
+     
     ];
   },
 

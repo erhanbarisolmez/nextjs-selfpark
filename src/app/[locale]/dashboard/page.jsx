@@ -4,13 +4,10 @@ import { useTranslations } from "next-intl";
 const DashboardPage= () => {
   const t = useTranslations();
   const {useTranslateOptions} = useOptions();
-  const {options} = useTranslateOptions();
+
   return (
     <>
-    <DashboardUI 
-      translateOptions={options}
-
-    />
+    <DashboardUI />
     
     </>
   )

@@ -1,12 +1,9 @@
-import { TranslateButton } from "@/components/TranslateButton"
+import Header from "@/components/Header";
 
-const DashboardUI = ({translateOptions}) => {
+const DashboardUI = () => {
   return (
     <>
-      <TranslateButton 
-          translateOptions={translateOptions}
-      
-      />
+      <Header />
     </>
   )
 }
