@@ -7,7 +7,6 @@ export const TranslateAndTheme = ({ translateOptions}) => {
 
   return (
     <>
-
       <Box sx={{ display: 'flex', gap: 1 }}>
    
         <ThemeButton />
@@ -16,9 +15,6 @@ export const TranslateAndTheme = ({ translateOptions}) => {
             options={translateOptions}
         />
       </Box>
-        
-
-
     </>
   );
 };

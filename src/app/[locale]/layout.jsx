@@ -2,7 +2,7 @@ import { locales } from "@/navigation";
 import { CssVarsProvider } from '@mui/joy/styles';
 import { Inter } from "next/font/google";
 
-import { TranslateAndTheme } from "@/components/TranslateAndTheme";
+import Header from "@/components/Header";
 import { useOptions } from "@/utils/translate/useOptions";
 import { Box } from '@mui/material';
 import { useTranslations } from "next-intl";
@@ -30,15 +30,18 @@ export default function RootLayout({ children, params: { locale } }) {
       <body className={inter.className}>
         <Providers >
           <CssVarsProvider defaultMode="light" />
-          <Box sx={{
-            display: 'flex',
+          {/* <Box sx={{
+            display:'flex',
             flexDirection: 'row',
             gap: 2,
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
+            mt:3
 
           }}>
-            <TranslateAndTheme translateOptions={options} /> 
-          </Box>
+            <TranslateAndTheme translateOptions={options}></TranslateAndTheme>
+          </Box> */}
+
+          <Header translateOptions={options} />
           <main>
             {children}
           </main>

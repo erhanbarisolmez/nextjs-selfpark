@@ -6,8 +6,10 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Option from '@mui/joy/Option';
 import Select from '@mui/joy/Select';
 import * as React from 'react';
+
 export default function SelectCustomOption({ options }) {
   const pathname = usePathname();
+  
   const renderValue = (option) => {
     if (!option) {
       return null;
@@ -19,6 +21,7 @@ export default function SelectCustomOption({ options }) {
       </React.Fragment>
     );
   };
+  
   return (
     <Select
       defaultValue="1"
@@ -34,7 +37,6 @@ export default function SelectCustomOption({ options }) {
         minWidth: 100,
       }}
       renderValue={renderValue}
-
       >
 
       {options.map((option, index) => (
@@ -42,7 +44,6 @@ export default function SelectCustomOption({ options }) {
           {index !== 0 ? <ListDivider role="none" inset="startContent" /> : null}
           <Link href={pathname} locale={option.value}>
           <Option value={option.value} label={option.label}>
-         
             <ListItemDecorator>
               <Avatar size="sm" src={option.src} />
             </ListItemDecorator>
