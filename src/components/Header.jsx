@@ -18,7 +18,7 @@ const menu = [
 const Header = ({ translateOptions }) => {
   const pathname = usePathname();
   const {getThemeStyles} = useThemeHook();
-  const {backgroundColor, textColor} = getThemeStyles();
+  const {backgroundColor, textColor, logo, headerBorderBottom} = getThemeStyles();
   return (
     <>
       <Grid  xs={12} sx={{
@@ -26,7 +26,7 @@ const Header = ({ translateOptions }) => {
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        borderBottom: `5px solid palegoldenrod`,
+        borderBottom: `5px solid ${headerBorderBottom}`,
         backgroundColor:backgroundColor,
         color:textColor
      
@@ -36,11 +36,11 @@ const Header = ({ translateOptions }) => {
             display: 'flex',
             alignItems: 'center',
             alignContent: 'center',
-            height:'200px'
+            height:'150px'
           }}>
             <Grid item xs={12} lg={2} >
               <Image
-                src="/images/selfparklogo.png"
+                src={logo}
                 width={250}
                 height={50}
                 alt="Self Park Logo"
@@ -51,9 +51,11 @@ const Header = ({ translateOptions }) => {
             </Grid>
             <Grid item xs={8} sx={{
               display: 'flex',
-              gap: 2
+              gap: 2,
             }}>
-              <DrawerMobileNavigation />
+              
+              <DrawerMobileNavigation buttonColor = {textColor}/>
+              
               {pathname !== "/login" && menu.map((item) => (
                 <Typography key={item.id} variant="body2" sx={{
                   display: 'flex',
@@ -75,7 +77,7 @@ const Header = ({ translateOptions }) => {
               display: 'flex',
               justifyContent: 'flex-end',
               alignItems:'center',
-              color: 'text.secondary',
+              color: textColor,
               flexDirection:'row',
               gap:1
             }}>

@@ -3,7 +3,6 @@ import { useOptions } from "@/utils/translate/useOptions";
 import { useTranslations } from "next-intl";
 const DashboardPage= () => {
   const t = useTranslations();
-  const {useTranslateOptions} = useOptions();
 
   return (
     <>

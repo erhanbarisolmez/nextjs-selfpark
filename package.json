@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.18",
+    "@headlessui/tailwindcss": "^0.2.0",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.15.11",
     "@mui/joy": "^5.0.0-beta.29",
@@ -20,6 +22,7 @@
     "@nextui-org/react": "^2.2.10",
     "@nextui-org/system": "^2.0.15",
     "@nextui-org/theme": "^2.1.18",
+    "@tremor/react": "^3.14.1",
     "autoprefixer": "^10.4.18",
     "framer-motion": "^11.0.8",
     "init": "^0.1.2",
@@ -32,5 +35,7 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7"
+  }
 }

@@ -11,8 +11,8 @@ import { Box, Grid } from "@mui/material";
 import Image from 'next/image';
 import Link from 'next/link';
 export default function LoginCard() {
-  const {getThemeStyles} = useThemeHook();
-  const {backgroundColor,buttonColor,textColor,linkColor,lefColorBg,logoColor, whiteColor} = getThemeStyles();
+  const { getThemeStyles } = useThemeHook();
+  const { backgroundColor, buttonColor, textColor, linkColor, lefColorBg, logoColor, whiteColor } = getThemeStyles();
   return (
     <>
       <Card
@@ -26,8 +26,8 @@ export default function LoginCard() {
           // to make the demo resizable
           resize: 'vertical',
           overflow: 'auto',
-          color:textColor,
-          backgroundColor:backgroundColor
+          color: textColor,
+          backgroundColor: backgroundColor
         }}
       >
         <CardOverflow
@@ -38,33 +38,33 @@ export default function LoginCard() {
             flexDirection: 'column',
             justifyContent: 'center',
             px: 'var(--Card-padding)',
-            backgroundColor:lefColorBg
+            backgroundColor: lefColorBg
 
           }}
         >
-          <AspectRatio sx={{width:'100%', alignItems:'center', justifyContent:'center',height:'50%'}}>
+          <AspectRatio sx={{ width: '100%', alignItems: 'center', justifyContent: 'center', height: '50%' }}>
 
             <Box>
-            <Image 
-              src="/images/selfparklogo.png" 
-              layout='responsive'
-              width={300}
-              height={300}
-              alt='logo'
-        
-            />
+              <Image
+                src="/images/stlogo.png"
+                layout='responsive'
+                width={300}
+                height={300}
+                alt='logo'
+
+              />
             </Box>
           </AspectRatio>
-          <Typography  variant='plain' level='body-xs' sx={{display:'flex', alignItems:'center', justifyContent:'center', mt:3, color:whiteColor}}>
+          <Typography variant='plain' level='body-xs' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 3, color: whiteColor }}>
             Discover Our Digital Intelligence Based Parking Solutions
           </Typography>
         </CardOverflow>
 
-        <CardContent sx={{ gap: 1.5, minWidth: 200,}}>
-          <Grid  sx={{
-            color:logoColor
+        <CardContent sx={{ gap: 1.5, minWidth: 200, }}>
+          <Grid sx={{
+            color: logoColor
           }} >
-              LOGIN
+            LOGIN
             <InputComponent
               variant={'outlined'}
             />
@@ -74,29 +74,29 @@ export default function LoginCard() {
             />
           </Grid>
 
-               {/* LOGIN BUTTON */}
-               <Button
+          {/* LOGIN BUTTON */}
+          <Button
             variant="outlined"
             sx={{
               '--variant-borderWidth': '2px',
               borderRadius: 40,
               borderColor: 'primary.500',
               mx: 'auto',
-              color:buttonColor
+              color: buttonColor
             }}
           >
-           <Link href={"dashboard"} style={{textDecoration:'none', color:linkColor}}>Login</Link> 
+            <Link href={"dashboard"} sx={{ textDecoration: 'none', color: linkColor }}>Login</Link>
           </Button>
 
-          <CardContent sx={{color:textColor}}>
+          <CardContent sx={{ color: textColor }}>
             <Typography level="title-lg" color={textColor}>Not Registered?</Typography>
-            <Typography fontSize="sm" sx={{ mt: 0.5, color:textColor }}>
-              <Link href="dashboard" style={{textDecoration:'none', color:linkColor}}>Register Now</Link> 
+            <Typography fontSize="sm" sx={{ mt: 0.5, color: textColor }}>
+              <Link href="dashboard" style={{ textDecoration: 'none', color: linkColor }}>Register Now</Link>
             </Typography>
 
           </CardContent>
-          
-     
+
+
 
         </CardContent>
       </Card>

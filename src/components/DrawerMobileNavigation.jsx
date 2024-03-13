@@ -10,12 +10,12 @@ import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 
-export default function DrawerMobileNavigation() {
+export default function DrawerMobileNavigation({buttonColor}) {
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
-      <IconButton variant="outlined" color="neutral" onClick={() => setOpen(true)}>
+      <IconButton variant="outlined"  sx={{color: buttonColor}} onClick={() => setOpen(true)}>
         <Menu />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)} anchor='top'>
