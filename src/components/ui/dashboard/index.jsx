@@ -6,7 +6,10 @@ import CardComponent from "@/components/CardComponent";
 import { LineChartTremor } from "@/components/LineChartTremor";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { Container, Grid } from "@mui/material";
-import { BestUsers } from "../login/best-users";
+import { BestUsers } from "./best-users";
+import { LongTermParkingUsers } from "./most-average-long-term-parking-users";
+import { MostParkingPlates } from "./most-parking-plates";
+import { UsersWTMViolations } from "./users-with-the-most-violations";
 const DashboardUI = () => {
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, buttonColor, isDarkMode, lefColorBg, linkColor, logoColor, textColor, whiteColor } = getThemeStyles();
@@ -14,132 +17,16 @@ const DashboardUI = () => {
     <>
       <Container maxWidth="xll">
 
+        {/* GRAPHICS */}
         <Grid container spacing={2}
           sx={{
             display: 'flex',
             justifyContent: 'space-around',
             mt: 0.1,
-            
-          }}>
-          {/* Otopark Sayısı */}
-          {/* <Grid item xs={12} col={1} sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            // backgroundColor:'lightblue',
+            alignItems:'center',
 
           }}>
 
-            <CardComponent
-              header={"Toplam Otopark Sayısı"}
-              content={
-                <>5</>
-              }
-              sx={{
-                width: 200,
-                backgroundColor: backgroundColor,
-                color: textColor,
-                mt: 3,
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-
-
-              }}
-            />
-
-            <CardComponent
-              header={"Boş Otopark Sayısı"}
-              content={
-                <>5</>
-              }
-              sx={{
-                ml: {
-                  xs: 4,
-                  md: 0
-                },
-                width: 200,
-                backgroundColor: backgroundColor,
-                color: textColor,
-                mt: 3,
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-
-              }}
-            />
-
-            <CardComponent
-              header={"Dolu Otopark Sayısı"}
-              content={
-                <>5</>
-              }
-              sx={{
-                ml: {
-                  xs: 8,
-                  md: 0
-                },
-                width: 200,
-                backgroundColor: backgroundColor,
-                color: textColor,
-                mt: 3,
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-
-              }}
-            />
-          </Grid> */}
-
-          {/* Content data */}
-          {/* <Grid item xs={12} md={9}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-evenly',
-              mt: 3,
-            }}>
-            <CardComponent 
-              header={"The Best Users"}
-              sx={{
-                backgroundColor:backgroundColor,
-                color:textColor,
-                flexGrow: 1,
-                height:"unset",
-                p:4
-              }}
-            />
-            <CardComponent 
-              header={"Most Parking Plates"}
-              sx={{
-                backgroundColor:backgroundColor,
-                color:textColor,
-                flexGrow: 1,
-                height:"unset",
-                p:4
-              }}
-            />
-            <CardComponent 
-              header={"Users With The Most Violations"}
-              sx={{
-                backgroundColor:backgroundColor,
-                color:textColor,
-                flexGrow: 1,
-                height:"unset",
-                p:4
-              }}
-            />
-            <CardComponent 
-              header={"Most Average Long-Term Parking Users"}
-              sx={{
-                backgroundColor:backgroundColor,
-                color:textColor,
-                flexGrow: 1,
-                height:"unset",
-                p:4
-              }}
-            />
-          
-          </Grid> */}
-          {/* <Grid  xs={12} md={10} sx={{display:'flex',mt:3,gap:1, justifyContent:'center',alignItems:'center'}}> */}
           <Grid item xs={12} md={3} >
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days Revenue"} content={<LineChartTremor />} />
           </Grid>
@@ -154,80 +41,6 @@ const DashboardUI = () => {
           <Grid item xs={12} md={3} >
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days Revenue"} content={<LineChartTremor />} />
           </Grid>
-          {/* </Grid> */}
-
-
-          {/* Giriş çıkış istatistik */}
-          {/* <Grid item xs={12} md={1} sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'end',
-            // backgroundColor:'khaki'
-          }}>
-
-            <CardComponent
-              header={"Bugünkü Giriş Sayısı"}
-              content={
-                <>5</>
-              }
-              sx={{
-
-                width: 200,
-                backgroundColor: backgroundColor,
-                color: textColor,
-                mt: 3,
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-
-              }}
-            />
-
-            <CardComponent
-              header={"Bugünkü Çıkış Sayısı"}
-              content={
-                <>5</>
-              }
-              sx={{
-                mr: {
-                  xs: 8,
-                  md: 0
-                },
-                width: 200,
-                backgroundColor: backgroundColor,
-                color: textColor,
-                mt: 3,
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-
-              }}
-            />
-
-            <CardComponent
-              header={"Gelir İstatistikleri"}
-              content={
-                <>5</>
-              }
-              sx={{
-                mr: {
-                  xs: 12,
-                  md: 0
-                },
-                width: 200,
-                backgroundColor: backgroundColor,
-                color: textColor,
-                mt: 3,
-                display: 'flex',
-                justifyContent: "center",
-                alignItems: "center",
-
-              }}
-            />
-          </Grid> */}
-
-
-
 
         </Grid>
 
@@ -243,21 +56,23 @@ const DashboardUI = () => {
                 md: "row"
               },
               gap: 2,
-              minHeight: 300
+              minHeight:300,
+              fontWeight:600,
             }}>
             <CardComponent
-              header={"The Best Users"}
-              content={<BestUsers />}
+              header="The Best Users"
+              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><BestUsers /></Grid></>}
               sx={{
                 backgroundColor: backgroundColor,
                 color: textColor,
                 flexGrow: 1,
                 height: "unset",
-                p: 4
+                p: 4,
               }}
             />
             <CardComponent
               header={"Most Parking Plates"}
+              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><MostParkingPlates /></Grid></>}
               sx={{
                 backgroundColor: backgroundColor,
                 color: textColor,
@@ -268,6 +83,7 @@ const DashboardUI = () => {
             />
             <CardComponent
               header={"Users With The Most Violations"}
+              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><UsersWTMViolations /></Grid></>}
               sx={{
                 backgroundColor: backgroundColor,
                 color: textColor,
@@ -278,7 +94,7 @@ const DashboardUI = () => {
             />
             <CardComponent
               header={"Most Average Long-Term Parking Users"}
-              content={"qwewqe"}
+              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><LongTermParkingUsers /></Grid></>}
               sx={{
                 backgroundColor: backgroundColor,
                 color: textColor,
@@ -288,6 +104,7 @@ const DashboardUI = () => {
             />
 
           </Grid>
+          {/* Park Analytics */}
           <Grid item xs={12} md={3} sx={{ mt: 1 }}>
             <CardComponent
               header={
@@ -305,7 +122,8 @@ const DashboardUI = () => {
                 color: textColor,
                 height: "unset",
                 p: 4,
-                fontWeight:600
+                fontWeight:600,
+                
               }}
             />
           </Grid>

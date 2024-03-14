@@ -21,7 +21,7 @@ const Header = ({ translateOptions }) => {
   const {backgroundColor, textColor, logo, headerBorderBottom} = getThemeStyles();
   return (
     <>
-      <Grid  xs={12} sx={{
+      <Grid  item xs={12} sx={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -56,8 +56,8 @@ const Header = ({ translateOptions }) => {
               
               <DrawerMobileNavigation buttonColor = {textColor}/>
               
-              {pathname !== "/login" && menu.map((item) => (
-                <Typography key={item.id} variant="body2" sx={{
+              {pathname !== "/login" && menu.map((item, key) => (
+                <Typography key={key} variant="body2" sx={{
                   display: 'flex',
                   fontSize: {
                     lg: "16px",
