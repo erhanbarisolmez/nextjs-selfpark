@@ -13,7 +13,7 @@ export default function CardComponent({
 
   <>
 
-      <Card variant="outlined"  sx={{...sx}} {...props}>
+      <Card variant="outlined"  sx={sx} {...props}>
           {header}
         <CardContent>
           {content}

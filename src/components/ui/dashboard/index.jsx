@@ -18,115 +18,126 @@ const DashboardUI = () => {
       <Container maxWidth="xll">
 
         {/* GRAPHICS */}
-        <Grid container spacing={2}
+        <Grid container item spacing={2}
           sx={{
             display: 'flex',
             justifyContent: 'space-around',
             mt: 0.1,
-            alignItems:'center',
+            alignItems: 'center',
 
           }}>
 
-          <Grid item xs={12} md={3} >
+          <Grid item xs={12} md={3} lg={3}>
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days Revenue"} content={<LineChartTremor />} />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} lg={3}>
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days User Count"} content={<AreaChartTremor />
             } />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} lg={3}>
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700, height: 377 }} header={"Entry Methods"} content={<BarChartTremor />
             } />
           </Grid>
-          <Grid item xs={12} md={3} >
+          <Grid item xs={12} md={3} lg={3} >
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days Revenue"} content={<LineChartTremor />} />
           </Grid>
 
         </Grid>
 
         {/* Content data */}
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={9}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-evenly',
-              mt: 3,
-              flexDirection: {
-                xs: "column",
-                md: "row"
-              },
-              gap: 2,
-              minHeight:300,
-              fontWeight:600,
-            }}>
-            <CardComponent
-              header="The Best Users"
-              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><BestUsers /></Grid></>}
-              sx={{
-                backgroundColor: backgroundColor,
-                color: textColor,
-                flexGrow: 1,
-                height: "unset",
-                p: 4,
-              }}
-            />
-            <CardComponent
-              header={"Most Parking Plates"}
-              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><MostParkingPlates /></Grid></>}
-              sx={{
-                backgroundColor: backgroundColor,
-                color: textColor,
-                flexGrow: 1,
-                height: "unset",
-                p: 4
-              }}
-            />
-            <CardComponent
-              header={"Users With The Most Violations"}
-              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><UsersWTMViolations /></Grid></>}
-              sx={{
-                backgroundColor: backgroundColor,
-                color: textColor,
-                flexGrow: 1,
-                height: "unset",
-                p: 4
-              }}
-            />
-            <CardComponent
-              header={"Most Average Long-Term Parking Users"}
-              content={<><Grid item xs sx={{overflowX:'auto',minHeight:230,minWidth:200}}><LongTermParkingUsers /></Grid></>}
-              sx={{
-                backgroundColor: backgroundColor,
-                color: textColor,
-                height: "unset",
-                p: 4
-              }}
-            />
+        <Grid container spacing={2} sx={{
+          display: 'flex',
+          flexDirection:'row',
+          flexWrap: 'wrap',
+          mt:1,
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          fontWeight: 600,
+          flexGrow:1
 
-          </Grid>
-          {/* Park Analytics */}
-          <Grid item xs={12} md={3} sx={{ mt: 1 }}>
-            <CardComponent
-              header={
-                <>
-                  <h3>Park Analytics</h3>
-                  <p className="mt-4 text-tremor-default flex items-center justify-between text-tremor-content dark:text-dark-tremor-content">
-                    <span>Source</span>
-                    <span>Total</span>
-                  </p>
-                </>
-              }
-              content={<BarListTremor />}
-              sx={{
-                backgroundColor: backgroundColor,
-                color: textColor,
-                height: "unset",
-                p: 4,
-                fontWeight:600,
-                
-              }}
-            />
-          </Grid>
+        }}>
+
+            <Grid item xs={12} md={3} lg={2}>
+              <CardComponent
+                header="The Best Users"
+                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 230, minWidth:200 }}><BestUsers /></Grid></>}
+                sx={{
+                  backgroundColor: backgroundColor,
+                  color: textColor,
+                  height: "unset",
+                  p: 4,
+                  
+                }}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={3} lg={2.5}>
+
+              <CardComponent
+                header={"Most Parking Plates"}
+                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 230, minWidth: 200 }}><MostParkingPlates /></Grid></>}
+                sx={{
+                  backgroundColor: backgroundColor,
+                  color: textColor,
+                  height: "unset",
+                  p: 4
+                }}
+              />
+            </Grid>
+
+            
+            <Grid item xs={12} md={3} lg={2.5}>
+              <CardComponent
+                header={"Users With The Most Violations"}
+                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 230, minWidth: 200 }}><UsersWTMViolations /></Grid></>}
+                sx={{
+                  backgroundColor: backgroundColor,
+                  color: textColor,
+                  height: "unset",
+                  p: 4
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} md={3} lg={2.5}>
+              <CardComponent
+                header={"Most Average Long-Term Parking Users"}
+                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 230, minWidth: 200 }}><LongTermParkingUsers /></Grid></>}
+                sx={{
+                  backgroundColor: backgroundColor,
+                  color: textColor,
+                  height: "unset",
+                  p: 4
+                }}
+              />
+            </Grid>
+            {/* Park Analytics */}
+            <Grid item xs   >
+              <CardComponent
+                header={
+                  <>
+                    <h3>Park Analytics</h3>
+                    <p className="mt-4 text-tremor-default flex items-center justify-between text-tremor-content dark:text-dark-tremor-content">
+                      <span>Source</span>
+                      <span>Total</span>
+                    </p>
+                  </>
+                }
+                content={<BarListTremor />}
+                sx={{
+                  backgroundColor: backgroundColor,
+                  color: textColor,
+                  height: "unset",
+                  p: 4,
+                  fontWeight: 600,
+                  flexGrow:1
+
+                }}
+              />
+            </Grid>
+
+
         </Grid>
 
 

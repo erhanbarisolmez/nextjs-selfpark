@@ -17,7 +17,6 @@ export const BestUsers = () => {
   return (
     <>
      {bestUsers.map((item, index) =>(
-      <>
       <Grid container item xs={12} key={index} sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}> 
       <Grid item xs="2" alignItems={'center'} key={index}>
         {item.image}
@@ -32,7 +31,6 @@ export const BestUsers = () => {
        <Divider orientation="horizontal" variant="fullWidth"   />
        </Grid>
       </Grid>
-      </>
       ))}
     </>
   )
