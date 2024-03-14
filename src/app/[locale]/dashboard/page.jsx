@@ -5,10 +5,10 @@ const DashboardPage= () => {
   const t = useTranslations();
 
   return (
-    <>
+    
     <DashboardUI />
     
-    </>
+    
   )
 }
 

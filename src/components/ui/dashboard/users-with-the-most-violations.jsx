@@ -1,3 +1,4 @@
+'use client'
 import WarningIcon from '@mui/icons-material/WarningAmber';
 import { Divider, Grid, Typography } from "@mui/material";
 
@@ -14,7 +15,7 @@ export const UsersWTMViolations = () => {
   return (
     <>
     {usersWTMViolations.map((item,index) => (
-      <Grid container spacing={2}>
+      <Grid container spacing={2} key={index}>
           <Grid item xs={12} key={index.id} sx={{display:'flex', flexDirection:'row',alignItems:'right',textAlign:'center'}}>
             <Grid item xs={2}>{item.icon}</Grid>
             <Grid item xs={4}><Typography variant='subtitle2'>{item.name}</Typography></Grid>

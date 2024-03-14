@@ -7,24 +7,13 @@ import Option from '@mui/joy/Option';
 import Select from '@mui/joy/Select';
 import * as React from 'react';
 
-export default function SelectCustomOption({ options }) {
-  const pathname = usePathname();
+export default function SelectCustomOption({ options, locale }) {
+  const pathname = usePathname(locale);
   
-  const renderValue = (option) => {
-    if (!option) {
-      return null;
-    }
-
-    return (
-      <React.Fragment>
-        {option.label}
-      </React.Fragment>
-    );
-  };
   
   return (
     <Select
-      defaultValue="1"
+      defaultValue={locale}
       slotProps={{
         listbox: {
           sx: {
@@ -36,7 +25,7 @@ export default function SelectCustomOption({ options }) {
         '--ListItemDecorator-size': '44px',
         minWidth: 100,
       }}
-      renderValue={renderValue}
+
       >
 
       {options.map((option, index) => (

@@ -1,3 +1,4 @@
+'use client'
 import Menu from '@mui/icons-material/Menu';
 import Search from '@mui/icons-material/Search';
 import Box from '@mui/joy/Box';

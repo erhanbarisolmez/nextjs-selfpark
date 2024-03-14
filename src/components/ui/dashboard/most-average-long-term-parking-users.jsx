@@ -1,3 +1,4 @@
+'use client'
 import TimeIcon from '@mui/icons-material/AccessTime';
 import { Divider, Grid, Typography } from "@mui/material";
 export const LongTermParkingUsers = () => {

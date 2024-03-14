@@ -51,17 +51,15 @@ export const  LineChartTremor = () => {
     );
   };
   return (
-    <>
-    
+  
       <LineChart
         className="mt-4 h-72"
         data={chartdata}
         index="date"
         categories={['Running']}
         colors={['blue']}
-        yAxisWidth={30}
         customTooltip={customTooltip}
       />
-    </>
+  
   );
 }

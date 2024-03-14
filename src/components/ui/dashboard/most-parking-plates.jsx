@@ -1,3 +1,4 @@
+'use client'
 import CarIcon from '@mui/icons-material/DriveEta';
 import { Divider, Grid, Typography } from "@mui/material";
 export const MostParkingPlates = () => {
@@ -14,7 +15,7 @@ export const MostParkingPlates = () => {
     <>
       {mostParkingPlates.map((item, index) => (
         <Grid container item xs={12} key={index} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',p:1}}>
-          <Grid item xs="12" alignItems={'center'} key={index} sx={{ display: 'flex', flexDirection: 'row', minWidth: 100 }}>
+          <Grid item xs="12" alignItems={'center'} sx={{ display: 'flex', flexDirection: 'row', minWidth: 100 }}>
             {item.image}
             <Grid item xs={5}><Typography variant='subtitle2'>{item.plate}</Typography></Grid>
             <Typography key={index} variant="caption" >Toplam Park Sayısı:{item.total}</Typography>

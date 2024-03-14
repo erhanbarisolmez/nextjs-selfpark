@@ -55,15 +55,12 @@ const chartdata = [
 
 export const BarChartTremor = () =>  {
   return (
-    <>
       <BarChart
         className="h-72"
         data={chartdata}
         index="date"
         categories={['Distance Running', 'Road Cycling', 'Open Water Swimming']}
         colors={['indigo-300', 'rose-200', '#ffcc33']}
-        yAxisWidth={30}
       />
-    </>
   );
 }

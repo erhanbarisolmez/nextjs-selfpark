@@ -1,4 +1,4 @@
-
+'use client'
 import { Face6 as ManIcon, Face4 as WomanIcon } from "@mui/icons-material"
 import { Grid } from '@mui/material'
 import Divider from "@mui/material/Divider"

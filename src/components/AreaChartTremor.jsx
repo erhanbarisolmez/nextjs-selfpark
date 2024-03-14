@@ -58,7 +58,6 @@ export const  AreaChartTremor = () =>  {
         index="date"
         categories={['Running']}
         colors={['blue']}
-        yAxisWidth={30}
         customTooltip={customTooltip}
       />
     </>

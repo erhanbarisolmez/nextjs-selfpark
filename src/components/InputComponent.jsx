@@ -1,3 +1,4 @@
+'use client'
 import { Input } from "@mui/joy"
 const InputComponent = ({
   placeholder,

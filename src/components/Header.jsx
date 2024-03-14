@@ -15,13 +15,12 @@ const menu = [
   { name: "Customer Management", href: "/ " },
   { name: "Reports", href: "/ " }
 ]
-const Header = ({ translateOptions }) => {
+const Header = ({ translateOptions, locale }) => {
   const pathname = usePathname();
   const {getThemeStyles} = useThemeHook();
   const {backgroundColor, textColor, logo, headerBorderBottom} = getThemeStyles();
   return (
-    <>
-      <Grid  item xs={12} sx={{
+      <Grid container  sx={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -82,7 +81,7 @@ const Header = ({ translateOptions }) => {
               gap:1
             }}>
               
-              <TranslateAndTheme translateOptions={translateOptions} />
+              <TranslateAndTheme translateOptions={translateOptions}  locale = {locale}/>
               {pathname !== "/login" &&(
                 <>
               <NotificationsIcon sx={{fontSize:'28px'}}/>
@@ -100,7 +99,7 @@ const Header = ({ translateOptions }) => {
       </Grid>
 
 
-    </>
+
   )
 }
 

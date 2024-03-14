@@ -1,3 +1,4 @@
+'use client'
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 
@@ -11,7 +12,6 @@ export default function CardComponent({
 }) {
   return (
 
-  <>
 
       <Card variant="outlined"  sx={sx} {...props}>
           {header}
@@ -23,6 +23,5 @@ export default function CardComponent({
 
   
    
-    </>
   );
 }

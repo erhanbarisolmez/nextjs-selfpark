@@ -12,13 +12,14 @@ import { MostParkingPlates } from "./most-parking-plates";
 import { UsersWTMViolations } from "./users-with-the-most-violations";
 const DashboardUI = () => {
   const { getThemeStyles } = useThemeHook();
-  const { backgroundColor, buttonColor, isDarkMode, lefColorBg, linkColor, logoColor, textColor, whiteColor } = getThemeStyles();
+  const { backgroundColor, textColor,  } = getThemeStyles();
+
   return (
     <>
       <Container maxWidth="xll">
 
         {/* GRAPHICS */}
-        <Grid container item spacing={2}
+        <Grid container  spacing={2}
           sx={{
             display: 'flex',
             justifyContent: 'space-around',
@@ -34,10 +35,12 @@ const DashboardUI = () => {
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days User Count"} content={<AreaChartTremor />
             } />
           </Grid>
-          <Grid item xs={12} md={3} lg={3}>
+
+          { /* HATA BURADA! */}
+          {/* <Grid item xs={12} md={3} lg={3}>
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700, height: 377 }} header={"Entry Methods"} content={<BarChartTremor />
             } />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={3} lg={3} >
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700 }} header={"Last 7 Days Revenue"} content={<LineChartTremor />} />
           </Grid>

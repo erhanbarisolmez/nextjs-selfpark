@@ -1,3 +1,4 @@
+'use client'
 import { BarList } from '@tremor/react';
 const data = [
   {
@@ -34,9 +35,7 @@ const data = [
 
 export function BarListTremor() {
   return (
-    <>
   
       <BarList data={data} className="mt-2" />
-      </>
   );
 }

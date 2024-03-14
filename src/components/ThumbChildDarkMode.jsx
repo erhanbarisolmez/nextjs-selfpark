@@ -1,3 +1,4 @@
+'use client'
 import { DarkMode } from '@mui/icons-material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import Switch from '@mui/joy/Switch';
@@ -7,9 +8,9 @@ export default function ThumbChildDarkMode({onChange, childIcon}) {
     onChange={onChange}
       size="lg"
       slotProps={{
-        input: { 'aria-label': 'Dark mode' },
+        input: { 'aria-label': 'Light Mode' },
         thumb: {
-          children: childIcon === 'dark' ?  <DarkMode/>  : <LightModeIcon/> ,
+          children: childIcon === 'light' ? <LightModeIcon/>  :  <DarkMode/> ,
 
         },
       }}

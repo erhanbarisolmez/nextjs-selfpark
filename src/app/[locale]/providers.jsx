@@ -10,15 +10,11 @@ import { useEffect, useState } from "react";
       if (savedTheme) {
         setTheme(savedTheme);
       }
-    }, []);
+    }, [localStorage]);
 
-    const handleThemeChange = (newTheme) => {
-      setTheme(newTheme);
-      localStorage.setItem('theme', newTheme);
-    }
-    
+
     return (
-      <NextThemeProvider attribute="class" defaultTheme="light" value={theme}>
+      <NextThemeProvider attribute="class" defaultTheme="light" value={theme}   >
         {children}
       </NextThemeProvider>
     )
