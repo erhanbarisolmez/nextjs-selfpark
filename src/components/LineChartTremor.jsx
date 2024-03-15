@@ -59,6 +59,8 @@ export const  LineChartTremor = () => {
         categories={['Running']}
         colors={['blue']}
         customTooltip={customTooltip}
+        yAxisWidth={30}
+
       />
   
   );

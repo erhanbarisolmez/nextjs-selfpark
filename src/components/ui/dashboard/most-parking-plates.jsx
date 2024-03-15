@@ -14,7 +14,7 @@ export const MostParkingPlates = () => {
   return (
     <>
       {mostParkingPlates.map((item, index) => (
-        <Grid container item xs={12} key={index} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',p:1}}>
+        <Grid container key={index} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',p:1}}>
           <Grid item xs="12" alignItems={'center'} sx={{ display: 'flex', flexDirection: 'row', minWidth: 100 }}>
             {item.image}
             <Grid item xs={5}><Typography variant='subtitle2'>{item.plate}</Typography></Grid>

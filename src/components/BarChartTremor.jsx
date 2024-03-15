@@ -1,6 +1,7 @@
 'use client'
-
 import { BarChart } from '@tremor/react';
+import { useEffect } from 'react';
+
 
 const chartdata = [
   {
@@ -53,7 +54,11 @@ const chartdata = [
   },
 ];
 
+
 export const BarChartTremor = () =>  {
+  useEffect(() => {
+
+  }, [])
   return (
       <BarChart
         className="h-72"
@@ -61,6 +66,11 @@ export const BarChartTremor = () =>  {
         index="date"
         categories={['Distance Running', 'Road Cycling', 'Open Water Swimming']}
         colors={['indigo-300', 'rose-200', '#ffcc33']}
+        yAxisWidth={30}
+        
+    
+        
+
       />
   );
 }

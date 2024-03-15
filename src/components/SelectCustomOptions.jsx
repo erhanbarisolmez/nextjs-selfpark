@@ -1,4 +1,5 @@
 'use client'
+import { useThemeHook } from "@/hooks/useThemeHook";
 import { Link, usePathname } from "@/navigation";
 import Avatar from '@mui/joy/Avatar';
 import ListDivider from '@mui/joy/ListDivider';
@@ -9,10 +10,11 @@ import * as React from 'react';
 
 export default function SelectCustomOption({ options, locale }) {
   const pathname = usePathname(locale);
-  
-  
+  const {getThemeStyles} = useThemeHook();
+  const {backgroundColor, textColor, isDarkMode} = getThemeStyles();
   return (
     <Select
+      variant={!isDarkMode ? "soft" : "solid"} 
       defaultValue={locale}
       slotProps={{
         listbox: {
@@ -23,7 +25,8 @@ export default function SelectCustomOption({ options, locale }) {
       }}
       sx={{
         '--ListItemDecorator-size': '44px',
-        minWidth: 100,
+        backgroundColor:backgroundColor,
+        color:textColor,
       }}
 
       >

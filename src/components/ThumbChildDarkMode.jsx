@@ -15,7 +15,7 @@ export default function ThumbChildDarkMode({onChange, childIcon}) {
         },
       }}
       sx={{
-        '--Switch-thumbSize': '32px',
+        '--Switch-thumbSize': '26px',
       }}
     />
   );
