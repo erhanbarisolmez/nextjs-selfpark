@@ -26,6 +26,12 @@ const data = [
 
   },
   {
+    name: 'Bugünkü Çıkış Sayısı',
+    value: 250,
+    href: 'https://reddit.com',
+
+  },
+  {
     name: 'Gelir İstatistikleri',
     value: "1500TL",
     href: 'https://www.youtube.com/@tremorlabs3079',

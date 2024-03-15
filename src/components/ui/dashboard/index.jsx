@@ -59,7 +59,6 @@ const DashboardUI = () => {
             md: "row",
           },
           fontWeight: 600,
-         
 
         }}>
 
@@ -71,7 +70,7 @@ const DashboardUI = () => {
                   backgroundColor: backgroundColor,
                   color: textColor,
                   height: "unset",
-                  p: 4,
+                  p: 3,
                   
                 }}
               />
@@ -86,7 +85,7 @@ const DashboardUI = () => {
                   backgroundColor: backgroundColor,
                   color: textColor,
                   height: "unset",
-                  p: 4
+                  p: 3
                 }}
               />
             </Grid>
@@ -100,7 +99,7 @@ const DashboardUI = () => {
                   backgroundColor: backgroundColor,
                   color: textColor,
                   height: "unset",
-                  p: 4
+                  p: 3
                 }}
               />
             </Grid>
@@ -112,7 +111,7 @@ const DashboardUI = () => {
                   backgroundColor: backgroundColor,
                   color: textColor,
                   height: "unset",
-                  p: 4
+                  p: 3
                 }}
               />
             </Grid>
@@ -133,9 +132,9 @@ const DashboardUI = () => {
                   backgroundColor: backgroundColor,
                   color: textColor,
                   height: "unset",
-                  p: 4,
+                  p: 3,
                   fontWeight: 600,
-                  minHeight:270
+                  minHeight:200
 
                 }}
               />

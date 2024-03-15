@@ -10,6 +10,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
+import ModalMUI from './ModalMUI';
 
 export default function DrawerMobileNavigation({buttonColor}) {
   const [open, setOpen] = React.useState(false);
@@ -83,11 +84,10 @@ export default function DrawerMobileNavigation({buttonColor}) {
             '& > div': { justifyContent: 'center' },
           }}
         >
-          <ListItemButton sx={{ fontWeight: 'lg' }}>Parking Management</ListItemButton>
-          <ListItemButton>Personnel Management
-          </ListItemButton>
-          <ListItemButton>Customer Management</ListItemButton>
-          <ListItemButton>Reports</ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Parking Management"} dialogTitle={"Parking Management"} /></ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"} /></ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"} /></ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Reports"} dialogTitle={"Reports"} /></ListItemButton>
         </List>
       </Drawer>
     </React.Fragment>

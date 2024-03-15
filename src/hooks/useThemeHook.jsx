@@ -13,6 +13,7 @@ export const useThemeHook = () => {
     const whiteColor = isDarkMode ? '#f3f6f9' : '#f3f6f9';
     const logo = isDarkMode ? '/images/selparklogo2.png' : '/images/selfparklogo.png';
     const headerBorderBottom = isDarkMode ? '#b2bfe4' : '#F5F1B4';
+    const modalHover = isDarkMode ? '#212529' : '#212529S';
     return {
       isDarkMode,
       backgroundColor,
@@ -22,7 +23,8 @@ export const useThemeHook = () => {
       logo,
       linkColor,
       whiteColor,
-      headerBorderBottom
+      headerBorderBottom,
+      modalHover
     }
   }
 

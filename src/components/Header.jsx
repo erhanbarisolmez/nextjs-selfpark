@@ -10,12 +10,20 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DrawerMobileNavigation from "./DrawerMobileNavigation";
+import ModalMUI from "./ModalMUI";
 const menu = [
   { name: "Parking Management", href: "/" },
   { name: "Personnel Management", href: "/ " },
   { name: "Customer Management", href: "/ " },
   { name: "Reports", href: "/ " }
-]
+];
+const modal = [
+  { menu: <ModalMUI menu={"Parking Management"} dialogTitle={"Parking Management"}/>, },
+  { menu: <ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"}/>,  },
+  { menu: <ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"}/>, },
+  { menu: <ModalMUI menu={"Reports"}  dialogTitle={"Reports"} />, }
+
+];
 const Header = ({ translateOptions, locale }) => {
   const pathname = usePathname();
   const { getThemeStyles } = useThemeHook();
@@ -43,17 +51,14 @@ const Header = ({ translateOptions, locale }) => {
       borderBottom: `5px solid ${headerBorderBottom}`,
       backgroundColor: backgroundColor,
       color: textColor,
-
-
-
       alignContent: 'center',
-      height: '150px'
+      height: '170px'
 
     }}>
       <Container maxWidth="xll">
 
 
-        <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+        <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Image
             src={logo}
             width={290}
@@ -69,8 +74,8 @@ const Header = ({ translateOptions, locale }) => {
           display: 'flex',
           gap: 2,
           justifyContent: 'center',
-          alignItems:'center',
-          alignContent:'center'
+          alignItems: 'center',
+          alignContent: 'center'
         }}>
 
           {innerWidth < 500 && (
@@ -78,26 +83,45 @@ const Header = ({ translateOptions, locale }) => {
               <DrawerMobileNavigation buttonColor={textColor} />
             </Grid>
           )}
-          
 
-          {innerWidth >500 &&(
-          <Box sx={{display:'contents'}}>
-          {pathname !== "/login" && menu.map((item, key) => (
-            <Typography key={key} variant="body2" sx={{
-              display: 'flex',
-              fontSize: {
-                lg: "16px",
-                md: "14px",
-                sm: "12px",
-                xs: "10px"
-              },
-              textAlign: 'center',
-              alignItems: 'center'
-            }}>
-              {item.name}
-            </Typography>
-          ))}
-          </Box>
+
+          {innerWidth > 500 && (
+            // <Box sx={{display:'contents'}}>
+            // {pathname !== "/login" && menu.map((item, key) => (
+            //   <Typography key={key} variant="body2" sx={{
+            //     display: 'flex',
+            //     fontSize: {
+            //       lg: "16px",
+            //       md: "14px",
+            //       sm: "12px",
+            //       xs: "10px"
+            //     },
+            //     textAlign: 'center',
+            //     alignItems: 'center',
+            //     p:1
+            //   }}>
+            //     {item.name}
+            //   </Typography>
+            // ))}
+            // </Box>
+            <Box sx={{ display: 'contents' }}>
+              {pathname !== "/login" && modal.map((item, key) => (
+                <Typography key={key} variant="body2" sx={{
+                  display: 'flex',
+                  fontSize: {
+                    lg: "16px",
+                    md: "14px",
+                    sm: "12px",
+                    xs: "10px"
+                  },
+                  textAlign: 'center',
+                  alignItems: 'center',
+                  p: 1
+                }}>
+                  {item.menu}
+                </Typography>
+              ))}
+            </Box>
           )}
 
         </Grid>
