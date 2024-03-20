@@ -1,11 +1,9 @@
-import { locales } from "@/navigation";
 import { CssVarsProvider } from '@mui/joy/styles';
 import { Inter } from "next/font/google";
 
+
 import Header from "@/components/Header";
 import { useOptions } from "@/utils/translate/useOptions";
-import { Box } from '@mui/material';
-import { useTranslations } from "next-intl";
 import './globals.css';
 import { Providers } from "./providers";
 // Inter fontunu yalnızca bir obje olarak içe aktarın

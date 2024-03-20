@@ -1,9 +1,9 @@
 'use client'
-import { AreaChartTremor } from "@/components/AreaChartTremor";
-import { BarChartTremor } from "@/components/BarChartTremor";
-import { BarListTremor } from "@/components/BarListTremor";
+import { AreaChartTremor } from "@/components/ui/chart/AreaChartTremor";
+import { BarChartTremor } from "@/components/ui/chart/BarChartTremor";
+import { BarListTremor } from "@/components/ui/chart/BarListTremor";
 import CardComponent from "@/components/CardComponent";
-import { LineChartTremor } from "@/components/LineChartTremor";
+import { LineChartTremor } from "@/components/ui/chart/LineChartTremor";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { Container, Grid } from "@mui/material";
 import { BestUsers } from "./best-users";

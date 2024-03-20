@@ -7,9 +7,8 @@ import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import * as React from 'react';
-import TabsSegmentedControls from './TabsSegmentedControlMUI';
 
-export default function ModalMUI({menu, dialogTitle}) {
+export default function ModalMUI({menu, dialogTitle, tabsSegmentedControls}) {
   const [layout, setLayout] = React.useState(undefined);
   const {getThemeStyles} = useThemeHook();
   const { textColor, modalHover} = getThemeStyles();
@@ -33,15 +32,7 @@ export default function ModalMUI({menu, dialogTitle}) {
         >
           {menu}
         </Button>
-        {/* <Button
-          variant="outlined"
-          color="neutral"
-          onClick={() => {
-            setLayout('fullscreen');
-          }}
-        >
-          Full screen
-        </Button> */}
+ 
       </Stack>
       <Modal open={!!layout} onClose={() => setLayout(undefined)} sx={{
       
@@ -51,7 +42,10 @@ export default function ModalMUI({menu, dialogTitle}) {
           <DialogTitle>{dialogTitle}</DialogTitle>
           <DialogContent>
             <div>
-              <TabsSegmentedControls />
+
+              {tabsSegmentedControls}
+             
+        
               
             </div>
 

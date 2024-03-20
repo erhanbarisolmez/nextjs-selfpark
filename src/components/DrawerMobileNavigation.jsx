@@ -11,13 +11,14 @@ import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 import ModalMUI from './ModalMUI';
+import TabsSegmentedControls from './TabsSegmentedControlMUI';
 
-export default function DrawerMobileNavigation({buttonColor}) {
+export default function DrawerMobileNavigation({ buttonColor }) {
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
-      <IconButton variant="outlined"  sx={{color: buttonColor}} onClick={() => setOpen(true)}>
+      <IconButton variant="outlined" sx={{ color: buttonColor }} onClick={() => setOpen(true)}>
         <Menu />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)} anchor='top'>
@@ -84,7 +85,21 @@ export default function DrawerMobileNavigation({buttonColor}) {
             '& > div': { justifyContent: 'center' },
           }}
         >
-          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Parking Management"} dialogTitle={"Parking Management"} /></ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}>
+            <ModalMUI
+              menu={"Parking Management"}
+              dialogTitle={"Parking Management"}
+              tabsSegmentedControls={
+                <TabsSegmentedControls
+                  tab1={"Add Park"}
+                  tab2={"List Park"}
+                  tab3={"Update Park"}
+                  tabPanel1={"Tab panel #1"}
+                  tabPanel2={"Tab panel #2"}
+                  tabPanel3={"Tab panel #3"}
+                />
+              } />
+          </ListItemButton>
           <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"} /></ListItemButton>
           <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"} /></ListItemButton>
           <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Reports"} dialogTitle={"Reports"} /></ListItemButton>

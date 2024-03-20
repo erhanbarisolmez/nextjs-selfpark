@@ -10,7 +10,9 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DrawerMobileNavigation from "./DrawerMobileNavigation";
+import Map from "./Map";
 import ModalMUI from "./ModalMUI";
+import TabsSegmentedControls from "./TabsSegmentedControlMUI";
 const menu = [
   { name: "Parking Management", href: "/" },
   { name: "Personnel Management", href: "/ " },
@@ -18,13 +20,27 @@ const menu = [
   { name: "Reports", href: "/ " }
 ];
 const modal = [
-  { menu: <ModalMUI menu={"Parking Management"} dialogTitle={"Parking Management"}/>, },
-  { menu: <ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"}/>,  },
-  { menu: <ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"}/>, },
-  { menu: <ModalMUI menu={"Reports"}  dialogTitle={"Reports"} />, }
+  {
+    menu: <ModalMUI
+      menu={"Parking Management"}
+      dialogTitle={"Parking Management"}
+      tabsSegmentedControls={
+        <TabsSegmentedControls
+          tab1={"Add Park"}
+          tab2={"List Park"}
+          tab3={"Update Park"}
+          tabPanel1={<Map />}
+          tabPanel2={"Tab panel #2"}
+          tabPanel3={"Tab panel #3"}
+        />
+      } />
+  },
+  { menu: <ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"} />, },
+  { menu: <ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"} />, },
+  { menu: <ModalMUI menu={"Reports"} dialogTitle={"Reports"} />, }
 
 ];
-const Header = ({ translateOptions, locale }) => {
+const Header = ({ translateOptions, locale}) => {
   const pathname = usePathname();
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, textColor, logo, headerBorderBottom } = getThemeStyles();

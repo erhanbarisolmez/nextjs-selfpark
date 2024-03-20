@@ -3,9 +3,16 @@ import TabList from '@mui/joy/TabList';
 import TabPanel from "@mui/joy/TabPanel";
 import Tabs from '@mui/joy/Tabs';
 
-export default function TabsSegmentedControls() {
+export default function TabsSegmentedControls({
+  tab1,
+  tab2,
+  tab3,
+  tabPanel1,
+  tabPanel2,
+  tabPanel3
+}) {
   return (
-    <Tabs aria-label="tabs" defaultValue={1} sx={{display:'flex', }}>
+    <Tabs aria-label="tabs" defaultValue={1} sx={{display:'flex' }}>
       
       <TabList
         disableUnderline
@@ -24,23 +31,27 @@ export default function TabsSegmentedControls() {
         justifyItems:'center'
         }}
       >
-        <Tab disableIndicator>Add Park</Tab>
+        {/* <Tab disableIndicator>{Add Park}</Tab>
         <Tab disableIndicator>List Park</Tab>
-        <Tab disableIndicator>Update Park</Tab>
-
+        <Tab disableIndicator>Update Park</Tab> */}
+        <Tab disableIndicator>{tab1}</Tab>
+        <Tab disableIndicator>{tab2}</Tab>
+        <Tab disableIndicator>{tab3}</Tab>
       </TabList>
 
       <TabPanel value={0}>
-          Tab Panel 0
+          {tabPanel1}
       </TabPanel>
 
       <TabPanel value={1}>
-          Tab Panel 1
+         {tabPanel2}
       </TabPanel>
 
       <TabPanel value={2}>
-          Tab Panel 2
+          {tabPanel3}
       </TabPanel>
+
+     
     </Tabs>
   );
 }

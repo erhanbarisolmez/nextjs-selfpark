@@ -1,6 +1,6 @@
 'use client'
 import { Box } from "@mui/material";
-import SelectCustomOption from './SelectCustomOptions';
+import SelectCustomOption from './SelectLangueOptions';
 import { ThemeButton } from "./ThemeButton";
 
 export const TranslateAndTheme = ({ translateOptions, locale}) => {
