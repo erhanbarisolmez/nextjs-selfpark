@@ -10,9 +10,10 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DrawerMobileNavigation from "./DrawerMobileNavigation";
-import Map from "./Map";
 import ModalMUI from "./ModalMUI";
 import TabsSegmentedControls from "./TabsSegmentedControlMUI";
+import Map from "./ui/parking-management/Map";
+import { ListParkContent } from "./ui/parking-management/listParkContent";
 const menu = [
   { name: "Parking Management", href: "/" },
   { name: "Personnel Management", href: "/ " },
@@ -30,7 +31,7 @@ const modal = [
           tab2={"List Park"}
           tab3={"Update Park"}
           tabPanel1={<Map />}
-          tabPanel2={"Tab panel #2"}
+          tabPanel2={<ListParkContent />}
           tabPanel3={"Tab panel #3"}
         />
       } />
@@ -96,7 +97,7 @@ const Header = ({ translateOptions, locale}) => {
 
           {innerWidth < 500 && (
             <Grid item xs>
-              <DrawerMobileNavigation buttonColor={textColor} />
+              <DrawerMobileNavigation buttonColor={textColor}  />
             </Grid>
           )}
 

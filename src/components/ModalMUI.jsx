@@ -8,12 +8,13 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import * as React from 'react';
 
-export default function ModalMUI({menu, dialogTitle, tabsSegmentedControls}) {
+export default function ModalMUI({menu, dialogTitle, tabsSegmentedControls,sxCardInfoButton,cardInfoButton}) {
   const [layout, setLayout] = React.useState(undefined);
   const {getThemeStyles} = useThemeHook();
   const { textColor, modalHover} = getThemeStyles();
   return (
     <React.Fragment>
+      {menu &&(
       <Stack direction="row" spacing={1}>
         <Button
           variant="outlined"
@@ -34,10 +35,27 @@ export default function ModalMUI({menu, dialogTitle, tabsSegmentedControls}) {
         </Button>
  
       </Stack>
+      )}
+      
+      {cardInfoButton &&(
+      <Stack direction="row" spacing={1}>
+        <Button
+          variant="outlined"
+          color={'neutral'}
+          onClick={() => {
+            setLayout('center');
+          }}
+          sx={sxCardInfoButton}
+        >
+          {cardInfoButton}     
+        </Button>
+ 
+      </Stack>
+      )}
       <Modal open={!!layout} onClose={() => setLayout(undefined)} sx={{
       
       }}>
-        <ModalDialog layout={layout} sx={{width:'80%', height:'80%'}}> 
+        <ModalDialog layout={layout} sx={{width:'60%', height:'80%'}}> 
           <ModalClose />
           <DialogTitle>{dialogTitle}</DialogTitle>
           <DialogContent>

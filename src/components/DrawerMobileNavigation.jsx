@@ -1,4 +1,5 @@
 'use client'
+import { useThemeHook } from '@/hooks/useThemeHook';
 import Menu from '@mui/icons-material/Menu';
 import Search from '@mui/icons-material/Search';
 import Box from '@mui/joy/Box';
@@ -12,16 +13,20 @@ import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 import ModalMUI from './ModalMUI';
 import TabsSegmentedControls from './TabsSegmentedControlMUI';
+import Map from './ui/parking-management/Map';
 
 export default function DrawerMobileNavigation({ buttonColor }) {
   const [open, setOpen] = React.useState(false);
-
+  const {getThemeStyles} = useThemeHook();
+  const {textColor, isDarkMode, } = getThemeStyles();
   return (
     <React.Fragment>
-      <IconButton variant="outlined" sx={{ color: buttonColor }} onClick={() => setOpen(true)}>
+     
+      <IconButton variant="outlined" sx={{ color: buttonColor}} onClick={() => setOpen(true)}>
         <Menu />
       </IconButton>
-      <Drawer open={open} onClose={() => setOpen(false)} anchor='top'>
+   
+      <Drawer open={open} onClose={() => setOpen(false)} anchor='top' variant= {!isDarkMode ? 'outlined' : 'solid' }  >
         <Box
           sx={{
             display: 'flex',
@@ -30,6 +35,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
             ml: 'auto',
             mt: 1,
             mr: 2,
+            
           }}
         >
           <Typography
@@ -37,7 +43,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
             htmlFor="close-icon"
             fontSize="sm"
             fontWeight="lg"
-            sx={{ cursor: 'pointer' }}
+            sx={{ cursor: 'pointer', color:textColor}}
           >
             Close
           </Typography>
@@ -85,7 +91,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
             '& > div': { justifyContent: 'center' },
           }}
         >
-          <ListItemButton sx={{ fontWeight: 'lg' }}>
+          <ListItemButton sx={{ fontWeight: 'lg'}}>
             <ModalMUI
               menu={"Parking Management"}
               dialogTitle={"Parking Management"}
@@ -94,7 +100,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
                   tab1={"Add Park"}
                   tab2={"List Park"}
                   tab3={"Update Park"}
-                  tabPanel1={"Tab panel #1"}
+                  tabPanel1={<Map />}
                   tabPanel2={"Tab panel #2"}
                   tabPanel3={"Tab panel #3"}
                 />
@@ -105,6 +111,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
           <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Reports"} dialogTitle={"Reports"} /></ListItemButton>
         </List>
       </Drawer>
+    
     </React.Fragment>
   );
 }

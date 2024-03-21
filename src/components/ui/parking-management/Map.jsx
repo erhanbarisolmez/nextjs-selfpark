@@ -7,8 +7,8 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
-import CardComponent from "./CardComponent";
-import AddParkContent from "./ui/parking-management/addParkContent";
+import CardComponent from "../../CardComponent";
+import AddParkContent from "./addParkContent";
 
 const Map =  ({
 
@@ -148,7 +148,9 @@ const Map =  ({
       }}
     >
        
-      <Button  variant="text" onClick={handleOpenCard}>İleri</Button> 
+      <Button variant="text" onClick={handleOpenCard}>
+        {open ? 'Geri' : 'İleri'}
+      </Button> 
 
       {open &&(
         <CardComponent 

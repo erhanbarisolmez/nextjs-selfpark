@@ -1,21 +1,24 @@
 'use client'
 import Button from "@mui/joy/Button";
 
-export const ButtonComponent = () => {
+export const ButtonComponent = ({
+  sx,
+  text,
+  onClick,
+  color,
+  props
+}) => {
   return (
     <Button
-    
-    color="success"
-    disabled={false}
-    loading={false}
-    onClick={function(){
-    }}
+    color={color}
+    onClick={onClick}
     variant="soft"
-    sx={{
-    }}
-
+    sx={
+      sx
+    }
+    {...props}
   >
-    Dashboard Click
+    {text}
   </Button>
 
   )
