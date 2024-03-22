@@ -119,7 +119,6 @@ const Map =  ({
   };
 
   const handleMapClick = (event) =>{
-    
     const latLng = {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
@@ -179,7 +178,6 @@ const Map =  ({
 
       {/* map component  */}
       <GoogleMap
-        
         onDblClick={handleMapClick}
         zoom={currentLocation || selectedPlace ? 18 : 12}
         center={currentLocation || searchLngLat || center}

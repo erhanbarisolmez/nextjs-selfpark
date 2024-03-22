@@ -7,9 +7,11 @@ export default function TabsSegmentedControls({
   tab1,
   tab2,
   tab3,
+  tab4,
   tabPanel1,
   tabPanel2,
-  tabPanel3
+  tabPanel3,
+  tabPanel4
 }) {
   return (
     <Tabs aria-label="tabs" defaultValue={1} sx={{display:'flex' }}>
@@ -37,6 +39,7 @@ export default function TabsSegmentedControls({
         <Tab disableIndicator>{tab1}</Tab>
         <Tab disableIndicator>{tab2}</Tab>
         <Tab disableIndicator>{tab3}</Tab>
+        <Tab disableIndicator>{tab4}</Tab>
       </TabList>
 
       <TabPanel value={0}>
@@ -50,7 +53,9 @@ export default function TabsSegmentedControls({
       <TabPanel value={2}>
           {tabPanel3}
       </TabPanel>
-
+      <TabPanel value={3}>
+          {tabPanel4}
+      </TabPanel>
      
     </Tabs>
   );

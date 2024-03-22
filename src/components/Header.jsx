@@ -14,6 +14,9 @@ import ModalMUI from "./ModalMUI";
 import TabsSegmentedControls from "./TabsSegmentedControlMUI";
 import Map from "./ui/parking-management/Map";
 import { ListParkContent } from "./ui/parking-management/listParkContent";
+import { ListPersonnelContent } from "./ui/personnel-management/listPersonnelContent";
+import AddPersonnel from "./ui/personnel-management/addPersonnel";
+import { ListCustomerContent } from "./ui/customer-management/listCustomerContent";
 const menu = [
   { name: "Parking Management", href: "/" },
   { name: "Personnel Management", href: "/ " },
@@ -36,12 +39,55 @@ const modal = [
         />
       } />
   },
-  { menu: <ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"} />, },
-  { menu: <ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"} />, },
-  { menu: <ModalMUI menu={"Reports"} dialogTitle={"Reports"} />, }
+  {
+    menu: <ModalMUI
+      menu={"Personnel Management"}
+      dialogTitle={"Personnel Management"}
+      tabsSegmentedControls={
+        <TabsSegmentedControls
+          tab1={"Add Personnel"}
+          tab2={"List Personnel"}
+          tab3={"Update Personnel"}
+          tabPanel1={<AddPersonnel />}
+          tabPanel2={<ListPersonnelContent />}
+          tabPanel3={"Tab panel #3 - Update Personnel"}
+        />
+      }
+    />,
+  },
+  {
+    menu: <ModalMUI
+      menu={"Customer Management"}
+      dialogTitle={"Customer Management"}
+      tabsSegmentedControls={
+        <TabsSegmentedControls
+          tab2={"List Customer"}
+          tabPanel2={<ListCustomerContent />}
+        />
+      }
+    />,
+  },
+  {
+    menu: <ModalMUI
+      menu={"Reports"}
+      dialogTitle={"Reports"}
+      tabsSegmentedControls={
+        <TabsSegmentedControls 
+          tab1={"Daily Report"}
+          tab2={"Monthly Report"}
+          tab3={"Yearly Report"}
+          tab4={"All Reports"}
+          tabPanel1={"Report Panel #1 - Daily Report"}
+          tabPanel2={"Report Panel #2 - Monthly Report"}
+          tabPanel3={"Report Panel #3 - Yearly Report"}
+          tabPanel4={"Report Panel #1 - All Report"}
+        />
+      }
+    />,
+  }
 
 ];
-const Header = ({ translateOptions, locale}) => {
+const Header = ({ translateOptions, locale }) => {
   const pathname = usePathname();
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, textColor, logo, headerBorderBottom } = getThemeStyles();
@@ -97,7 +143,7 @@ const Header = ({ translateOptions, locale}) => {
 
           {innerWidth < 500 && (
             <Grid item xs>
-              <DrawerMobileNavigation buttonColor={textColor}  />
+              <DrawerMobileNavigation buttonColor={textColor} />
             </Grid>
           )}
 

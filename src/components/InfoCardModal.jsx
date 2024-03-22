@@ -11,7 +11,7 @@ export default function InfoCardModal({
   buttonIcon,
   header,
   sx,
-  data
+  data,
 }) {
   const [open, setOpen] = React.useState(false);
   return (
@@ -24,7 +24,7 @@ export default function InfoCardModal({
         aria-describedby="modal-desc"
         open={open}
         onClose={() => setOpen(false)}
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', ...sx}}
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', ...sx }}
       >
         <Sheet
           variant="outlined"
@@ -49,26 +49,26 @@ export default function InfoCardModal({
           <Grid container>
             <Grid item xs={12} minWidth={300}>
               <Grid item xs={12}>
-                {data.name}
+                <Typography level='title-md'> Name: <Typography level='body-md'>{data.name}</Typography></Typography>
               </Grid>
               <Grid item xs={12}>
-                {data.capacity}
+                <Typography level='title-md'> Capacity: <Typography level='body-md'>{data.capacity}</Typography></Typography>
               </Grid>
               <Grid item xs={12}>
-              {data.workHours}
+                <Typography level='title-md'> Work Hours: <Typography level='body-md'>{data.workHours}</Typography></Typography>
               </Grid>
               <Grid item xs={12}>
-              {data.freeParkingDuration}
+                <Typography level='title-md'> Free Parking Duration: <Typography level='body-md'>{data.freeParkingDuration}</Typography></Typography>
               </Grid>
-              <Grid item xs={12} sx={{display:'flex', justifyContent:'flex-end', alignItems:'center', justifyItems:'center'}}>
+              <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', justifyItems: 'center' }}>
                 <Grid item xs={2}>
-                    <EditOutlinedIcon/>
+                  <EditOutlinedIcon />
                 </Grid>
-                <Grid item xs={1}  sx={{display:'flex', textAlign:'right', justifyContent:'flex-end'}}>
-                    <DeleteOutlinedIcon />
+                <Grid item xs={1} sx={{ display: 'flex', textAlign: 'right', justifyContent: 'flex-end' }}>
+                  <DeleteOutlinedIcon />
                 </Grid>
               </Grid>
-              </Grid>
+            </Grid>
           </Grid>
         </Sheet>
       </Modal>

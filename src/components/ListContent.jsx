@@ -1,0 +1,92 @@
+import CardComponent from '@/components/CardComponent';
+import InfoCardModal from '@/components/InfoCardModal';
+import InputComponent from '@/components/InputComponent';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Container, Divider, Grid, Typography } from "@mui/material";
+
+export function ListContent({
+  setSearch,
+  filterList,
+  column1,
+  column2,
+  column3,
+  column4,
+  row1,
+  row2,
+  row3,
+  row4
+}) {
+  return <CardComponent sx={{ display: 'flex', p: 3 }}>
+    <Container>
+      <Grid item container spacing={2}>
+        {/*Search */}
+        {_searchText(setSearch)}
+        <Grid item container xs={12} sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          {/*List Column */}
+          {_column(column1, column2, column3, column4)}
+          {filterList.map((item, index) => (
+            <>
+              <Grid container key={index.id} sx={{ mt: 1 }}>
+                <Grid xs={12}><Divider orientation='horizontal' variant='fullWidth'></Divider></Grid>
+                {/*List Row */}
+                {_row(index, item, row1, row2, row3, row4)}
+                <Grid item xs={1} sx={{ mt: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'row' }}>
+                  <InfoCardModal
+                    buttonIcon={<InfoOutlinedIcon />}
+                    header={`${item.name}'s Information`}
+                    data={item}
+                  />
+                </Grid>
+              </Grid>
+            </>
+          ))}
+        </Grid>
+      </Grid>
+    </Container>
+  </CardComponent>;
+
+  function _row(index, item, row1, row2, row3, row4) {
+    return <Grid item xs={11} key={index.id} sx={{ display: 'flex', p: 1, }}>
+      <Grid item xs sx={{ display: 'flex', alignItems: 'center',  }}>
+        <Grid item xs={3}> <Typography>{item[row1]}</Typography></Grid>
+        <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row2]}</Typography></Grid>
+        <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row3]}</Typography></Grid>
+        <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row4]}</Typography></Grid>
+      </Grid>
+    </Grid>;
+  }
+
+  function _column(column1, column2, column3, column4) {
+    return <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+      <Grid item xs={3}>
+        <Typography variant='subtitle2' fontWeight={600}>{column1}</Typography>
+      </Grid>
+
+      <Grid item xs={3} sx={{ display: 'flex' }} justifyContent={'flex-start'}>
+        <Typography variant='subtitle2' fontWeight={600}>{column2}</Typography>
+      </Grid>
+
+      <Grid item xs={3} sx={{ display: 'flex' }} justifyContent={'flex-end'}>
+        <Typography variant='subtitle2' fontWeight={600}>{column3}</Typography>
+      </Grid>
+      <Grid item xs={3} sx={{ display: 'flex' }} justifyContent={'flex-end'}>
+        <Typography variant='subtitle2' fontWeight={600}>{column4}</Typography>
+      </Grid>
+    </Grid>;
+  }
+}
+
+function _searchText(setSearch) {
+  return <Grid item xs={12}>
+    <InputComponent
+      onChange={(e) => setSearch(e.target.value)}
+      placeholder={'Search Park'}
+      endDecorator={<SearchOutlinedIcon color='red' fontSize='12px' />} />
+  </Grid>;
+}
