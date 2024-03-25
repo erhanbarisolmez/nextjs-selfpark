@@ -27,8 +27,7 @@ export default function ModalMUI({menu, dialogTitle, tabsSegmentedControls,sxCar
             ":hover":{
               bgcolor:modalHover,
               
-            }
-            
+            },            
           }}
         >
           {menu}

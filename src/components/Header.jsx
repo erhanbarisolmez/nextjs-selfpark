@@ -12,17 +12,18 @@ import { useEffect, useState } from "react";
 import DrawerMobileNavigation from "./DrawerMobileNavigation";
 import ModalMUI from "./ModalMUI";
 import TabsSegmentedControls from "./TabsSegmentedControlMUI";
+import Tooltip from "./Tooltip";
+import { ListCustomerContent } from "./ui/customer-management/listCustomerContent";
 import Map from "./ui/parking-management/Map";
 import { ListParkContent } from "./ui/parking-management/listParkContent";
-import { ListPersonnelContent } from "./ui/personnel-management/listPersonnelContent";
 import AddPersonnel from "./ui/personnel-management/addPersonnel";
-import { ListCustomerContent } from "./ui/customer-management/listCustomerContent";
-const menu = [
-  { name: "Parking Management", href: "/" },
-  { name: "Personnel Management", href: "/ " },
-  { name: "Customer Management", href: "/ " },
-  { name: "Reports", href: "/ " }
-];
+import { ListPersonnelContent } from "./ui/personnel-management/listPersonnelContent";
+import InsetDriver from "./ui/messages/InsetDriver";
+import { DailyReport } from "./ui/reports/daily-report";
+import { WeeklyReport } from "./ui/reports/weekly-report";
+import { MonthlyReport } from "./ui/reports/monthly-report";
+import { CustomDateRangeReport } from "./ui/reports/custom-date-range-reports";
+
 const modal = [
   {
     menu: <ModalMUI
@@ -72,18 +73,18 @@ const modal = [
       menu={"Reports"}
       dialogTitle={"Reports"}
       tabsSegmentedControls={
-        <TabsSegmentedControls 
+        <TabsSegmentedControls
           tab1={"Daily Report"}
-          tab2={"Monthly Report"}
-          tab3={"Yearly Report"}
-          tab4={"All Reports"}
-          tabPanel1={"Report Panel #1 - Daily Report"}
-          tabPanel2={"Report Panel #2 - Monthly Report"}
-          tabPanel3={"Report Panel #3 - Yearly Report"}
-          tabPanel4={"Report Panel #1 - All Report"}
+          tab2={"Weekly Report"}
+          tab3={"Monthly Report"}
+          tab4={"Custom Date Range Reports"}
+          tabPanel1={<DailyReport />}
+          tabPanel2={<WeeklyReport />}
+          tabPanel3={<MonthlyReport />}
+          tabPanel4={<CustomDateRangeReport />}
         />
       }
-    />,
+    />
   }
 
 ];
@@ -92,7 +93,7 @@ const Header = ({ translateOptions, locale }) => {
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, textColor, logo, headerBorderBottom } = getThemeStyles();
   const [width, setWidth] = useState(window.innerWidth);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -104,6 +105,7 @@ const Header = ({ translateOptions, locale }) => {
       window.removeEventListener('resize', handleResize);
     }
   }, []);
+
 
   return (
     <Grid container sx={{
@@ -149,24 +151,7 @@ const Header = ({ translateOptions, locale }) => {
 
 
           {innerWidth > 500 && (
-            // <Box sx={{display:'contents'}}>
-            // {pathname !== "/login" && menu.map((item, key) => (
-            //   <Typography key={key} variant="body2" sx={{
-            //     display: 'flex',
-            //     fontSize: {
-            //       lg: "16px",
-            //       md: "14px",
-            //       sm: "12px",
-            //       xs: "10px"
-            //     },
-            //     textAlign: 'center',
-            //     alignItems: 'center',
-            //     p:1
-            //   }}>
-            //     {item.name}
-            //   </Typography>
-            // ))}
-            // </Box>
+
             <Box sx={{ display: 'contents' }}>
               {pathname !== "/login" && modal.map((item, key) => (
                 <Typography key={key} variant="body2" sx={{
@@ -195,24 +180,43 @@ const Header = ({ translateOptions, locale }) => {
           alignItems: 'center',
           color: textColor,
           flexDirection: 'row',
-          gap: 1
+          gap: 1,
+
         }}>
 
           <TranslateAndTheme translateOptions={translateOptions} locale={locale} />
           {pathname !== "/login" && (
             <>
-              <NotificationsIcon sx={{ fontSize: '24px' }} />
-              <TextsmsIcon sx={{ fontSize: '24px' }} />
-              <Link href="/"><LogoutOutlinedIcon sx={{ fontSize: '24px' }} /></Link>
+              <Tooltip
+                menuIcon={<NotificationsIcon sx={{ fontSize: '24px', color: textColor }} />}
+                name=" mui/material-ui"
+                date="on Feb 25"
+                system={"[system]"}
+                titleIcon={<NotificationsIcon sx={{ color: textColor }} />}
+                title={"grey is no more recognized as color with the sx prop"}
+                message="Duplicates I have searched the existing issues Latest version I have
+                tested the …"
+                chip1="bug 🐛"
+                chip2="package: system"
+
+              />
+              <Tooltip
+                menuIcon={<TextsmsIcon sx={{ fontSize: '24px', color: textColor }} />}
+                name="@John"
+                date="on April 10"
+                system={"[user]"}
+                titleIcon={<InsetDriver sx={{ cursor: 'pointer' }} />}
+                title={"Private Message from John Doe"}
+                message="Hi"
+              />
+
+              <Link href="/"><LogoutOutlinedIcon sx={{ fontSize: '26px', cursor: "pointer" }} /></Link>
 
             </>
           )}
 
         </Grid>
-
-
       </Container>
-
     </Grid>
 
 
