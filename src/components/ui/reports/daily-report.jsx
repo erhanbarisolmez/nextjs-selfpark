@@ -1,42 +1,51 @@
 import CardComponent from '@/components/CardComponent'
-import { Box, Container, Grid } from "@mui/material"
+import { Box, Container, Grid, Typography } from "@mui/material"
 import { AreaChartTremor } from '../chart/AreaChartTremor'
 import { BarChartTremor } from '../chart/BarChartTremor'
 import { BarListTremor } from '../chart/BarListTremor'
 import { LineChartTremor } from '../chart/LineChartTremor'
+import { MostParkingPlates } from '../dashboard/most-parking-plates'
+import { UsersWTMViolations } from '../dashboard/users-with-the-most-violations'
+import { LongTermParkingUsers } from '../dashboard/most-average-long-term-parking-users'
+
 export const DailyReport = () => {
   return (
-    <CardComponent>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space',
-   
-        }}>
-        <Container maxWidth='lg'>
-          <Grid container spacing={2} gap={2}>
-            <Container>
-              <Grid item xs={12} sx={{mt:3, gap:2, display:'flex', flexDirection:'column' }}>
-                <CardComponent>
-                <AreaChartTremor  />
-                </CardComponent>
-                <CardComponent>
-                <BarChartTremor />
-                </CardComponent>
-                <CardComponent>
-                <BarListTremor />
-                </CardComponent>
-                <CardComponent>
-                <LineChartTremor />
-                </CardComponent>
-              </Grid>
-            </Container>
-          </Grid>
 
-        </Container>
-      </Box>
-    </CardComponent >
+    <Grid container spacing={2} gap={2}>
+
+      <Grid item xs={12} sx={{ mt: 3, gap: 2, display: 'flex', flexDirection: 'column' }}>
+
+        <CardComponent>
+          <Typography fontWeight={600}>Daily Bar Chart</Typography>
+          <BarChartTremor />
+        </CardComponent>
+
+        <CardComponent>
+          <Typography fontWeight={600}>Daily Bar List</Typography>
+          <BarListTremor />
+        </CardComponent>
+
+        <CardComponent>
+          <Typography fontWeight={600}>Daily Most Parking Plates</Typography>
+          < MostParkingPlates />
+        </CardComponent>
+
+        <CardComponent>
+          <Typography fontWeight={600}>Daily Users With The Most Violations</Typography>
+          <UsersWTMViolations />
+        </CardComponent>
+
+        <CardComponent>
+          <Typography fontWeight={600}>Most Average Long-Term Parking Users</Typography>
+          <LongTermParkingUsers />
+        </CardComponent>
+
+
+
+
+      </Grid>
+    </Grid>
+
+
   )
 }

@@ -28,7 +28,7 @@ export default function InsetDriver() {
   return (
     <React.Fragment>
 
-      <ForumIcon onClick={toggleOpenDrawer} />
+      <ForumIcon onClick={toggleOpenDrawer} sx={{ cursor: 'pointer' }}/>
 
       <Drawer
         size="md"

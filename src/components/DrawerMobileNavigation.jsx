@@ -13,20 +13,28 @@ import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 import ModalMUI from './ModalMUI';
 import TabsSegmentedControls from './TabsSegmentedControlMUI';
+import { ListCustomerContent } from './ui/customer-management/listCustomerContent';
 import Map from './ui/parking-management/Map';
+import { ListParkContent } from './ui/parking-management/listParkContent';
+import AddPersonnel from './ui/personnel-management/addPersonnel';
+import { ListPersonnelContent } from './ui/personnel-management/listPersonnelContent';
+import { CustomDateRangeReport } from './ui/reports/custom-date-range-reports';
+import { DailyReport } from './ui/reports/daily-report';
+import { MonthlyReport } from './ui/reports/monthly-report';
+import { WeeklyReport } from './ui/reports/weekly-report';
 
 export default function DrawerMobileNavigation({ buttonColor }) {
   const [open, setOpen] = React.useState(false);
-  const {getThemeStyles} = useThemeHook();
-  const {textColor, isDarkMode, } = getThemeStyles();
+  const { getThemeStyles } = useThemeHook();
+  const { textColor, isDarkMode, } = getThemeStyles();
   return (
     <React.Fragment>
-     
-      <IconButton variant="outlined" sx={{ color: buttonColor}} onClick={() => setOpen(true)}>
+
+      <IconButton variant="outliexamplesned" sx={{ color: buttonColor }} onClick={() => setOpen(true)}>
         <Menu />
       </IconButton>
-   
-      <Drawer open={open} onClose={() => setOpen(false)} anchor='top' variant= {!isDarkMode ? 'outlined' : 'solid' }  >
+
+      <Drawer open={open} onClose={() => setOpen(false)} anchor='top' variant={!isDarkMode ? 'outlined' : 'solid'}  >
         <Box
           sx={{
             display: 'flex',
@@ -35,7 +43,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
             ml: 'auto',
             mt: 1,
             mr: 2,
-            
+
           }}
         >
           <Typography
@@ -43,7 +51,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
             htmlFor="close-icon"
             fontSize="sm"
             fontWeight="lg"
-            sx={{ cursor: 'pointer', color:textColor}}
+            sx={{ cursor: 'pointer', color: textColor }}
           >
             Close
           </Typography>
@@ -91,27 +99,68 @@ export default function DrawerMobileNavigation({ buttonColor }) {
             '& > div': { justifyContent: 'center' },
           }}
         >
-          <ListItemButton sx={{ fontWeight: 'lg'}}>
+          <ListItemButton sx={{ fontWeight: 'lg' }}>
             <ModalMUI
               menu={"Parking Management"}
               dialogTitle={"Parking Management"}
               tabsSegmentedControls={
                 <TabsSegmentedControls
-                  tab1={"Add Park"}
-                  tab2={"List Park"}
-                  tab3={"Update Park"}
+                  tab1={"Add"}
+                  tab2={"List"}
+                  tab3={"Update"}
                   tabPanel1={<Map />}
-                  tabPanel2={"Tab panel #2"}
-                  tabPanel3={"Tab panel #3"}
+                  tabPanel2={<ListParkContent />}
                 />
               } />
           </ListItemButton>
-          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Personnel Management"} dialogTitle={"Personnel Management"} /></ListItemButton>
-          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Customer Management"} dialogTitle={"Customer Management"} /></ListItemButton>
-          <ListItemButton sx={{ fontWeight: 'lg' }}><ModalMUI menu={"Reports"} dialogTitle={"Reports"} /></ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}>
+            <ModalMUI
+              menu={"Personnel Management"}
+              dialogTitle={"Personnel Management"}
+              tabsSegmentedControls={
+                <TabsSegmentedControls
+                  tab1={"Add"}
+                  tab2={"List"}
+                  tab3={"Update"}
+                  tabPanel1={<AddPersonnel />}
+                  tabPanel2={<ListPersonnelContent />}
+                />
+              }
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg' }}>
+            <ModalMUI
+              menu={"Customer Management"}
+              dialogTitle={"Customer Management"}
+              tabsSegmentedControls={
+                <TabsSegmentedControls
+                  tab2={"List"}
+                  tabPanel2={<ListCustomerContent />}
+                />
+              }
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ fontWeight: 'lg'}}>
+            <ModalMUI
+              menu={"Reports"}
+              dialogTitle={"Reports"}
+              tabsSegmentedControls={
+                <TabsSegmentedControls
+                  tab1={"Daily"}
+                  tab2={"Weekly"}
+                  tab3={"Monthly"}
+                  tab4={"Custom Date Range"}
+                  tabPanel1={<DailyReport />}
+                  tabPanel2={<WeeklyReport />}
+                  tabPanel3={<MonthlyReport />}
+                  tabPanel4={<CustomDateRangeReport />}
+                />
+              }
+            />
+          </ListItemButton>
         </List>
       </Drawer>
-    
+
     </React.Fragment>
   );
 }

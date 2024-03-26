@@ -1,6 +1,5 @@
 'use client'
 import { BarChart } from '@tremor/react';
-import { useEffect } from 'react';
 
 
 const chartdata = [
@@ -56,9 +55,7 @@ const chartdata = [
 
 
 export const BarChartTremor = () =>  {
-  useEffect(() => {
 
-  }, [])
   return (
       <BarChart
         className="h-72"

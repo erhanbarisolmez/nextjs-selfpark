@@ -14,15 +14,15 @@ import ModalMUI from "./ModalMUI";
 import TabsSegmentedControls from "./TabsSegmentedControlMUI";
 import Tooltip from "./Tooltip";
 import { ListCustomerContent } from "./ui/customer-management/listCustomerContent";
+import InsetDriver from "./ui/messages/InsetDriver";
 import Map from "./ui/parking-management/Map";
 import { ListParkContent } from "./ui/parking-management/listParkContent";
 import AddPersonnel from "./ui/personnel-management/addPersonnel";
 import { ListPersonnelContent } from "./ui/personnel-management/listPersonnelContent";
-import InsetDriver from "./ui/messages/InsetDriver";
-import { DailyReport } from "./ui/reports/daily-report";
-import { WeeklyReport } from "./ui/reports/weekly-report";
-import { MonthlyReport } from "./ui/reports/monthly-report";
 import { CustomDateRangeReport } from "./ui/reports/custom-date-range-reports";
+import { DailyReport } from "./ui/reports/daily-report";
+import { MonthlyReport } from "./ui/reports/monthly-report";
+import { WeeklyReport } from "./ui/reports/weekly-report";
 
 const modal = [
   {
@@ -78,7 +78,7 @@ const modal = [
           tab2={"Weekly Report"}
           tab3={"Monthly Report"}
           tab4={"Custom Date Range Reports"}
-          tabPanel1={<DailyReport />}
+          tabPanel1={<DailyReport/>}
           tabPanel2={<WeeklyReport />}
           tabPanel3={<MonthlyReport />}
           tabPanel4={<CustomDateRangeReport />}
@@ -205,7 +205,7 @@ const Header = ({ translateOptions, locale }) => {
                 name="@John"
                 date="on April 10"
                 system={"[user]"}
-                titleIcon={<InsetDriver sx={{ cursor: 'pointer' }} />}
+                titleIcon={<InsetDriver  />}
                 title={"Private Message from John Doe"}
                 message="Hi"
               />

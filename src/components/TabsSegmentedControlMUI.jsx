@@ -30,7 +30,7 @@ export default function TabsSegmentedControls({
         display:'flex',
         textAlign:'center',
         justifyContent:'center',
-        justifyItems:'center'
+        justifyItems:'center',
         }}
       >
         {/* <Tab disableIndicator>{Add Park}</Tab>

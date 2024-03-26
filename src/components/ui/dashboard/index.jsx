@@ -43,7 +43,7 @@ const DashboardUI = () => {
           </Grid>
           {/* --- */}
           <Grid item xs={12} md={3} lg={3} >
-            <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700, height: 375 }} header={"Last 7 Days Revenue"} content={<LineChartTremor />} />
+            <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700, height: 375 }} header={"Users Parking Over"} content={<LineChartTremor />} />
           </Grid>
 
         </Grid>

@@ -17,9 +17,15 @@ export function ListContent({
   row3,
   row4
 }) {
-  return <CardComponent sx={{ display: 'flex', p: 3 }}>
+  return <CardComponent sx={{
+    display: 'flex',
+    p: {
+      xs:0,
+      sm:3
+    }
+  }}>
     <Container>
-      <Grid item container spacing={2}>
+      <Grid container spacing={2}>
         {/*Search */}
         {_searchText(setSearch)}
         <Grid item container xs={12} sx={{
@@ -52,8 +58,8 @@ export function ListContent({
   </CardComponent>;
 
   function _row(index, item, row1, row2, row3, row4) {
-    return <Grid item xs={11} key={index.id} sx={{ display: 'flex', p: 1, }}>
-      <Grid item xs sx={{ display: 'flex', alignItems: 'center',  }}>
+    return <Grid item xs={11} key={index.id} sx={{ display: 'flex', p: 1, alignItems: 'center' }}>
+      <Grid item xs sx={{ display: 'flex', alignItems: 'center', }}>
         <Grid item xs={3}> <Typography>{item[row1]}</Typography></Grid>
         <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row2]}</Typography></Grid>
         <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row3]}</Typography></Grid>
