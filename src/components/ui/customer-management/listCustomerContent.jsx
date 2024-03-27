@@ -72,15 +72,15 @@ const customerList = [
 
 export const ListCustomerContent = () => {
   const [search, setSearch] = useState("")
-  const { getThemeStyles } = useThemeHook();
-  const { textColor, isDarkMode, buttonColor, backgroundColor } = getThemeStyles();
+
   const filterList = customerList.filter((customer => 
     customer.name.toLowerCase().includes(search) ||
     customer.phone.toLowerCase().includes(search)
     ));
   return (
-    <div>
+  
       <ListContent
+      
         column1={'Name'}
         row1={'name'}
         column2={'Phone'}
@@ -88,6 +88,6 @@ export const ListCustomerContent = () => {
         column4={'Actions'}
         filterList={filterList}
         setSearch={setSearch} />
-    </div>
+
   )
 }

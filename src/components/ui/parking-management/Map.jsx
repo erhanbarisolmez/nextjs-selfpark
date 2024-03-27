@@ -9,6 +9,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import CardComponent from "../../CardComponent";
 import AddParkContent from "./addParkContent";
+import { useThemeHook } from "@/hooks/useThemeHook";
 
 const Map =  ({
 
@@ -19,7 +20,8 @@ const Map =  ({
   const [open, setOpen] = useState(false);
   const autocompleteRef = useRef(null);
   const [address, setAddress] = useState("");
-
+  const {getModalStyles} = useThemeHook();
+  const {tabMenuBackground, modalDialogBackground, textColor} = getModalStyles();
 
   useEffect(() => {
     if (searchLngLat) {
@@ -156,7 +158,7 @@ const Map =  ({
         header={"BİLGİ"} 
         content={`Lat: ${searchLngLat?.lat || ""}, Lng: ${searchLngLat?.lng || ""}`}
         children={<AddParkContent />} 
-        
+        sx={{backgroundColor:modalDialogBackground, color:textColor}}
         />
       )}
 

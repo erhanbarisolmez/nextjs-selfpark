@@ -1,12 +1,10 @@
 import CardComponent from '@/components/CardComponent'
-import { Box, Container, Grid, Typography } from "@mui/material"
-import { AreaChartTremor } from '../chart/AreaChartTremor'
+import { Grid, Typography } from "@mui/material"
 import { BarChartTremor } from '../chart/BarChartTremor'
 import { BarListTremor } from '../chart/BarListTremor'
-import { LineChartTremor } from '../chart/LineChartTremor'
+import { LongTermParkingUsers } from '../dashboard/most-average-long-term-parking-users'
 import { MostParkingPlates } from '../dashboard/most-parking-plates'
 import { UsersWTMViolations } from '../dashboard/users-with-the-most-violations'
-import { LongTermParkingUsers } from '../dashboard/most-average-long-term-parking-users'
 
 export const DailyReport = () => {
   return (

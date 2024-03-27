@@ -1,6 +1,7 @@
 import CardComponent from '@/components/CardComponent';
 import InfoCardModal from '@/components/InfoCardModal';
 import InputComponent from '@/components/InputComponent';
+import { useThemeHook } from '@/hooks/useThemeHook';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Container, Divider, Grid, Typography } from "@mui/material";
@@ -17,12 +18,16 @@ export function ListContent({
   row3,
   row4
 }) {
+  const {getModalStyles} = useThemeHook();
+  const {modalDialogBackground, textColor, dividerBackgroundColor} = getModalStyles();
   return <CardComponent sx={{
     display: 'flex',
     p: {
       xs:0,
       sm:3
-    }
+    },
+    backgroundColor:modalDialogBackground,
+    color:textColor
   }}>
     <Container>
       <Grid container spacing={2}>
@@ -38,8 +43,8 @@ export function ListContent({
           {_column(column1, column2, column3, column4)}
           {filterList.map((item, index) => (
             <>
-              <Grid container key={index.id} sx={{ mt: 1 }}>
-                <Grid xs={12}><Divider orientation='horizontal' variant='fullWidth'></Divider></Grid>
+              <Grid container key={index} sx={{ mt: 1 }}>
+                <Grid item xs={12}><Divider orientation='horizontal' variant='fullWidth' sx={{backgroundColor:dividerBackgroundColor}}></Divider></Grid>
                 {/*List Row */}
                 {_row(index, item, row1, row2, row3, row4)}
                 <Grid item xs={1} sx={{ mt: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'row' }}>
@@ -58,7 +63,7 @@ export function ListContent({
   </CardComponent>;
 
   function _row(index, item, row1, row2, row3, row4) {
-    return <Grid item xs={11} key={index.id} sx={{ display: 'flex', p: 1, alignItems: 'center' }}>
+    return <Grid item xs={11} key={index} sx={{ display: 'flex', p: 1, alignItems: 'center' }}>
       <Grid item xs sx={{ display: 'flex', alignItems: 'center', }}>
         <Grid item xs={3}> <Typography>{item[row1]}</Typography></Grid>
         <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row2]}</Typography></Grid>

@@ -1,6 +1,5 @@
 'use client'
 import { ListContent } from '@/components/ListContent';
-import { useThemeHook } from '@/hooks/useThemeHook';
 import { useState } from 'react';
 const parkList = [
   {
@@ -35,8 +34,6 @@ const parkList = [
 
 export const ListParkContent = () => {
   const [search, setSearch] = useState("")
-  const { getThemeStyles } = useThemeHook();
-  const { textColor, isDarkMode, buttonColor, backgroundColor } = getThemeStyles();
   const filterList = parkList.filter(park => park.name.toLowerCase().includes(search));
 
   return (

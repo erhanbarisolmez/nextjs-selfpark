@@ -33,10 +33,10 @@ const modal = [
         <TabsSegmentedControls
           tab1={"Add Park"}
           tab2={"List Park"}
-          tab3={"Update Park"}
           tabPanel1={<Map />}
           tabPanel2={<ListParkContent />}
-          tabPanel3={"Tab panel #3"}
+          defaultValue={1}
+
         />
       } />
   },
@@ -48,10 +48,9 @@ const modal = [
         <TabsSegmentedControls
           tab1={"Add Personnel"}
           tab2={"List Personnel"}
-          tab3={"Update Personnel"}
           tabPanel1={<AddPersonnel />}
           tabPanel2={<ListPersonnelContent />}
-          tabPanel3={"Tab panel #3 - Update Personnel"}
+          defaultValue={1}
         />
       }
     />,
@@ -62,8 +61,10 @@ const modal = [
       dialogTitle={"Customer Management"}
       tabsSegmentedControls={
         <TabsSegmentedControls
-          tab2={"List Customer"}
-          tabPanel2={<ListCustomerContent />}
+          tab1={"List Customer"}
+          tabPanel1={<ListCustomerContent />}
+          defaultValue={0}
+     
         />
       }
     />,
@@ -82,7 +83,8 @@ const modal = [
           tabPanel2={<WeeklyReport />}
           tabPanel3={<MonthlyReport />}
           tabPanel4={<CustomDateRangeReport />}
-        />
+          defaultValue={1}
+        />  
       }
     />
   }
@@ -121,7 +123,6 @@ const Header = ({ translateOptions, locale }) => {
 
     }}>
       <Container maxWidth="xll">
-
 
         <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Image

@@ -110,6 +110,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
                   tab3={"Update"}
                   tabPanel1={<Map />}
                   tabPanel2={<ListParkContent />}
+                  defaultValue={1}
                 />
               } />
           </ListItemButton>
@@ -124,6 +125,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
                   tab3={"Update"}
                   tabPanel1={<AddPersonnel />}
                   tabPanel2={<ListPersonnelContent />}
+                  defaultValue={1}
                 />
               }
             />
@@ -134,8 +136,9 @@ export default function DrawerMobileNavigation({ buttonColor }) {
               dialogTitle={"Customer Management"}
               tabsSegmentedControls={
                 <TabsSegmentedControls
-                  tab2={"List"}
-                  tabPanel2={<ListCustomerContent />}
+                  tab1={"List"}
+                  tabPanel1={<ListCustomerContent />}
+                  defaultValue={0}
                 />
               }
             />
@@ -154,6 +157,7 @@ export default function DrawerMobileNavigation({ buttonColor }) {
                   tabPanel2={<WeeklyReport />}
                   tabPanel3={<MonthlyReport />}
                   tabPanel4={<CustomDateRangeReport />}
+                  defaultValue={1}
                 />
               }
             />

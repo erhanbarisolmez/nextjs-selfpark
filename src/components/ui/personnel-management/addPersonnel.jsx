@@ -1,16 +1,17 @@
 import { ButtonComponent } from '@/components/ButtonComponent'
 import CardComponent from '@/components/CardComponent'
 import InputComponent from '@/components/InputComponent'
+import { useThemeHook } from '@/hooks/useThemeHook'
 import { Container, Grid } from "@mui/material"
 const AddPersonnel = () => {
+  const { getModalStyles } = useThemeHook();
+  const { infoCardButton, modalDialogBackground, textColor, modalCloseButton } = getModalStyles();
   return (
-
-
-    <CardComponent children={
+    <CardComponent sx={{backgroundColor:modalDialogBackground}} children={
       <Container>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
+        <Grid container spacing={2} sx={{backgroundColor:modalDialogBackground}}>
+          <Grid item xs={12} >
             <Container>
               <InputComponent placeholder={'First Name'} />
               <InputComponent placeholder={'Last Name'} />
