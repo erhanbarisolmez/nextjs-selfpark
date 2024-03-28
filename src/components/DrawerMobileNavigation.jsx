@@ -107,7 +107,6 @@ export default function DrawerMobileNavigation({ buttonColor }) {
                 <TabsSegmentedControls
                   tab1={"Add"}
                   tab2={"List"}
-                  tab3={"Update"}
                   tabPanel1={<Map />}
                   tabPanel2={<ListParkContent />}
                   defaultValue={1}
@@ -122,7 +121,6 @@ export default function DrawerMobileNavigation({ buttonColor }) {
                 <TabsSegmentedControls
                   tab1={"Add"}
                   tab2={"List"}
-                  tab3={"Update"}
                   tabPanel1={<AddPersonnel />}
                   tabPanel2={<ListPersonnelContent />}
                   defaultValue={1}

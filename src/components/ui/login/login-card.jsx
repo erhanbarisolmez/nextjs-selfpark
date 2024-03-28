@@ -10,11 +10,21 @@ import Typography from '@mui/joy/Typography';
 import { Box, Grid } from "@mui/material";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+
 export default function LoginCard() {
+ 
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, buttonColor, textColor, linkColor, lefColorBg, logoColor, whiteColor } = getThemeStyles();
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
   return (
-    <>
+    
+   
       <Card
         size="lg"
         variant="solid"
@@ -61,21 +71,30 @@ export default function LoginCard() {
         </CardOverflow>
 
         <CardContent sx={{ gap: 1.5, minWidth: 200, }}>
+         
           <Grid sx={{
             color: logoColor
           }} >
             LOGIN
             <InputComponent
+              name="username"
               variant={'outlined'}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
 
             <InputComponent
+              name={password}
               variant={'outlined'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Grid>
 
           {/* LOGIN BUTTON */}
+       
           <Button
+            
             variant="outlined"
             sx={{
               '--variant-borderWidth': '2px',
@@ -85,6 +104,7 @@ export default function LoginCard() {
               color: buttonColor
             }}
           >
+            
             <Link href={"dashboard"} sx={{ textDecoration: 'none', color: linkColor }}>Login</Link>
           </Button>
 
@@ -97,10 +117,10 @@ export default function LoginCard() {
           </CardContent>
 
 
-
+         
         </CardContent>
-      </Card>
-    </>
+      </Card> 
+     
   );
 }
 

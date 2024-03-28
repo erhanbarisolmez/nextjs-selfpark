@@ -38,6 +38,7 @@ export const useThemeHook = () => {
     const modalCloseButton = isDarkMode ? "solid" : 'plain';
     const dividerBackgroundColor = isDarkMode ?  'white' : 'transparent';
     const infoCardButton = isDarkMode ? "solid" : "outlined";
+    const textFieldMobileDatePicker = isDarkMode ? textColor : "";
 
     return {
       isDarkMode,
@@ -47,7 +48,8 @@ export const useThemeHook = () => {
       tabMenuBackground,
       modalCloseButton,
       dividerBackgroundColor,
-      infoCardButton
+      infoCardButton,
+      textFieldMobileDatePicker
     }
   }
 

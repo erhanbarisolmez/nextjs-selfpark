@@ -1,6 +1,9 @@
 import LoginUI from '@/components/ui/login';
+ 
 
-const LoginPage = () => {
+const LoginPage = async() => {
+
+
 
   return (
    
