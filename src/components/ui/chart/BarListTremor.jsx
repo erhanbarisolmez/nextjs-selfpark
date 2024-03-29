@@ -5,13 +5,13 @@ const data = [
     name: 'Toplam Otopark Sayısı',
     value: 456,
     href: 'https://twitter.com/tremorlabs',
-  
+
   },
   {
     name: 'Boş Otopark sayısı',
     value: 351,
     href: 'https://google.com',
-  
+
   },
   {
     name: 'Dolu Otopark Sayısı',
@@ -40,8 +40,10 @@ const data = [
 ];
 
 export function BarListTremor() {
-  return (
   
-      <BarList data={data} className="mt-2" />
+  return (
+    
+      <BarList data={data} className="mt-2"/>
   );
 }
+

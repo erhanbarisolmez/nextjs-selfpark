@@ -11,20 +11,53 @@ import { Box, Grid } from "@mui/material";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-
 export default function LoginCard() {
  
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, buttonColor, textColor, linkColor, lefColorBg, logoColor, whiteColor } = getThemeStyles();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [formData, setFormData] = useState({username: '', password:''});
+  const [username, setUsername] = useState("");
+  const [ password, setPassword] = useState('');
+  console.log("username:" +username + "password" +password)
+  // const handleChange = (event) => {
+  //   const {name, value} = event.target;
+  //   setFormData({formData, [name]:value})
+  //   console.log(formData);
+  // }
+  
 
+ // Handle form submission
+ const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await fetch('http://127.0.0.1:8000/auth/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // body: JSON.stringify(formData)
+      body: JSON.stringify(username, password)
+    });
+  
 
+    if (response.ok) {
+      const data = await response.json();
+      const token = data.access_token;
+      if (token) {
+        window.location.href="dashboard";
+      }
+      console.log("Login successful", token);
+    } else {
+      console.log('Login failed:', response)
+    }
 
+  } catch (error) {
+    console.error('Error during login', error)
+  }
+}
   return (
     
-   
       <Card
         size="lg"
         variant="solid"
@@ -71,30 +104,33 @@ export default function LoginCard() {
         </CardOverflow>
 
         <CardContent sx={{ gap: 1.5, minWidth: 200, }}>
-         
+
+         <form  onSubmit={handleSubmit} method='POST'>
           <Grid sx={{
             color: logoColor
           }} >
             LOGIN
             <InputComponent
               name="username"
-              variant={'outlined'}
               value={username}
+              variant={'outlined'}
               onChange={(e) => setUsername(e.target.value)}
             />
 
             <InputComponent
-              name={password}
-              variant={'outlined'}
+              name="password"
               value={password}
+              variant={'outlined'}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Grid>
 
           {/* LOGIN BUTTON */}
        
+       <div>
+        
           <Button
-            
+            type='submit'
             variant="outlined"
             sx={{
               '--variant-borderWidth': '2px',
@@ -105,9 +141,10 @@ export default function LoginCard() {
             }}
           >
             
-            <Link href={"dashboard"} sx={{ textDecoration: 'none', color: linkColor }}>Login</Link>
+            Login
           </Button>
-
+          </div>
+          </form>
           <CardContent sx={{ color: textColor }}>
             <Typography level="title-lg" color={textColor}>Not Registered?</Typography>
             <Typography fontSize="sm" sx={{ mt: 0.5, color: textColor }}>

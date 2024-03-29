@@ -1,17 +1,17 @@
+'use server'
 import LoginUI from '@/components/ui/login';
- 
-
-const LoginPage = async() => {
 
 
+const LoginPage = async () => {
+
+  
 
   return (
-   
-           <LoginUI />
+
+    <LoginUI  />
 
   )
 }
 
 export default LoginPage
-
 
