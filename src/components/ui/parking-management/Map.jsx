@@ -21,7 +21,7 @@ const Map =  ({
   const autocompleteRef = useRef(null);
   const [address, setAddress] = useState("");
   const {getModalStyles} = useThemeHook();
-  const {tabMenuBackground, modalDialogBackground, textColor} = getModalStyles();
+  const { modalCard, textColor} = getModalStyles();
 
   useEffect(() => {
     if (searchLngLat) {
@@ -158,7 +158,7 @@ const Map =  ({
         header={"BİLGİ"} 
         content={`Lat: ${searchLngLat?.lat || ""}, Lng: ${searchLngLat?.lng || ""}`}
         children={<AddParkContent />} 
-        sx={{backgroundColor:modalDialogBackground, color:textColor}}
+        sx={{backgroundColor:modalCard, color:textColor}}
         />
       )}
 

@@ -1,7 +1,10 @@
 'use client'
+import { useThemeHook } from '@/hooks/useThemeHook';
 import CarIcon from '@mui/icons-material/DriveEta';
 import { Divider, Grid, Typography } from "@mui/material";
 export const MostParkingPlates = () => {
+  const {getModalStyles} = useThemeHook();
+  const {dividerBackgroundColor} = getModalStyles();
   const mostParkingPlates = [
     { id: "1", image: <CarIcon />, plate: "34 DFG 333", total: "30" },
     { id: "2", image: <CarIcon />, plate: "34 QWE 222", total: "60" },
@@ -24,7 +27,7 @@ export const MostParkingPlates = () => {
 
 
           <Grid item xs={12} mt={2}>
-            <Divider orientation="horizontal" variant="fullWidth" />
+            <Divider orientation="horizontal" variant="fullWidth" sx={{backgroundColor:dividerBackgroundColor}} />
 
           </Grid>
         </Grid>

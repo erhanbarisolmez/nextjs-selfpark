@@ -8,7 +8,7 @@ const personnelList = [
     capacity: 100,
     workHours: '08:30 - 20:30',
     freeParkingDuration: '2 hourse',
-    email:'oıqjweı@aisjd.com',
+    email: 'oıqjweı@aisjd.com',
     role: 'Manager',
   },
   {
@@ -17,7 +17,7 @@ const personnelList = [
     capacity: 200,
     workHours: '07:00 - 20:00',
     freeParkingDuration: '2 hourse',
-    role:'Employee'
+    role: 'Employee'
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const personnelList = [
     capacity: 150,
     workHours: '24 hours',
     freeParkingDuration: '2 hourse',
-    role:'Manager'
+    role: 'Manager'
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const personnelList = [
     capacity: 150,
     workHours: '24 hours',
     freeParkingDuration: '2 hourse',
-    role:'Employee'
+    role: 'Employee'
   },
   {
     id: 5,
@@ -41,7 +41,7 @@ const personnelList = [
     capacity: 150,
     workHours: '24 hours',
     freeParkingDuration: '2 hourse',
-    role:'Manager'
+    role: 'Manager'
   },
   {
     id: 6,
@@ -49,7 +49,7 @@ const personnelList = [
     capacity: 150,
     workHours: '24 hours',
     freeParkingDuration: '2 hourse',
-    role:'Employee'
+    role: 'Employee'
   },
   {
     id: 7,
@@ -57,7 +57,7 @@ const personnelList = [
     capacity: 150,
     workHours: '24 hours',
     freeParkingDuration: '2 hourse',
-    role:'Employee'
+    role: 'Employee'
   }
 ]
 
@@ -65,20 +65,20 @@ export const ListPersonnelContent = () => {
   const [search, setSearch] = useState("")
   const { getThemeStyles } = useThemeHook();
   const { textColor, isDarkMode, buttonColor, backgroundColor } = getThemeStyles();
-  const filterList = personnelList.filter(person => 
+  const filterList = personnelList.filter(person =>
     person.name.toLowerCase().includes(search) ||
     person.role.toLowerCase().includes(search)
-    );
+  );
   return (
-    <div>
-        <ListContent 
-        column1={"Name"}
-        row1={'name'}
-        column2={"Role"}
-        row2={'role'}
-        column4={"Actions"}
-         filterList={filterList}
-         setSearch={setSearch}/>
-    </div>
+
+    <ListContent
+      column1={"Name"}
+      row1={'name'}
+      column2={"Role"}
+      row2={'role'}
+      column4={"Actions"}
+      filterList={filterList}
+      setSearch={setSearch} />
+
   )
 }

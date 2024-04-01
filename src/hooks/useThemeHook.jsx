@@ -8,7 +8,7 @@ export const useThemeHook = () => {
     const backgroundColor = isDarkMode ? '#292e32' : "#f3f6f9";
     const textColor = isDarkMode ? 'white' : 'black';
     const buttonColor = isDarkMode ? "white" : 'black';
-    const lefColorBg = isDarkMode ? '#212529' : '#212529S';
+    const leftColorBg = isDarkMode ? '#212529' : '#212529S';
     const linkColor = isDarkMode ? '#f3f6f9' : "#332D2F"
     const whiteColor = isDarkMode ? '#f3f6f9' : '#f3f6f9';
     const logo = isDarkMode ? '/images/selparklogo2.png' : '/images/selfparklogo.png';
@@ -20,7 +20,7 @@ export const useThemeHook = () => {
       backgroundColor,
       textColor,
       buttonColor,
-      lefColorBg,
+      leftColorBg,
       logo,
       linkColor,
       whiteColor,
@@ -39,6 +39,7 @@ export const useThemeHook = () => {
     const dividerBackgroundColor = isDarkMode ?  'white' : 'transparent';
     const infoCardButton = isDarkMode ? "solid" : "outlined";
     const textFieldMobileDatePicker = isDarkMode ? textColor : "";
+    const modalCard = isDarkMode ? '#292e32' : "#f3f6f9";
 
     return {
       isDarkMode,
@@ -49,7 +50,8 @@ export const useThemeHook = () => {
       modalCloseButton,
       dividerBackgroundColor,
       infoCardButton,
-      textFieldMobileDatePicker
+      textFieldMobileDatePicker,
+      modalCard
     }
   }
 

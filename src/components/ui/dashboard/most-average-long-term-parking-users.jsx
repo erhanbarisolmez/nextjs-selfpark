@@ -1,7 +1,10 @@
 'use client'
+import { useThemeHook } from '@/hooks/useThemeHook';
 import TimeIcon from '@mui/icons-material/AccessTime';
 import { Divider, Grid, Typography } from "@mui/material";
 export const LongTermParkingUsers = () => {
+  const {getModalStyles} = useThemeHook();
+  const {dividerBackgroundColor} = getModalStyles();
   const longTermParkingUsers = [
     { id: "1", icon: <TimeIcon />, name: "Ahmet", averageTime: "4 saat 30 dakika" },
     { id: "2", icon: <TimeIcon />, name: "Mehmet", averageTime: "4 saat 30 dakika" },
@@ -9,8 +12,9 @@ export const LongTermParkingUsers = () => {
     { id: "4", icon: <TimeIcon />, name: "Su", averageTime: "4 saat 30 dakika" },
     { id: "5", icon: <TimeIcon />, name: "Ateş", averageTime: "4 saat 30 dakika" },
     { id: "6", icon: <TimeIcon />, name: "Merve", averageTime: "4 saat 30 dakika" },
+  ];
 
-  ]
+
   return (
     <>
       {longTermParkingUsers.map((item, index) => (
@@ -27,12 +31,12 @@ export const LongTermParkingUsers = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography variant='subtitle2'>{item.averageTime}</Typography>
-              <Divider orientation='horizontal' variant='fullWidth'></Divider>
+              <Divider orientation='horizontal' variant='fullWidth' sx={{backgroundColor:dividerBackgroundColor}}></Divider>
 
             </Grid>
             <Grid item xs={9} sx={{ml:3}}>
               <Typography variant='subtitle2' >{item.name}</Typography>
-              <Divider orientation='horizontal' variant='fullWidth'></Divider>
+              <Divider orientation='horizontal' variant='fullWidth' sx={{backgroundColor:dividerBackgroundColor}}></Divider>
             </Grid>
           </Grid>
 

@@ -19,14 +19,24 @@ export function ListContent({
   row4
 }) {
   const {getModalStyles} = useThemeHook();
-  const {modalDialogBackground, textColor, dividerBackgroundColor} = getModalStyles();
+  const {modalCard, textColor, dividerBackgroundColor} = getModalStyles();
+
+  function _searchText(setSearch) {
+    return <Grid item xs={12}>
+      <InputComponent
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder={'Search Park'}
+        endDecorator={<SearchOutlinedIcon color='red' fontSize='12px' />} />
+    </Grid>;
+  }
+  
   return <CardComponent sx={{
     display: 'flex',
     p: {
       xs:0,
       sm:3
     },
-    backgroundColor:modalDialogBackground,
+    backgroundColor:modalCard,
     color:textColor
   }}>
     <Container>
@@ -93,11 +103,3 @@ export function ListContent({
   }
 }
 
-function _searchText(setSearch) {
-  return <Grid item xs={12}>
-    <InputComponent
-      onChange={(e) => setSearch(e.target.value)}
-      placeholder={'Search Park'}
-      endDecorator={<SearchOutlinedIcon color='red' fontSize='12px' />} />
-  </Grid>;
-}

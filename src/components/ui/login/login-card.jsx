@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import Authenticate from "@/api/Auth";
 import InputComponent from "@/components/InputComponent";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -11,6 +11,7 @@ import Typography from "@mui/joy/Typography";
 import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const LoginCard = () => {
   const [username, setUsername] = useState("");
@@ -22,12 +23,12 @@ const LoginCard = () => {
     buttonColor,
     textColor,
     linkColor,
-    lefColorBg,
+    leftColorBg,
     logoColor,
     whiteColor,
   } = getThemeStyles();
 
-
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,36 +38,13 @@ const LoginCard = () => {
       return;
     }
 
-    try {
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-          'username': username,
-          'password': password
-        })
-      };
-      const response = await fetch(
-        "http://127.0.0.1:8000/auth/token",
-        requestOptions
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.access_token;
-        if (token) {
-          window.location.href = "dashboard";
-        }
-        console.log("Login successful", token);
-      } else {
-        console.log("Login failed:", response);
-      }
-    } catch (error) {
-      console.error("Error during login", error);
+    if (condition) {
+      
     }
+
+    const auth = new Authenticate();
+    auth.loginUser(username, password);
+
   };
 
   return (
@@ -92,7 +70,7 @@ const LoginCard = () => {
           flexDirection: "column",
           justifyContent: "center",
           px: "var(--Card-padding)",
-          backgroundColor: lefColorBg,
+          backgroundColor: leftColorBg,
         }}
       >
         <AspectRatio
@@ -156,6 +134,7 @@ const LoginCard = () => {
               borderColor: "primary.500",
               mx: "auto",
               color: buttonColor,
+              mt:3
             }}
           >
             Login

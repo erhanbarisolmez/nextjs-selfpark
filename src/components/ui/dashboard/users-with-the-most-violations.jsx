@@ -1,8 +1,11 @@
 'use client'
+import { useThemeHook } from '@/hooks/useThemeHook';
 import WarningIcon from '@mui/icons-material/WarningAmber';
 import { Divider, Grid, Typography } from "@mui/material";
 
 export const UsersWTMViolations = () => {
+  const {getModalStyles} = useThemeHook();
+  const {dividerBackgroundColor} = getModalStyles();
   const  usersWTMViolations = [
     {id:"1", icon:<WarningIcon />, name: "Ahmet", ruleViolation:"15", penaltyPaid: "1500TL"},
     {id:"2", icon:<WarningIcon />, name: "Mehmet", ruleViolation:"12", penaltyPaid: "2500TL"},
@@ -25,7 +28,7 @@ export const UsersWTMViolations = () => {
               </Grid>
           </Grid>
           <Grid item xs={12} mb={3}>
-              <Divider orientation='horizontal' variant='fullWidth'></Divider>
+              <Divider orientation='horizontal' variant='fullWidth' sx={{backgroundColor:dividerBackgroundColor}}></Divider>
               </Grid>
       </Grid>
     ))}

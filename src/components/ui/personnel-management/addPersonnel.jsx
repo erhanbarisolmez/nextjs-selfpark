@@ -5,12 +5,12 @@ import { useThemeHook } from '@/hooks/useThemeHook'
 import { Container, Grid } from "@mui/material"
 const AddPersonnel = () => {
   const { getModalStyles } = useThemeHook();
-  const { infoCardButton, modalDialogBackground, textColor, modalCloseButton } = getModalStyles();
+  const {  modalCard } = getModalStyles();
   return (
-    <CardComponent sx={{backgroundColor:modalDialogBackground}} children={
+    <CardComponent sx={{backgroundColor:modalCard}} children={
       <Container>
 
-        <Grid container spacing={2} sx={{backgroundColor:modalDialogBackground}}>
+        <Grid container spacing={2} sx={{backgroundColor:modalCard}}>
           <Grid item xs={12} >
             <Container>
               <InputComponent placeholder={'First Name'} />
