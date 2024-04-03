@@ -1,19 +1,29 @@
 'use client'
+import CardComponent from "@/components/CardComponent";
 import { AreaChartTremor } from "@/components/ui/chart/AreaChartTremor";
 import { BarChartTremor } from "@/components/ui/chart/BarChartTremor";
 import { BarListTremor } from "@/components/ui/chart/BarListTremor";
-import CardComponent from "@/components/CardComponent";
 import { LineChartTremor } from "@/components/ui/chart/LineChartTremor";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { Container, Grid } from "@mui/material";
+import { useEffect } from "react";
 import { BestUsers } from "./best-users";
 import { LongTermParkingUsers } from "./most-average-long-term-parking-users";
 import { MostParkingPlates } from "./most-parking-plates";
 import { UsersWTMViolations } from "./users-with-the-most-violations";
+
 const DashboardUI = () => {
+
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, textColor,  } = getThemeStyles();
-
+    useEffect(() => {
+    const role = localStorage.getItem('role');
+  
+    if (!role || role !== 'admin') {
+      window.location.href = "/login";
+    }
+  }, []);
+  
   return (
     <>
       <Container maxWidth="xll">

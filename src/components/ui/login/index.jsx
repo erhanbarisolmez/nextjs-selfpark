@@ -1,7 +1,7 @@
+'use client'
+import { Box } from '@mui/material';
+import LoginCard from './login-card';
 
-
-import { Box } from '@mui/material'
-import LoginCard from './login-card'
 const LoginUI = () => {
   
 

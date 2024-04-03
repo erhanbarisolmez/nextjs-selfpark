@@ -28,7 +28,7 @@ const LoginCard = () => {
     whiteColor,
   } = getThemeStyles();
 
-  
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,12 +38,8 @@ const LoginCard = () => {
       return;
     }
 
-    if (condition) {
-      
-    }
-
     const auth = new Authenticate();
-    auth.loginUser(username, password);
+    await auth.loginUser(username, password);
 
   };
 

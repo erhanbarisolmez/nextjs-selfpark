@@ -61,7 +61,6 @@ export default function TooltipMUI({
               startDecorator={
                 <Link
                   underline="always"
-                  href="#common-examples"
                   fontSize="sm"
                   sx={{
                     textColor: isDarkMode ? 'white' : 'dark'
@@ -103,7 +102,6 @@ export default function TooltipMUI({
       open={open}
     >
       <Link
-        href="#common-examples"
         underline="none"
         startDecorator={menuIcon}
         sx={{ fontWeight: 'lg' }}

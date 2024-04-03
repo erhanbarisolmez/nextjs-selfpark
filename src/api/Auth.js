@@ -1,3 +1,5 @@
+import jwt_decode from 'jsonwebtoken/decode';
+
 class Authenticate {
   constructor() {
     this.api = process.env.NEXT_PUBLIC_API_FASTAPI_URL;
@@ -26,8 +28,17 @@ class Authenticate {
         const data = await response.json();
         const token = data.access_token;
         if (token) {
+          const decodedToken = jwt_decode(token);
+          const role = decodedToken.role;
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", role);
+          if (role === 'admin') {
           window.location.href = "dashboard";
-          console.log("Logged in: ", token);
+          console.log("Logged in: ", token, role);
+          }else if (role === 'user'){
+            window.location.href = "home";
+          }
+    
         } else {
           console.log("Login failed:", response);
         }
@@ -35,7 +46,6 @@ class Authenticate {
     } catch (error) {
       console.error("Error authenticating user:", error);
     }
-
   }
 
 }

@@ -24,7 +24,7 @@ import { DailyReport } from "./ui/reports/daily-report";
 import { MonthlyReport } from "./ui/reports/monthly-report";
 import { WeeklyReport } from "./ui/reports/weekly-report";
 
-const modal = [
+const modalAdmin = [
   {
     menu: <ModalMUI
       menu={"Parking Management"}
@@ -96,6 +96,7 @@ const Header = ({ translateOptions, locale }) => {
   const { backgroundColor, textColor, logo, headerBorderBottom } = getThemeStyles();
   const [width, setWidth] = useState(window.innerWidth);
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -108,6 +109,10 @@ const Header = ({ translateOptions, locale }) => {
     }
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('role');
+    localStorage.clear();
+  }
 
   return (
     <Grid container sx={{
@@ -154,7 +159,8 @@ const Header = ({ translateOptions, locale }) => {
           {innerWidth > 500 && (
 
             <Box sx={{ display: 'contents' }}>
-              {pathname !== "/login" && modal.map((item, key) => (
+             
+              {pathname !== "/login" && pathname === '/dashboard' && modalAdmin.map((item, key) => (
                 <Typography key={key} variant="body2" sx={{
                   display: 'flex',
                   fontSize: {
@@ -211,7 +217,7 @@ const Header = ({ translateOptions, locale }) => {
                 message="Hi"
               />
 
-              <Link href="/"><LogoutOutlinedIcon sx={{ fontSize: '26px', cursor: "pointer" }} /></Link>
+              <Link href="/" onClick={handleLogout}><LogoutOutlinedIcon sx={{ fontSize: '26px', cursor: "pointer" }} /></Link>
 
             </>
           )}
