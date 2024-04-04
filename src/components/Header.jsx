@@ -111,7 +111,6 @@ const Header = ({ translateOptions, locale }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('role');
-    localStorage.clear();
   }
 
   return (

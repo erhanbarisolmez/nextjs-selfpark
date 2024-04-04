@@ -5,7 +5,7 @@ export const HomeUI = () => {
     const role = localStorage.getItem('role');
   
     if (!role || role !== 'user') {
-      window.location.href = "/login";
+      window.location.href = "/";
     }
   }, []);
   return (

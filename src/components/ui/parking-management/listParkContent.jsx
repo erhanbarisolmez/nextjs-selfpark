@@ -37,14 +37,12 @@ export const ListParkContent = () => {
   const filterList = parkList.filter(park => park.name.toLowerCase().includes(search));
 
   return (
-    <div>
-      <ListContent
-        column1={"Name"}
-        row1={'name'}
-        column4={"Actions"}
-        filterList={filterList}
-        setSearch={setSearch} />
-    </div>
+    <ListContent
+      column1={"Name"}
+      row1={'name'}
+      column4={"Actions"}
+      filterList={filterList}
+      setSearch={setSearch} />
   )
 }
 

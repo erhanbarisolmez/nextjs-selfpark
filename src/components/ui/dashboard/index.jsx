@@ -6,6 +6,7 @@ import { BarListTremor } from "@/components/ui/chart/BarListTremor";
 import { LineChartTremor } from "@/components/ui/chart/LineChartTremor";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { Container, Grid } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { BestUsers } from "./best-users";
 import { LongTermParkingUsers } from "./most-average-long-term-parking-users";
@@ -16,16 +17,19 @@ const DashboardUI = () => {
 
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, textColor,  } = getThemeStyles();
+  const router = useRouter();
     useEffect(() => {
     const role = localStorage.getItem('role');
   
     if (!role || role !== 'admin') {
-      window.location.href = "/login";
+      router.back();
     }
   }, []);
   
   return (
     <>
+
+     
       <Container maxWidth="xll">
 
         {/* GRAPHICS */}
@@ -150,12 +154,9 @@ const DashboardUI = () => {
               />
             </Grid>
 
-
         </Grid>
-
-
-
       </Container>
+    
     </>
   )
 }

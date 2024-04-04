@@ -1,5 +1,6 @@
 'use client'
-import { Button } from "@mui/material";
+import { useThemeHook } from "@/hooks/useThemeHook";
+import { Button, Container, Grid } from "@mui/material";
 import {
   Autocomplete,
   GoogleMap,
@@ -7,11 +8,9 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
-import CardComponent from "../../CardComponent";
 import AddParkContent from "./addParkContent";
-import { useThemeHook } from "@/hooks/useThemeHook";
 
-const Map =  ({
+const Map = ({
 
 }) => {
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -20,8 +19,8 @@ const Map =  ({
   const [open, setOpen] = useState(false);
   const autocompleteRef = useRef(null);
   const [address, setAddress] = useState("");
-  const {getModalStyles} = useThemeHook();
-  const { modalCard, textColor} = getModalStyles();
+  const { getModalStyles } = useThemeHook();
+  const { modalCard, textColor } = getModalStyles();
 
   useEffect(() => {
     if (searchLngLat) {
@@ -59,8 +58,8 @@ const Map =  ({
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          console.log("Lati",latitude)
-          console.log("long",longitude)
+          console.log("Lati", latitude)
+          console.log("long", longitude)
           setCurrentLocation({ lat: latitude, lng: longitude });
         },
         (error) => {
@@ -90,11 +89,6 @@ const Map =  ({
     controlUI.addEventListener("click", handleGetLocationClick);
     controlDiv.appendChild(controlUI);
 
-    // const centerControl = new window.google.maps.ControlPosition(
-    //   window.google.maps.ControlPosition.TOP_CENTER,
-    //   0,
-    //   10
-    // );
 
     map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(
       controlDiv
@@ -102,15 +96,15 @@ const Map =  ({
   };
   const reverseGeocode = (latLng) => {
     const geocoder = new window.google.maps.Geocoder();
-  
+
     geocoder.geocode({ location: latLng }, (results, status) => {
       if (status === "OK") {
         if (results[0]) {
           const address = results[0].formatted_address;
           console.log("Tıklanan yerin tam adresi:", address);
-           setAddress(address);
-           setOpen(true);
-           console.log("adress",address)
+          setAddress(address);
+          setOpen(true);
+          console.log("adress", address)
         } else {
           console.log("Adres bulunamadı.");
         }
@@ -120,16 +114,14 @@ const Map =  ({
     });
   };
 
-  const handleMapClick = (event) =>{
+  const handleMapClick = (event) => {
     const latLng = {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
     }
-   
-    setSearchLngLat(latLng);
-  
-  }
 
+    setSearchLngLat(latLng);
+  }
 
   const handleOpenCard = () => {
     console.log(open);
@@ -139,8 +131,8 @@ const Map =  ({
 
   return (
 
-    <div
-      style={{
+    <Grid item xs={12}
+      sx={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -148,52 +140,50 @@ const Map =  ({
         gap: "20px",
       }}
     >
-       
-      <Button variant="text" onClick={handleOpenCard}>
-        {open ? 'Geri' : 'İleri'}
-      </Button> 
+      { /* ADD PARK PAGE */}
+      <Container maxWidth="xll">
+        <Button variant="text" onClick={handleOpenCard}>
+            {open ? 'Geri' : 'İleri'}
+        </Button>
 
-      {open &&(
-        <CardComponent 
-        header={"BİLGİ"} 
-        content={`Lat: ${searchLngLat?.lat || ""}, Lng: ${searchLngLat?.lng || ""}`}
-        children={<AddParkContent />} 
-        sx={{backgroundColor:modalCard, color:textColor}}
-        />
-      )}
+        {open && (
+          <AddParkContent
+            searchLngLat={searchLngLat}
+          />
+        )}
+      </Container>
 
-      
       {/* search component  */}
 
-      {!open === true &&(
+      {!open === true && (
         <>
-      <Autocomplete
-        onLoad={(autocomplete) => {
-          console.log("Autocomplete loaded:", autocomplete);
-          autocompleteRef.current = autocomplete;
-        }}
-        onPlaceChanged={handlePlaceChanged}
-        options={{ fields: ["address_components", "geometry", "name"] }}
-      >
-        <input type="text" placeholder="Search for a location"   value={`Lat: ${searchLngLat?.lat || ""}, Lng: ${searchLngLat?.lng || ""}`}/>
-      </Autocomplete>
+          <Autocomplete
+            onLoad={(autocomplete) => {
+              console.log("Autocomplete loaded:", autocomplete);
+              autocompleteRef.current = autocomplete;
+            }}
+            onPlaceChanged={handlePlaceChanged}
+            options={{ fields: ["address_components", "geometry", "name"] }}
+          >
+            <input type="text" placeholder="Search for a location" value={`Lat: ${searchLngLat?.lat || ""}, Lng: ${searchLngLat?.lng || ""}`} />
+          </Autocomplete>
 
-      {/* map component  */}
-      <GoogleMap
-        onDblClick={handleMapClick}
-        zoom={currentLocation || selectedPlace ? 18 : 12}
-        center={currentLocation || searchLngLat || center}
-        mapContainerClassName="map"
-        mapContainerStyle={{ width: "80%", height: "600px", margin: "auto" }}
-        onLoad={onMapLoad}
-      >
-        {selectedPlace && <Marker position={searchLngLat} />}
-        {currentLocation && <Marker position={currentLocation} />}
-     
-      </GoogleMap>
-      </>
+          {/* map component  */}
+          <GoogleMap
+            onDblClick={handleMapClick}
+            zoom={currentLocation || selectedPlace ? 18 : 12}
+            center={currentLocation || searchLngLat || center}
+            mapContainerClassName="map"
+            mapContainerStyle={{ width: "80%", height: "600px", margin: "auto" }}
+            onLoad={onMapLoad}
+          >
+            {selectedPlace && <Marker position={searchLngLat} />}
+            {currentLocation && <Marker position={currentLocation} />}
+
+          </GoogleMap>
+        </>
       )}
-    </div>
+    </Grid>
   );
 };
 
