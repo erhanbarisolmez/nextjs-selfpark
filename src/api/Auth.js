@@ -18,6 +18,7 @@ class Authenticate {
           'password': password
         })
       }
+      console.log(username, password)
 
       const response = await fetch(
         `${this.api}${this.login}`,
