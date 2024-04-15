@@ -5,15 +5,16 @@ class Park {
     this.add = "/park/create_park"
   }
 
-  async addPark(parkData) {
+  async addPark(parkData, token) {
+    console.log("Adding park: ", token);
     try {
       console.log("ADD PARK: "+ JSON.stringify(parkData));
       const requestOptions = {
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          // 'www-authenticate': `Bearer ${token}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body:JSON.stringify(parkData),
       }
@@ -21,7 +22,7 @@ class Park {
         `${this.api}${this.add}`,
         requestOptions
       );
-
+      
 
       if (response.ok) {
         const data = await response.json();

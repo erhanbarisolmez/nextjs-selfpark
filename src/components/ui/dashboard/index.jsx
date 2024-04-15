@@ -20,7 +20,8 @@ const DashboardUI = () => {
   const router = useRouter();
     useEffect(() => {
     const role = localStorage.getItem('role');
-  
+    const token = localStorage.getItem("token");
+    console.log(token)
     if (!role || role !== 'admin') {
       router.back();
     }

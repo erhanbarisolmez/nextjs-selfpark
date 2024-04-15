@@ -15,12 +15,12 @@ const AddParkContent = ({ searchLngLat }) => {
   const { getModalStyles } = useThemeHook();
   const { modalDialogBackground, textColor } = getModalStyles();
   const [enable, setEnable] = useState(true);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
 
 
   const isOpenChange = () => {
-    setIsOpen(!enable);
+    setIsOpen(!isOpen);
     console.log(isOpen);
   }
 
@@ -53,12 +53,14 @@ const AddParkContent = ({ searchLngLat }) => {
       isOpen: isOpen,
       city: formData.city,
       enable: enable,
+      registeredDate: "1970-01-01 00:00:01",
     }
     console.log("park data: ", parkData)
     // TODO: API request to add
+     const token = localStorage.getItem("token")
+      console.log("admin token:", token);
     const park = new Park();
-
-    await park.addPark(parkData);
+    await park.addPark(parkData, token);
 
   }
 
