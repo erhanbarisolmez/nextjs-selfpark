@@ -27,7 +27,7 @@ class Authenticate {
 
       if (response.ok) {
         const data = await response.json();
-        const token = data.access_token;
+        const token = data.refresh_token;
         if (token) {
           const decodedToken = jwt_decode(token);
           const role = decodedToken.role;
