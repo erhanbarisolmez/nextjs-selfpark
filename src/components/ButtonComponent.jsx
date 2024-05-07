@@ -1,6 +1,5 @@
 'use client'
 import Button from "@mui/joy/Button";
-
 export const ButtonComponent = ({
   sx,
   type,
@@ -9,6 +8,9 @@ export const ButtonComponent = ({
   color,
   props
 }) => {
+
+
+
   return (
     <Button
     type={type}

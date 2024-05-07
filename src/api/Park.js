@@ -29,7 +29,8 @@ class Park {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
+        console.log(data);
+        console.log("New Token", token);
         return data;
       } else {
         console.log("parking not added")
@@ -41,7 +42,7 @@ class Park {
 
   }
 
-  async read_park_all(data, token) {
+  async read_park_all(token) {
     try {
 
       const requestOptions = {
@@ -51,15 +52,15 @@ class Park {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(data),
+       
       }
 
       const response = await fetch(`${this.api}${this.read_all}`, requestOptions);
       if (response.ok) {
-        const parkings = await response.json()
-        console.log(parkings);
+        const data = await response.json()
+        console.log(data);
 
-        return parkings;
+        return data;
       } else {
         console.log("park not found");
       }

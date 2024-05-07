@@ -16,7 +16,12 @@ export function ListContent({
   row1,
   row2,
   row3,
-  row4
+  row4,
+  infoCardHeader,
+  propertiesShow,
+  propertiesName,
+  deleteOnClick,
+  confirmDelete
 }) {
   const {getModalStyles} = useThemeHook();
   const {modalCard, textColor, dividerBackgroundColor} = getModalStyles();
@@ -51,7 +56,7 @@ export function ListContent({
         }}>
           {/*List Column */}
           {_column(column1, column2, column3, column4)}
-          {filterList.map((item, index) => (
+          {filterList && filterList.map((item, index) => (
             <>
               <Grid container key={index} sx={{ mt: 1 }}>
                 <Grid item xs={12}><Divider orientation='horizontal' variant='fullWidth' sx={{backgroundColor:dividerBackgroundColor}}></Divider></Grid>
@@ -60,8 +65,12 @@ export function ListContent({
                 <Grid item xs={1} sx={{ mt: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'row' }}>
                   <InfoCardModal
                     buttonIcon={<InfoOutlinedIcon />}
-                    header={`${item.name}'s Information`}
+                    header={`${item[infoCardHeader]}'s Information`}
                     data={item}
+                    propertiesShow={propertiesShow}
+                    propertiesName={propertiesName}
+                    deleteOnClick={deleteOnClick(item.id)}
+                    confirmDelete={confirmDelete}
                   />
                 </Grid>
               </Grid>

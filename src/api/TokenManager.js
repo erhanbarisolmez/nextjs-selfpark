@@ -29,7 +29,7 @@ class TokenManager{
         },
         body: JSON.stringify({ refresh_token: refreshToken })
       }
-      const response = await fetch('/auth/refresh_token:', requestOptions);
+      const response = await fetch('/auth/token:', requestOptions);
 
       if(response.ok){
         const data = await response.json();

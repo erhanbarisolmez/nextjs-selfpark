@@ -50,7 +50,7 @@ const DashboardUI = () => {
             } />
           </Grid>
 
-          { /* HATA BURADA! */}
+      
           <Grid item xs={12} md={3} lg={3}>
             <CardComponent sx={{ backgroundColor: backgroundColor, color: textColor, fontWeight: 700, height: 375 }} header={"Entry Methods"} content={<BarChartTremor />
             } />

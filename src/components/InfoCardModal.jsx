@@ -8,11 +8,15 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Grid } from "@mui/material";
 import * as React from 'react';
+
 export default function InfoCardModal({
   buttonIcon,
   header,
   sx,
   data,
+  propertiesShow,
+  propertiesName,
+  deleteOnClick,
 }) {
   const [open, setOpen] = React.useState(false);
   const { getModalStyles } = useThemeHook();
@@ -40,7 +44,7 @@ export default function InfoCardModal({
             color: textColor
           }}
         >
-          <ModalClose variant={modalCloseButton} color='neutral' sx={{ m: 1, backgroundColor: 'transparent', }} />
+          <ModalClose variant={modalCloseButton} color='neutral' sx={{ m: 1, backgroundColor: 'transparent' }} />
           <Typography
             component="h2"
             id="modal-title"
@@ -53,24 +57,22 @@ export default function InfoCardModal({
           </Typography>
           <Grid container>
             <Grid item xs={12} minWidth={300} >
-              <Grid item xs={12}>
-                <Typography level='title-md' textColor="inherit"> Name: <Typography level='body-md' textColor="inherit">{data.name}</Typography></Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography level='title-md' textColor="inherit"> Capacity: <Typography level='body-md' textColor="inherit">{data.capacity}</Typography></Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography level='title-md' textColor="inherit"> Work Hours: <Typography level='body-md' textColor="inherit">{data.workHours}</Typography></Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography level='title-md' textColor="inherit"> Free Parking Duration: <Typography level='body-md'>{data.freeParkingDuration}</Typography></Typography>
-              </Grid>
+              {propertiesShow.map((property, index) => (
+                <Grid item xs={12} key={index}>
+                  <Typography level='title-md' textColor="inherit">
+                    {propertiesName[property]}:
+                    <Typography>
+                      {data[property]}
+                    </Typography>
+                  </Typography>
+                </Grid>
+              ))}
               <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', justifyItems: 'center' }}>
                 <Grid item xs={2}>
                   <EditOutlinedIcon />
                 </Grid>
                 <Grid item xs={1} sx={{ display: 'flex', textAlign: 'right', justifyContent: 'flex-end' }}>
-                  <DeleteOutlinedIcon />
+                  <DeleteOutlinedIcon onClick={() =>deleteOnClick(data.id)}/>
                 </Grid>
               </Grid>
             </Grid>

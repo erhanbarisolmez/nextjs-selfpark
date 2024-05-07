@@ -97,6 +97,7 @@ const Header = ({ translateOptions, locale }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [open, setOpen] = useState(false);
 
+
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
