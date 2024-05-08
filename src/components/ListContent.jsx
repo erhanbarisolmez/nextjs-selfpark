@@ -21,7 +21,6 @@ export function ListContent({
   propertiesShow,
   propertiesName,
   deleteOnClick,
-  confirmDelete
 }) {
   const {getModalStyles} = useThemeHook();
   const {modalCard, textColor, dividerBackgroundColor} = getModalStyles();
@@ -69,8 +68,8 @@ export function ListContent({
                     data={item}
                     propertiesShow={propertiesShow}
                     propertiesName={propertiesName}
-                    deleteOnClick={deleteOnClick(item.id)}
-                    confirmDelete={confirmDelete}
+                    deleteOnClick={deleteOnClick}
+                    parkId={item.id}
                   />
                 </Grid>
               </Grid>

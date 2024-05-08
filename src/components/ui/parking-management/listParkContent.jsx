@@ -1,6 +1,5 @@
 'use client'
 import Park from "@/api/Park";
-import InfoCardModal from "@/components/InfoCardModal";
 import { ListContent } from '@/components/ListContent';
 import { useEffect, useState } from 'react';
 
@@ -36,17 +35,17 @@ export const ListParkContent = () => {
     "free_time": "Free Time"
   }
 
-
-
   const handleConfirmDelete = async (parkId) => {
     setSelectedParkId(parkId);
+    console.log("state id: ",parkId);
+
     if (selectedParkId) {
       const park = new Park();
       const token = localStorage.getItem('token');
       await park.deletePark(selectedParkId, token);
       const updatedParks = parks.filter(item => item.id !== selectedParkId);
       setParks(updatedParks);
-      setSelectedParkId(null);
+      setSelectedParkId(parkId);
     }
   }
 
