@@ -6,6 +6,7 @@ class Park {
     this.delete = "/delete";
     this.read_all = "/read_park_all";
     this.read_id = "/read_park";
+    this.update = "/update_park"
   }
 
   async addPark(parkData, token) {
@@ -73,14 +74,13 @@ class Park {
   async read_park_id(id, token) {
 
     try {
-      requestOptions = {
+     const requestOptions = {
         method: "GET",
         headers: {
           "accept": "application/json",
           "Content-Type": 'application/json',
           "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(id)
       }
       const response = await fetch(`${this.api}${this.read_id}`, requestOptions);
 
@@ -97,32 +97,35 @@ class Park {
 
   }
 
-  async update_park(token, id, data){
+
+//CLIENT INFO:     127.0.0.1:46566 - "PUT /park/update_park/278 HTTP/1.1" 200 OK
+//BACKEND INFO:     127.0.0.1:60252 - "PUT /park/update_park/276?parkName=ELP HTTP/1.1" 200 OK
+  async update_park(id, data, token){
     try {
-      requestOptions = {
+     const requestOptions = {
         method:'PUT',
         headers: {
           'accept':'application/json',
           'Content-Type':'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body:JSON.stringify({data:data})
       }
 
-      const response = await fetch(`${this.api}${this.update_park}`, requestOptions);
-
+      const response = await fetch(`${this.api}${this.update}/${id}`, requestOptions);
+      
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         return data;
       }else{
         console.log("Error update");
       }
       
     } catch (error) {
-      console.error("Update error server", error)
+      console.error("Update error server: ", error)
     }
   }
+  
   async deletePark(id, token) {
     try {
       const requestOptions = {
@@ -132,7 +135,9 @@ class Park {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(id)
+        body: JSON.stringify({
+          data
+        })
       }
 
       const response = await fetch(

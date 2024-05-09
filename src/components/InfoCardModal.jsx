@@ -1,15 +1,14 @@
 'use client'
 import { useThemeHook } from '@/hooks/useThemeHook';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { DeleteOutlined, EditOutlined, SaveOutlined } from '@mui/icons-material';
+import { Input } from '@mui/joy';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Grid } from "@mui/material";
-import * as React from 'react';
-import { useEffect, useState, Fragment} from 'react';
+import { Fragment, useState } from 'react';
 import AlertDialogSlide from './AlertDialog';
 
 export default function InfoCardModal({
@@ -20,27 +19,47 @@ export default function InfoCardModal({
   propertiesShow,
   propertiesName,
   deleteOnClick,
-  parkId,
+  handleSaveClick
 }) {
   const [open, setOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [editableOpen, setEditableOpen] = useState(true);
+  const [editData, setEditData] = useState({...data})
   const { getModalStyles } = useThemeHook();
   const { infoCardButton, modalDialogBackground, textColor, modalCloseButton } = getModalStyles();
+  
 
-  const handleDeleteClick= () => {
-    console.log("seçilenin id : ",parkId);
-    deleteOnClick(parkId);
-    setShowConfirmation(true);
-
+  const handleChange = (e, property) => {
+    const  {value} = e.target;
+    setEditData((prevData) => ({
+      ...prevData,
+      [property]: value
+    }))
   }
-  // delete düzenle
+  const handleEditClick = () => {
+    setEditableOpen(!editableOpen);
+  }
+
+  const handleSave = () => {
+    console.log("handleSave edit.id: ", editData.id);
+    console.log("handleSave edit.data: ", editData)
+    handleSaveClick(editData.id, editData);
+    setEditableOpen(false);
+  }
+
+  const handleDeleteClick = () => {
+    console.log("seçilenin id: ", data.id);
+    deleteOnClick(data.id);
+    setShowConfirmation(true);
+  }
+   // iptali çöz
   const handleDeleConfirmation = () => {
-    deleteOnClick(parkId);
-    console.log("Info Card Model ",parkId);
+    deleteOnClick(data.id);
+    console.log("Info Card Model ", data.id);
     setShowConfirmation(false);
     setOpen(false);
   }
-  
+
   return (
     <Fragment>
       <Button variant={infoCardButton} color={"neutral"} onClick={() => setOpen(true)}>
@@ -77,39 +96,51 @@ export default function InfoCardModal({
           </Typography>
           <Grid container>
             <Grid item xs={12} minWidth={300} >
+
               {propertiesShow.map((property, index) => (
                 <Grid item xs={12} key={index}>
                   <Typography level='title-md' textColor="inherit">
                     {propertiesName[property]}:
-                    <Typography>
-                      {data[property]}
-                    </Typography>
+                    {editableOpen ? (
+                      <Typography>
+                        {data[property]}
+                      </Typography>) : (
+                      <Input
+                        type='text'
+                        name='property'
+                        value={editData[property]}
+                        onChange={(e) => handleChange(e, property)}
+                      />
+                    )}
                   </Typography>
                 </Grid>
-                
               ))}
-              <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', justifyItems: 'center' }}>
-                <Grid item xs={2}>
-                  <EditOutlinedIcon />
+
+              <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', justifyItems: 'center', mt: 3 }}>
+                <Grid item xs={1}>
+                  <EditOutlined onClick={handleEditClick} />
                 </Grid>
                 <Grid item xs={1} sx={{ display: 'flex', textAlign: 'right', justifyContent: 'flex-end' }}>
-                  <DeleteOutlinedIcon  onClick={handleDeleteClick} /> 
-  
+                  <SaveOutlined onClick={handleSave} />
                 </Grid>
+                <Grid item xs={1} sx={{ display: 'flex', textAlign: 'right', justifyContent: 'flex-end' }}>
+                  <DeleteOutlined onClick={handleDeleteClick} />
+                </Grid>
+
               </Grid>
             </Grid>
           </Grid>
         </Sheet>
       </Modal>
-        
-       
-          <AlertDialogSlide 
-              open={showConfirmation}
-              onClose = {() =>  setShowConfirmation(false)}
-              onConfirm = {handleDeleConfirmation}
 
-          />
-        
+
+      <AlertDialogSlide
+        open={showConfirmation}
+        onClose={() => setShowConfirmation(false)}
+        onConfirm={handleDeleConfirmation}
+
+      />
+
     </Fragment>
   );
 }

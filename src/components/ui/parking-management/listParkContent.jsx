@@ -34,6 +34,7 @@ export const ListParkContent = () => {
     "work_hours": "Work Hours",
     "free_time": "Free Time"
   }
+  
 
   const handleConfirmDelete = async (parkId) => {
     setSelectedParkId(parkId);
@@ -48,6 +49,18 @@ export const ListParkContent = () => {
       setSelectedParkId(parkId);
     }
   }
+  //  SAVE
+  const handleSaveClick = async (id,editData) => {
+    try {
+      const park = new Park();
+      const token = localStorage.getItem('token');
+      const updated = await park.update_park(id,editData,token);
+      console.log("başarılı: ", updated);
+    } catch (error) {
+      console.error("Error updating park: ", error)
+    }
+
+  } 
 
   return (
     
@@ -61,6 +74,7 @@ export const ListParkContent = () => {
       propertiesShow={[`park_name`, "capacity", "work_hours", "free_time"]}
       propertiesName={propertiesName}
       deleteOnClick={handleConfirmDelete}
+      handleSaveClick={handleSaveClick}
       />
   )
  
