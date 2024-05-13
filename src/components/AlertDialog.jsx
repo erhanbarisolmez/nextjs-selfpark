@@ -24,7 +24,7 @@ export default function AlertDialogSlide({
 
 
   const handleClose = () => {
-    onClose(false);
+    onClose();
   };
 
   const handleConfirm = () => {

@@ -53,7 +53,6 @@ class Park {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-       
       }
 
       const response = await fetch(`${this.api}${this.read_all}`, requestOptions);
@@ -74,7 +73,7 @@ class Park {
   async read_park_id(id, token) {
 
     try {
-     const requestOptions = {
+      const requestOptions = {
         method: "GET",
         headers: {
           "accept": "application/json",
@@ -98,34 +97,50 @@ class Park {
   }
 
 
-//CLIENT INFO:     127.0.0.1:46566 - "PUT /park/update_park/278 HTTP/1.1" 200 OK
-//BACKEND INFO:     127.0.0.1:60252 - "PUT /park/update_park/276?parkName=ELP HTTP/1.1" 200 OK
-  async update_park(id, data, token){
+  async update_park(id, data, token) {
     try {
-     const requestOptions = {
-        method:'PUT',
+     const updatedData = {
+        ...data,
+        id: data.id,
+        parkName: data.park_name,
+        lat: data.lat,
+        lng: data.lng,
+        capacity: data.capacity,
+        emptyCapacity: data.empty_capacity,
+        workHours: data.work_hours,
+        parkType: data.park_type,
+        freeTime: data.free_time,
+        district: data.district,
+        isOpen: data.is_open,
+        city: data.city,
+        enable: data.enable
+      }
+      const queryParams = Object.keys(updatedData).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(updatedData[key])}`).join('&');
+
+      const requestOptions = {
+        method: 'PUT',
         headers: {
-          'accept':'application/json',
-          'Content-Type':'application/json',
+          'accept': 'application/json',
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body:JSON.stringify({data:data})
+        body: JSON.stringify(updatedData)
       }
 
-      const response = await fetch(`${this.api}${this.update}/${id}`, requestOptions);
-      
+      const response = await fetch(`${this.api}${this.update}/${id}?${queryParams}`, requestOptions);
+
       if (response.ok) {
         const data = await response.json();
         return data;
-      }else{
+      } else {
         console.log("Error update");
       }
-      
+
     } catch (error) {
       console.error("Update error server: ", error)
     }
   }
-  
+
   async deletePark(id, token) {
     try {
       const requestOptions = {
@@ -135,9 +150,7 @@ class Park {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({
-          data
-        })
+        body: JSON.stringify(id)
       }
 
       const response = await fetch(

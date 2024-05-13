@@ -12,7 +12,6 @@ export const ListParkContent = () => {
   useEffect(() => {
     
     const fetchData = async() => {
-
       try {
         const parkService = new Park();
         const token = localStorage.getItem("token");
@@ -40,13 +39,12 @@ export const ListParkContent = () => {
     setSelectedParkId(parkId);
     console.log("state id: ",parkId);
 
-    if (selectedParkId) {
+    if (parkId) {
       const park = new Park();
       const token = localStorage.getItem('token');
-      await park.deletePark(selectedParkId, token);
-      const updatedParks = parks.filter(item => item.id !== selectedParkId);
+      await park.deletePark(parkId, token);
+      const updatedParks = parks.filter(item => item.id !== parkId);
       setParks(updatedParks);
-      setSelectedParkId(parkId);
     }
   }
   //  SAVE

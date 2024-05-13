@@ -49,13 +49,11 @@ export default function InfoCardModal({
 
   const handleDeleteClick = () => {
     console.log("seçilenin id: ", data.id);
-    deleteOnClick(data.id);
     setShowConfirmation(true);
   }
-   // iptali çöz
-  const handleDeleConfirmation = () => {
+
+  const handleDeleteConfirmation = () => {
     deleteOnClick(data.id);
-    console.log("Info Card Model ", data.id);
     setShowConfirmation(false);
     setOpen(false);
   }
@@ -137,7 +135,7 @@ export default function InfoCardModal({
       <AlertDialogSlide
         open={showConfirmation}
         onClose={() => setShowConfirmation(false)}
-        onConfirm={handleDeleConfirmation}
+        onConfirm={handleDeleteConfirmation}
 
       />
 
