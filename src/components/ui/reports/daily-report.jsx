@@ -40,9 +40,6 @@ export const DailyReport = () => {
           <LongTermParkingUsers />
         </CardComponent>
 
-
-
-
       </Grid>
     </Grid>
 

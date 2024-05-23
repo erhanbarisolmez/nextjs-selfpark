@@ -2,7 +2,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
  
 
 const withNextIntl = createNextIntlPlugin(
-  './src/i18n.jsx'
+  './src/i18n.jsx',
 );
  
 /** @type {import('next').NextConfig} */
@@ -12,14 +12,16 @@ const nextConfig = {
       {
         source: '/',
         destination: '/en/login',
-        permanent: true,
+        permanent: false,
       },
-     
+
     ];
   },
 
   
+ 
+
 
 };
- 
+
 export default withNextIntl(nextConfig);

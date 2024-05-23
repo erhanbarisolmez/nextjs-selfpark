@@ -1,0 +1,6 @@
+ UFW (Uncomplicated Firewall) Kullanarak Port İzinlerini Kontrol Etme ve Ayarlama
+sudo ufw status
+sudo ufw allow 3000/tcp
+sudo ufw status numbered
+sudo ufw delete numbered
+

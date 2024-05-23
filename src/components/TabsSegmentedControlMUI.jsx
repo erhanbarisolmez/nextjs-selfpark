@@ -9,10 +9,12 @@ export default function TabsSegmentedControls({
   tab2,
   tab3,
   tab4,
+  tab5,
   tabPanel1,
   tabPanel2,
   tabPanel3,
   tabPanel4,
+  tabPanel5,
   defaultValue
 }) {
   const { getModalStyles } = useThemeHook();
@@ -44,6 +46,7 @@ export default function TabsSegmentedControls({
         {tab2 &&(<Tab disableIndicator>{tab2}</Tab>)}
         {tab3 &&(<Tab disableIndicator>{tab3}</Tab>)}
         {tab4 &&(<Tab disableIndicator>{tab4}</Tab>)}
+        {tab5 &&(<Tab disableIndicator>{tab5}</Tab>)}
       </TabList>
 
       {/* Tab Content */}
@@ -61,6 +64,9 @@ export default function TabsSegmentedControls({
         </TabPanel>
         <TabPanel value={3}>
           {tabPanel4}
+        </TabPanel>
+        <TabPanel value={4}>
+          {tabPanel5}
         </TabPanel>
       </Box>
     </Tabs>

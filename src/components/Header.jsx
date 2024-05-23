@@ -23,6 +23,7 @@ import { CustomDateRangeReport } from "./ui/reports/custom-date-range-reports";
 import { DailyReport } from "./ui/reports/daily-report";
 import { MonthlyReport } from "./ui/reports/monthly-report";
 import { WeeklyReport } from "./ui/reports/weekly-report";
+import CameraReports from "./ui/reports/CameraReports";
 
 const modalAdmin = [
   {
@@ -79,10 +80,12 @@ const modalAdmin = [
           tab2={"Weekly Report"}
           tab3={"Monthly Report"}
           tab4={"Custom Date Range Reports"}
+          tab5={"Camera Report"}
           tabPanel1={<DailyReport/>}
           tabPanel2={<WeeklyReport />}
           tabPanel3={<MonthlyReport />}
           tabPanel4={<CustomDateRangeReport />}
+          tabPanel5={<CameraReports />}
           defaultValue={1}
         />  
       }
@@ -149,7 +152,7 @@ const Header = ({ translateOptions, locale }) => {
           alignContent: 'center'
         }}>
 
-          {innerWidth < 500 && (
+          {innerWidth < 500 && pathname !== "/login" &&(
             <Grid item xs>
               <DrawerMobileNavigation buttonColor={textColor} />
             </Grid>
