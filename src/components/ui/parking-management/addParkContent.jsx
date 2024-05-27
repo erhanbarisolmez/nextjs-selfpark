@@ -1,5 +1,4 @@
 'use client'
-import Park from "@/api/Park";
 import { ButtonComponent } from "@/components/ButtonComponent";
 import CardComponent from "@/components/CardComponent";
 import InputComponent from "@/components/InputComponent";
@@ -8,6 +7,7 @@ import Option from '@mui/joy/Option';
 import Select from '@mui/joy/Select';
 import { Container, Grid, Typography } from '@mui/material';
 import { useState } from "react";
+import Park from "../../../api/Park";
 const AddParkContent = ({ searchLngLat }) => {
 
   const [formData, setFormData] = useState({});

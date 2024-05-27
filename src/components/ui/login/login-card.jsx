@@ -1,5 +1,4 @@
 "use client";
-import Authenticate from "@/api/Auth";
 import InputComponent from "@/components/InputComponent";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -12,6 +11,7 @@ import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Authenticate from "../../../api/Auth";
 
 const LoginCard = () => {
   const [username, setUsername] = useState("");

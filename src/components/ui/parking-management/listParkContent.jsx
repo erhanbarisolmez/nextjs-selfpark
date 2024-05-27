@@ -1,7 +1,7 @@
 'use client'
-import Park from "@/api/Park";
 import { ListContent } from '@/components/ListContent';
 import { useEffect, useState } from 'react';
+import Park from "../../../api/Park";
 
 
 export const ListParkContent = () => {

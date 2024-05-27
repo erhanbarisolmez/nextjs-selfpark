@@ -13,10 +13,16 @@ const nextConfig = {
         source: '/',
         destination: '/en/login',
         permanent: false,
+        
       },
-
     ];
   },
+  // experimental: {
+  //   https: {
+  //     key: './server.key',
+  //     cert: './server.crt',
+  //   }
+  // }
 
   
  
