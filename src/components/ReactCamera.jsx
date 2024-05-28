@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const ReactCamera = () => {
   const webcamRef = useRef(null);
   const socketRef = useRef(null);
-
+  const [devices, setDevices] = useState([]);
+  
   useEffect(() => {
     // WebSocket bağlantısını oluştur
     socketRef.current = new WebSocket('ws://192.168.4.88:8001/camera');
@@ -31,12 +32,12 @@ export const ReactCamera = () => {
     }
   }
 
-  const openCamera = async () => {
+  const openCamera = async (selectedDevice) => {
     try {
       // Bildirim izni yoksa, kullanıcıya izin iste
       await requestNotificationPermission();
       // Kamera erişim izni al
-      const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: selectedDevice.deviceId } });
 
       // Kamerayı video etiketine bağla
       if (webcamRef.current) {
@@ -45,16 +46,38 @@ export const ReactCamera = () => {
 
       // WebSocket bağlantısı açıksa "openCamera" mesajını gönder
       if (socketRef.current.readyState === WebSocket.OPEN) {
-        socketRef.current.send("openCamera");
+        socketRef.current.send("/camera");
       }
     } catch (error) {
       console.error('Kamera erişimi sağlanamadı', error);
     }
   };
 
+  const scanDevices = async () => {
+    try {
+      const deviceList = await navigator.mediaDevices.enumerateDevices();
+      const videoDevices = deviceList.filter(device => device.kind === 'videoinput');
+      setDevices(videoDevices);
+    } catch (error) {
+      console.log("cihaz tarama hatası", error)
+    }
+  }
+
+
   return (
     <div>
-      <button id="cameraButton" onClick={openCamera}>Kamerayı Aç</button>
+      <button onClick={scanDevices}>Cihazları Tara</button>
+      <br />
+      <ul>
+        {devices.map(device => (
+          <li key={device.deviceId}>
+            <br />
+            {device.label}
+            <button onClick={() => openCamera(device)}>Kamerayı Aç</button>
+          </li>
+        
+        ))}
+      </ul>
       <video ref={webcamRef} autoPlay style={{ width: '100%' }}></video>
     </div>
   );
