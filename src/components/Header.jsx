@@ -19,11 +19,11 @@ import Map from "./ui/parking-management/Map";
 import { ListParkContent } from "./ui/parking-management/listParkContent";
 import AddPersonnel from "./ui/personnel-management/addPersonnel";
 import { ListPersonnelContent } from "./ui/personnel-management/listPersonnelContent";
+import CameraReports from "./ui/reports/CameraReports";
 import { CustomDateRangeReport } from "./ui/reports/custom-date-range-reports";
 import { DailyReport } from "./ui/reports/daily-report";
 import { MonthlyReport } from "./ui/reports/monthly-report";
 import { WeeklyReport } from "./ui/reports/weekly-report";
-import CameraReports from "./ui/reports/CameraReports";
 
 const modalAdmin = [
   {
@@ -152,7 +152,7 @@ const Header = ({ translateOptions, locale }) => {
           alignContent: 'center'
         }}>
 
-          {innerWidth < 500 && pathname !== "/login" &&(
+          {innerWidth < 600 && pathname !== "/login" &&(
             <Grid item xs>
               <DrawerMobileNavigation buttonColor={textColor} />
             </Grid>
