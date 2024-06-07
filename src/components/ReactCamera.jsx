@@ -1,6 +1,6 @@
 'use client'
-import Camera from '@/api/Camera';
 import { useRef, useState } from 'react';
+import Camera from '../../api/Camera';
 export const ReactCamera = () => {
   const webcamRef = useRef(null);
   const socketRef = useRef(null);

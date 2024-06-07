@@ -17,15 +17,14 @@ const nextConfig = {
       },
     ];
   },
-  // experimental: {
-  //   https: {
-  //     key: './server.key',
-  //     cert: './server.crt',
-  //   }
-  // }
-
-  
- 
+  async rewrites(){
+    return[
+      {
+        source:'/api/v1/Auth/loginUser',
+        destination:`http://192.168.4.88:8080/api/v1/auth/authenticate`
+      }
+    ]
+  }
 
 
 };

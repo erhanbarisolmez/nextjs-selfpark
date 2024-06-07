@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 
 
     return (
+      
       <NextThemeProvider attribute="class" defaultTheme="light" value={theme}   >
         {children}
       </NextThemeProvider>

@@ -1,5 +1,6 @@
 'use client'
 import { TranslateAndTheme } from "@/components/TranslateAndTheme";
+import { useAuth } from "@/hooks/useAuth";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { usePathname } from "@/navigation";
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -65,7 +66,7 @@ const modalAdmin = [
           tab1={"List Customer"}
           tabPanel1={<ListCustomerContent />}
           defaultValue={0}
-     
+
         />
       }
     />,
@@ -81,13 +82,13 @@ const modalAdmin = [
           tab3={"Monthly Report"}
           tab4={"Custom Date Range Reports"}
           tab5={"Camera Report"}
-          tabPanel1={<DailyReport/>}
+          tabPanel1={<DailyReport />}
           tabPanel2={<WeeklyReport />}
           tabPanel3={<MonthlyReport />}
           tabPanel4={<CustomDateRangeReport />}
           tabPanel5={<CameraReports />}
           defaultValue={1}
-        />  
+        />
       }
     />
   }
@@ -99,7 +100,7 @@ const Header = ({ translateOptions, locale }) => {
   const { backgroundColor, textColor, logo, headerBorderBottom } = getThemeStyles();
   const [width, setWidth] = useState(window.innerWidth);
   const [open, setOpen] = useState(false);
-
+  const { exit, token } = useAuth();
 
   useEffect(() => {
     const handleResize = () => {
@@ -114,123 +115,125 @@ const Header = ({ translateOptions, locale }) => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('role');
+    exit();
   }
 
   return (
-    <Grid container sx={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      flexDirection: 'row',
-      borderBottom: `5px solid ${headerBorderBottom}`,
-      backgroundColor: backgroundColor,
-      color: textColor,
-      alignContent: 'center',
-      height: '170px'
-
-    }}>
-      <Container maxWidth="xll">
-
-        <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Image
-            src={logo}
-            width={290}
-            height={100}
-            alt="Self Park Logo"
-            priority={true}
-            display="flex"
-
-          />
-        </Grid>
-
-        <Grid item xs={12} sx={{
+    <>
+     
+        <Grid container sx={{
           display: 'flex',
-          gap: 2,
-          justifyContent: 'center',
           alignItems: 'center',
-          alignContent: 'center'
-        }}>
-
-          {innerWidth < 600 && pathname !== "/login" &&(
-            <Grid item xs>
-              <DrawerMobileNavigation buttonColor={textColor} />
-            </Grid>
-          )}
-
-
-          {innerWidth > 500 && (
-
-            <Box sx={{ display: 'contents' }}>
-             
-              {pathname !== "/login" && pathname === '/dashboard' && modalAdmin.map((item, key) => (
-                <Typography key={key} variant="body2" sx={{
-                  display: 'flex',
-                  fontSize: {
-                    lg: "16px",
-                    md: "14px",
-                    sm: "12px",
-                    xs: "10px"
-                  },
-                  textAlign: 'center',
-                  alignItems: 'center',
-                  p: 1
-                }}>
-                  {item.menu}
-                </Typography>
-              ))}
-            </Box>
-          )}
-
-        </Grid>
-
-        <Grid item xs sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-          color: textColor,
+          justifyContent: 'space-around',
           flexDirection: 'row',
-          gap: 1,
+          borderBottom: `5px solid ${headerBorderBottom}`,
+          backgroundColor: backgroundColor,
+          color: textColor,
+          alignContent: 'center',
+          height: '170px'
 
         }}>
+          <Container maxWidth="xll">
 
-          <TranslateAndTheme translateOptions={translateOptions} locale={locale} />
-          {pathname !== "/login" && (
-            <>
-              <Tooltip
-                menuIcon={<NotificationsIcon sx={{ fontSize: '24px', color: textColor }} />}
-                name=" mui/material-ui"
-                date="on Feb 25"
-                system={"[system]"}
-                titleIcon={<NotificationsIcon sx={{ color: textColor }} />}
-                title={"grey is no more recognized as color with the sx prop"}
-                message="Duplicates I have searched the existing issues Latest version I have
+            <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Image
+                src={logo}
+                width={290}
+                height={100}
+                alt="Self Park Logo"
+                priority={true}
+                display="flex"
+
+              />
+            </Grid>
+
+            <Grid item xs={12} sx={{
+              display: 'flex',
+              gap: 2,
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignContent: 'center'
+            }}>
+
+              {innerWidth < 600 && pathname !== "/login" && (
+                <Grid item xs>
+                  <DrawerMobileNavigation buttonColor={textColor} />
+                </Grid>
+              )}
+
+
+              {innerWidth > 500 && (
+
+                <Box sx={{ display: 'contents' }}>
+
+                  {pathname !== "/login" && pathname === '/dashboard' && modalAdmin.map((item, key) => (
+                    <Typography key={key} variant="body2" sx={{
+                      display: 'flex',
+                      fontSize: {
+                        lg: "16px",
+                        md: "14px",
+                        sm: "12px",
+                        xs: "10px"
+                      },
+                      textAlign: 'center',
+                      alignItems: 'center',
+                      p: 1
+                    }}>
+                      {item.menu}
+                    </Typography>
+                  ))}
+                </Box>
+              )}
+
+            </Grid>
+
+            <Grid item xs sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              color: textColor,
+              flexDirection: 'row',
+              gap: 1,
+
+            }}>
+
+              <TranslateAndTheme translateOptions={translateOptions} locale={locale} />
+              {pathname !== "/login" && (
+                <>
+                  <Tooltip
+                    menuIcon={<NotificationsIcon sx={{ fontSize: '24px', color: textColor }} />}
+                    name=" mui/material-ui"
+                    date="on Feb 25"
+                    system={"[system]"}
+                    titleIcon={<NotificationsIcon sx={{ color: textColor }} />}
+                    title={"grey is no more recognized as color with the sx prop"}
+                    message="Duplicates I have searched the existing issues Latest version I have
                 tested the …"
-                chip1="bug 🐛"
-                chip2="package: system"
+                    chip1="bug 🐛"
+                    chip2="package: system"
 
-              />
-              <Tooltip
-                menuIcon={<TextsmsIcon sx={{ fontSize: '24px', color: textColor }} />}
-                name="@John"
-                date="on April 10"
-                system={"[user]"}
-                titleIcon={<InsetDriver  />}
-                title={"Private Message from John Doe"}
-                message="Hi"
-              />
+                  />
+                  <Tooltip
+                    menuIcon={<TextsmsIcon sx={{ fontSize: '24px', color: textColor }} />}
+                    name="@John"
+                    date="on April 10"
+                    system={"[user]"}
+                    titleIcon={<InsetDriver />}
+                    title={"Private Message from John Doe"}
+                    message="Hi"
+                  />
 
-              <Link href="/" onClick={handleLogout}><LogoutOutlinedIcon sx={{ fontSize: '26px', cursor: "pointer" }} /></Link>
+                  <Link href="/" onClick={handleLogout}><LogoutOutlinedIcon sx={{ fontSize: '26px', cursor: "pointer" }} /></Link>
 
-            </>
-          )}
+                </>
+              )}
 
+            </Grid>
+          </Container>
         </Grid>
-      </Container>
-    </Grid>
+     
 
-
-
+    </>
   )
 }
 

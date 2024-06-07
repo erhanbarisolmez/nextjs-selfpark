@@ -4,10 +4,9 @@ import { AreaChartTremor } from "@/components/ui/chart/AreaChartTremor";
 import { BarChartTremor } from "@/components/ui/chart/BarChartTremor";
 import { BarListTremor } from "@/components/ui/chart/BarListTremor";
 import { LineChartTremor } from "@/components/ui/chart/LineChartTremor";
+import { useAuth } from "@/hooks/useAuth";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { Container, Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { BestUsers } from "./best-users";
 import { LongTermParkingUsers } from "./most-average-long-term-parking-users";
 import { MostParkingPlates } from "./most-parking-plates";
@@ -17,19 +16,12 @@ const DashboardUI = () => {
 
   const { getThemeStyles } = useThemeHook();
   const { backgroundColor, textColor,  } = getThemeStyles();
-  const router = useRouter();
-    useEffect(() => {
-    const role = localStorage.getItem('role');
-    const token = localStorage.getItem("token");
-    console.log(token)
-    if (!role || role !== 'admin') {
-      router.back();
-    }
-  }, []);
-  
+  const {token} = useAuth();
+
+  console.log("dashboard token", token)
   return (
     <>
-
+      {token &&(
       <Container maxWidth="xll">
 
         {/* GRAPHICS */}
@@ -156,7 +148,7 @@ const DashboardUI = () => {
 
         </Grid>
       </Container>
-    
+    )}
     </>
   )
 }

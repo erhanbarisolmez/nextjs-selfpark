@@ -1,11 +1,13 @@
+
 import { CssVarsProvider } from '@mui/joy/styles';
 import { Inter } from "next/font/google";
 
 
 import Header from "@/components/Header";
+import { AuthProvider } from '@/hooks/useAuth';
 import { useOptions } from "@/utils/translate/useOptions";
 import './globals.css';
-import { Providers } from "./providers";
+import { Providers as ThemeProvider } from "./providers";
 // Inter fontunu yalnızca bir obje olarak içe aktarın
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +23,8 @@ export default function RootLayout({ children, params: { locale }}) {
     <html lang={locale} >
 
       <body className={inter.className}>
-        <Providers >
+        <AuthProvider>
+        <ThemeProvider >
           <CssVarsProvider />
           {/* <Box sx={{
             display:'flex',
@@ -38,7 +41,8 @@ export default function RootLayout({ children, params: { locale }}) {
 
             {children}
     
-        </Providers>
+        </ThemeProvider>
+        </AuthProvider>
       </body>
 
 

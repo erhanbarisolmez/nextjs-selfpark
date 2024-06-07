@@ -11,10 +11,10 @@ import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Authenticate from "../../../api/Auth";
+import Authenticate from "../../../../api/Auth";
 
 const LoginCard = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { getThemeStyles } = useThemeHook();
@@ -33,13 +33,13 @@ const LoginCard = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!username || !password) {
-      console.error("Username and password are required");
+    if (!email || !password) {
+      console.error("email and password are required");
       return;
     }
 
     const auth = new Authenticate();
-    await auth.loginUser(username, password);
+    await auth.loginUser(email, password);
 
   };
 
@@ -107,10 +107,10 @@ const LoginCard = () => {
           <Grid sx={{ color: logoColor }}>
             LOGIN
             <InputComponent
-              name="username"
-              value={username}
+              name="email"
+              value={email}
               variant={"outlined"}
-              onChange={(e)=> setUsername(e.target.value)}
+              onChange={(e)=> setEmail(e.target.value)}
             />
             <InputComponent
               name="password"
