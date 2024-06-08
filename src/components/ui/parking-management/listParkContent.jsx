@@ -26,12 +26,12 @@ export const ListParkContent = () => {
     
   }, []);
 
-  const filterList = parks.filter(item => item.park_name.toLowerCase().includes(search))
+  const filterList = parks.filter(item => item.parkName.toLowerCase().includes(search))
   const propertiesName = {
-    "park_name": "Park Name",
+    "parkName": "Park Name",
     "capacity": "Capacity",
-    "work_hours": "Work Hours",
-    "free_time": "Free Time"
+    "workHours": "Work Hours",
+    "freeTime": "Free Time"
   }
   
 
@@ -64,12 +64,12 @@ export const ListParkContent = () => {
     
     <ListContent
       column1={"Name"}
-      row1={"park_name"}
+      row1={"parkName"}
       column4={"Actions"}
       filterList={filterList}
-      infoCardHeader={"park_name"}
+      infoCardHeader={"parkName"}
       setSearch={setSearch} 
-      propertiesShow={[`park_name`, "capacity", "work_hours", "free_time"]}
+      propertiesShow={[`parkName`, "capacity", "workHours", "freeTime"]}
       propertiesName={propertiesName}
       deleteOnClick={handleConfirmDelete}
       handleSaveClick={handleSaveClick}

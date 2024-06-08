@@ -22,7 +22,12 @@ const nextConfig = {
       {
         source:'/api/v1/Auth/loginUser',
         destination:`http://192.168.4.88:8080/api/v1/auth/authenticate`
+      },
+      {
+        source:'/api/v1/parkInfo/update',
+        destination:`http://192.168.4.88:8080/api/v1/parkInfo/update`
       }
+
     ]
   }
 

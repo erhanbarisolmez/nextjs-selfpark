@@ -18,7 +18,6 @@ const DashboardUI = () => {
   const { backgroundColor, textColor,  } = getThemeStyles();
   const {token} = useAuth();
 
-  console.log("dashboard token", token)
   return (
     <>
       {token &&(

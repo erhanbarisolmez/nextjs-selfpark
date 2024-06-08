@@ -1,12 +1,12 @@
 
 class Park {
   constructor() {
-    this.api = process.env.NEXT_PUBLIC_API_FASTAPI_URL + "/park";
-    this.add = "/create_park";
-    this.delete = "/delete";
-    this.read_all = "/read_park_all";
+    this.api = process.env.NEXT_PUBLIC_API_FASTAPI_URL;
+    this.add = "/api/v1/parkInfo/add";
+    this.delete = "/api/v1/parkInfo/delete";
+    this.read_all = "/api/v1/parkInfo/getAll";
     this.read_id = "/read_park";
-    this.update = "/update_park"
+    this.update = "/api/v1/parkInfo/update"
   }
 
   async addPark(parkData, token) {
@@ -98,36 +98,37 @@ class Park {
 
 
   async update_park(id, data, token) {
+
+    console.log("update_park: ", data)
     try {
      const updatedData = {
         ...data,
         id: data.id,
-        parkName: data.park_name,
+        parkName: data.parkName,
         lat: data.lat,
         lng: data.lng,
         capacity: data.capacity,
-        emptyCapacity: data.empty_capacity,
-        workHours: data.work_hours,
-        parkType: data.park_type,
-        freeTime: data.free_time,
+        emptyCapacity: data.emptyCapacity,
+        workHours: data.workHours,
+        parkType: data.parkType,
+        freeTime: data.freeTime,
         district: data.district,
-        isOpen: data.is_open,
+        isOpen: data.isOpen,
         city: data.city,
         enable: data.enable
       }
-      const queryParams = Object.keys(updatedData).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(updatedData[key])}`).join('&');
 
       const requestOptions = {
         method: 'PUT',
         headers: {
-          'accept': 'application/json',
+          'accept': '*/*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(updatedData)
+        body: JSON.stringify({updatedData})
       }
 
-      const response = await fetch(`${this.api}${this.update}/${id}?${queryParams}`, requestOptions);
+      const response = await fetch(`${this.api}${this.update}/${id}`, requestOptions);
 
       if (response.ok) {
         const data = await response.json();
