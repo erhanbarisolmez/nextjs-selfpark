@@ -6,7 +6,7 @@ class Park {
     this.delete = "/api/v1/parkInfo/delete";
     this.read_all = "/api/v1/parkInfo/getAll";
     this.read_id = "/read_park";
-    this.update = "/api/v1/parkInfo/update"
+    this.update = "/api/v1/parkInfo/update";
   }
 
   async addPark(parkData, token) {
@@ -16,7 +16,7 @@ class Park {
       const requestOptions = {
         method: 'POST',
         headers: {
-          'accept': 'application/json',
+          'accept': '*/*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
@@ -98,43 +98,49 @@ class Park {
 
 
   async update_park(id, data, token) {
-
-    console.log("update_park: ", data)
+    console.log("Update Park Token: ", token)
+      
     try {
-     const updatedData = {
-        ...data,
-        id: data.id,
-        parkName: data.parkName,
-        lat: data.lat,
-        lng: data.lng,
-        capacity: data.capacity,
-        emptyCapacity: data.emptyCapacity,
-        workHours: data.workHours,
-        parkType: data.parkType,
-        freeTime: data.freeTime,
-        district: data.district,
-        isOpen: data.isOpen,
-        city: data.city,
-        enable: data.enable
-      }
+      // const updatedData = {
+      //   id: id,
+      //   parkName: data.parkName,
+      //   district: data.district,
+      //   city: data.city,
+      //   lat: data.lat,
+      //   lng: data.lng,
+      //   capacity: data.capacity,
+      //   emptyCapacity: data.emptyCapacity,
+      //   workHours: data.workHours,
+      //   parkType: data.parkType,
+      //   freeTime: data.freeTime,
+      //   isOpen: true,
+      //   enable: true
+      // }
 
       const requestOptions = {
         method: 'PUT',
         headers: {
           'accept': '*/*',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({updatedData})
-      }
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
 
-      const response = await fetch(`${this.api}${this.update}/${id}`, requestOptions);
+        },
+        body: JSON.stringify(
+          {
+            id: id,
+            parkName: data.parkName
+          }
+        )
+      }
+      console.log("body:",requestOptions.body)
+      const response = await fetch(`${this.api}${this.update}`, requestOptions);
 
       if (response.ok) {
-        const data = await response.json();
-        return data;
+        const updatedData = await response.json();
+        console.log("güncellenene data", updatedData)
+        return updatedData;
       } else {
-        console.log("Error update");
+        console.log("Error update", response.status, response.statusText);
       }
 
     } catch (error) {
