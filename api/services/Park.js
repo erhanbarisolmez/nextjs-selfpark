@@ -1,7 +1,7 @@
 
 class Park {
   constructor() {
-    this.api = process.env.NEXT_PUBLIC_API_FASTAPI_URL;
+    this.api = process.env.NEXT_PUBLIC_API_BACKEND_URL;
     this.add = "/api/v1/parkInfo/add";
     this.delete = "/api/v1/parkInfo/delete";
     this.read_all = "/api/v1/parkInfo/getAll";

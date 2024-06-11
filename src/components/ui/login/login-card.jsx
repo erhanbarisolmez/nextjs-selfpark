@@ -11,12 +11,11 @@ import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Authenticate from "../../../../api/Auth";
 
 const LoginCard = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  // const serviceManager = new ServiceManager();
   const { getThemeStyles } = useThemeHook();
   const {
     backgroundColor,
@@ -38,9 +37,30 @@ const LoginCard = () => {
       return;
     }
 
-    const auth = new Authenticate();
-    await auth.loginUser(email, password);
+    try {
+      const response = await fetch('/api/routes/authenticate/authenticate', {
+        method:'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({email, password})
+      })
 
+      if(response.ok){
+        const data = await response.json();
+        const token = data.token;
+        localStorage.setItem("token", token)
+        window.location.href = "dashboard";
+        console.log("login successful");
+      }else{
+        console.error("login failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    // await serviceManager.authService.authenticate(email,password);
+ 
   };
 
   return (

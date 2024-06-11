@@ -1,7 +1,7 @@
 class Camera{
   
   constructor(){
-    this.api = process.env.NEXT_PUBLIC_API_FASTAPI_URL + "/camera";
+    this.api = process.env.NEXT_PUBLIC_API_BACKEND_URL + "/camera";
     this.open = '/open';
     this.scan = '/scan';
   }

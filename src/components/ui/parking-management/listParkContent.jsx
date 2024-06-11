@@ -2,7 +2,7 @@
 import { ListContent } from '@/components/ListContent';
 import { useAuth } from '@/hooks/useAuth';
 import { useEffect, useState } from 'react';
-import Park from "../../../../api/Park";
+import Park from "../../../../api/services/Park";
 
 
 export const ListParkContent = () => {
