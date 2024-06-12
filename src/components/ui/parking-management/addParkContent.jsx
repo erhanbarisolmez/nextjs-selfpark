@@ -2,12 +2,13 @@
 import { ButtonComponent } from "@/components/ButtonComponent";
 import CardComponent from "@/components/CardComponent";
 import InputComponent from "@/components/InputComponent";
+import { useAuth } from "@/hooks/useAuth";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import Option from '@mui/joy/Option';
 import Select from '@mui/joy/Select';
 import { Container, Grid, Typography } from '@mui/material';
 import { useState } from "react";
-import Park from "../../../../api/services/Park";
+import ServiceManager from "../../../../api/service_management/ServiceManager";
 const AddParkContent = ({ searchLngLat }) => {
 
   const [formData, setFormData] = useState({});
@@ -16,17 +17,12 @@ const AddParkContent = ({ searchLngLat }) => {
   const { modalDialogBackground, textColor } = getModalStyles();
   const [enable, setEnable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const serviceManager = new ServiceManager();
+  const {token} = useAuth();
 
-
-  const isOpenChange = () => {
-    setIsOpen(!isOpen);
-    console.log(isOpen);
-  }
-
-  const enableChange = () => {
-    setEnable(!enable);
-    console.log(enable);
-  }
+  const handleToggleChange = (setter) =>(event, newValue)=> {
+    setter(newValue);
+  } 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,26 +34,16 @@ const AddParkContent = ({ searchLngLat }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
     const parkData = {
-      parkName: formData.parkName,
-      lat: searchLngLat.lat,
-      lng: searchLngLat.lng,
-      capacity: formData.capacity,
-      emptyCapacity: formData.emptyCapacity,
-      workHours: formData.workHours,
-      parkType: formData.park_type,
-      freeTime: formData.freeTime,
-      district: formData.district,
-      isOpen: isOpen,
-      city: formData.city,
-      enable: enable,
+      ...formData,
+      lat: lat,
+      lng: lng,
+      isOpen,
+      enable
     }
-    console.log("park data: ", parkData)
-     const token = localStorage.getItem("token")
-      console.log("admin token:", token);
-    const park = new Park();
-    await park.addPark(parkData, token);
+
+
+    await serviceManager.parkService.add_park(parkData, token);
 
   }
 
@@ -164,8 +150,8 @@ const AddParkContent = ({ searchLngLat }) => {
                   <Grid xs={12}>
                     <InputComponent
                       placeholder={"Park Tipi - AÇIK/KAPALI"}
-                      name='park_type'
-                      value={formData.park_type}
+                      name='parkType'
+                      value={formData.parkType}
                       onChange={handleChange}
 
                     />
@@ -173,7 +159,8 @@ const AddParkContent = ({ searchLngLat }) => {
                   <Grid xs={12}>
                     <Select
                       placeholder="DURUM"
-                      onChange={enableChange}
+                      value={enable}
+                      onChange={handleToggleChange(setEnable)}
                     >
                       <Option value={true}>
                         Etkin
@@ -185,8 +172,9 @@ const AddParkContent = ({ searchLngLat }) => {
                   </Grid>
                   <Grid xs={12}>
                     <Select
-                       placeholder="DURUM"
-                       onChange={isOpenChange}
+                      placeholder="DURUM"
+                      value ={isOpen}
+                      onChange={handleToggleChange(setIsOpen)}
                     >
                       <Option value={true}>
                         Etkin

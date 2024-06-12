@@ -21,7 +21,7 @@ export function ListContent({
   propertiesShow,
   propertiesName,
   deleteOnClick,
-  handleSaveClick
+   handleSaveClick
 }) {
   const {getModalStyles} = useThemeHook();
   const {modalCard, textColor, dividerBackgroundColor} = getModalStyles();

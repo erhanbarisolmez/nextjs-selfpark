@@ -1,26 +1,40 @@
+import ParkAddRequest from "../models/park/parkAddRequest";
 
-class Park {
+export default class ParkService {
   constructor() {
     this.api = process.env.NEXT_PUBLIC_API_BACKEND_URL;
     this.add = "/api/v1/parkInfo/add";
     this.delete = "/api/v1/parkInfo/delete";
-    this.read_all = "/api/v1/parkInfo/getAll";
-    this.read_id = "/read_park";
+    this.readAll = "/api/v1/parkInfo/getAll";
+    this.readId = "/read_park";
     this.update = "/api/v1/parkInfo/update";
   }
 
-  async addPark(parkData, token) {
-    console.log("Adding park: ", token);
+  async add_park(parkData, token) {
+    console.log("Add_park: ", parkData);
     try {
-      console.log("ADD PARK: " + JSON.stringify(parkData));
+      const parkAddRequest = new ParkAddRequest(
+        parkData.parkName,
+        parkData.district,
+        parkData.city,
+        parkData.lat,
+        parkData.lng,
+        parkData.capacity,
+        parkData.emptyCapacity,
+        parkData.workHours,
+        parkData.parkType,
+        parkData.freeTime,
+        parkData.isOpen,
+        parkData.enable
+      );
       const requestOptions = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'accept': '*/*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(parkData),
+        body: JSON.stringify(parkAddRequest)
       }
       const response = await fetch(
         `${this.api}${this.add}`,
@@ -30,8 +44,7 @@ class Park {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        console.log("New Token", token);
+
         return data;
       } else {
         console.log("parking not added")
@@ -43,6 +56,7 @@ class Park {
 
   }
 
+  // service_management, components/ui/parking-management, listParkContent 
   async read_park_all(token) {
     try {
 
@@ -55,7 +69,7 @@ class Park {
         },
       }
 
-      const response = await fetch(`${this.api}${this.read_all}`, requestOptions);
+      const response = await fetch(`${this.api}${this.readAll}`, requestOptions);
       if (response.ok) {
         const data = await response.json()
         console.log(data);
@@ -81,7 +95,7 @@ class Park {
           "Authorization": `Bearer ${token}`
         },
       }
-      const response = await fetch(`${this.api}${this.read_id}`, requestOptions);
+      const response = await fetch(`${this.api}${this.readAll}`, requestOptions);
 
       if (response.ok) {
         const park = await response.json();
@@ -99,23 +113,23 @@ class Park {
 
   async update_park(id, data, token) {
     console.log("Update Park Token: ", token)
-      
+
     try {
-      // const updatedData = {
-      //   id: id,
-      //   parkName: data.parkName,
-      //   district: data.district,
-      //   city: data.city,
-      //   lat: data.lat,
-      //   lng: data.lng,
-      //   capacity: data.capacity,
-      //   emptyCapacity: data.emptyCapacity,
-      //   workHours: data.workHours,
-      //   parkType: data.parkType,
-      //   freeTime: data.freeTime,
-      //   isOpen: true,
-      //   enable: true
-      // }
+      const updatedData = {
+        id: id,
+        parkName: data.parkName,
+        district: data.district,
+        city: data.city,
+        lat: data.lat,
+        lng: data.lng,
+        capacity: data.capacity,
+        emptyCapacity: data.emptyCapacity,
+        workHours: data.workHours,
+        parkType: data.parkType,
+        freeTime: data.freeTime,
+        isOpen: data.isOpen,
+        enable: data.enable
+      }
 
       const requestOptions = {
         method: 'PUT',
@@ -126,13 +140,10 @@ class Park {
 
         },
         body: JSON.stringify(
-          {
-            id: id,
-            parkName: data.parkName
-          }
+          updatedData
         )
       }
-      console.log("body:",requestOptions.body)
+      console.log("body:", requestOptions.body)
       const response = await fetch(`${this.api}${this.update}`, requestOptions);
 
       if (response.ok) {
@@ -148,7 +159,10 @@ class Park {
     }
   }
 
-  async deletePark(id, token) {
+  // service_management, components/ui/parking-management, listParkContent 
+  async delete_park(id, token) {
+    console.log(id);
+    console.log(token);
     try {
       const requestOptions = {
         method: "DELETE",
@@ -161,7 +175,7 @@ class Park {
       }
 
       const response = await fetch(
-        `${this.api}${this.delete}/${id}`, requestOptions);
+        `${this.api}${this.delete}`, requestOptions);
 
       if (response.ok) {
         const data = await response.json();
@@ -179,4 +193,3 @@ class Park {
 }
 
 
-export default Park;

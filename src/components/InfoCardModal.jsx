@@ -28,6 +28,7 @@ export default function InfoCardModal({
   const { getModalStyles } = useThemeHook();
   const { infoCardButton, modalDialogBackground, textColor, modalCloseButton } = getModalStyles();
   
+  
 
   const handleChange = (e, property) => {
     const  {value} = e.target;
@@ -40,11 +41,12 @@ export default function InfoCardModal({
     setEditableOpen(!editableOpen);
   }
 
-  const handleSave = () => {
+  const handleSave = async() => {
     console.log("handleSave edit.id: ", editData.id);
     console.log("handleSave edit.data: ", editData)
-    handleSaveClick(editData.id, editData);
-    setEditableOpen(false);
+    await handleSaveClick(editData.id, editData);
+    setEditData({...editData});
+    setEditableOpen(true);
   }
 
   const handleDeleteClick = () => {
