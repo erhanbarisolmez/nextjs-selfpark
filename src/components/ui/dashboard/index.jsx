@@ -67,10 +67,10 @@ const DashboardUI = () => {
 
         }}>
 
-            <Grid item xs={12} md={3} lg={2}>
+            <Grid item xs={12} lg={3}>
               <CardComponent
                 header="The Best Users"
-                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 270, minWidth:200 }}><BestUsers /></Grid></>}
+                content={<><Grid item xs sx={{ display:'flex', flexDirection:'column', overflowX: 'auto', minHeight: 300, minWidth:200 }}><BestUsers /></Grid></>}
                 sx={{
                   backgroundColor: backgroundColor,
                   color: textColor,
@@ -81,11 +81,11 @@ const DashboardUI = () => {
               />
             </Grid>
 
-            <Grid item xs={12} md={3} lg={2.5}>
+            <Grid item xs={12} lg={3} >
 
               <CardComponent
                 header={"Most Parking Plates"}
-                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 270, minWidth: 200 }}><MostParkingPlates /></Grid></>}
+                content={<><Grid item xs sx={{display:'flex', flexDirection:'column', overflowX: 'auto', minHeight: 300,minWidth:200 }}><MostParkingPlates /></Grid></>}
                 sx={{
                   backgroundColor: backgroundColor,
                   color: textColor,
@@ -96,32 +96,32 @@ const DashboardUI = () => {
             </Grid>
 
             
-            <Grid item xs={12} md={3} lg={2.5}>
+            <Grid item xs={12} lg={3}>
               <CardComponent
                 header={"Users With The Most Violations"}
-                content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 270, minWidth: 200 }}><UsersWTMViolations /></Grid></>}
+                content={<><Grid item xs sx={{display:'flex', flexDirection:'column', overflowX: 'auto', maxHeight: 300 }}><UsersWTMViolations /></Grid></>}
                 sx={{
                   backgroundColor: backgroundColor,
                   color: textColor,
-                  height: "unset",
+                  height: 385,
                   p: 3
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={3} lg={2.5}>
+            <Grid item xs={12} lg={3}>
               <CardComponent
                 header={"Most Average Long-Term Parking Users"}
                 content={<><Grid item xs sx={{ overflowX: 'auto', minHeight: 270, minWidth: 200 }}><LongTermParkingUsers /></Grid></>}
                 sx={{
                   backgroundColor: backgroundColor,
                   color: textColor,
-                  height: "unset",
+                  height: 385,
                   p: 3
                 }}
               />
             </Grid>
             {/* Park Analytics */}
-            <Grid item xs   >
+            {/* <Grid item xs={12} md={2}  >
               <CardComponent
                 header={
                   <>
@@ -139,11 +139,11 @@ const DashboardUI = () => {
                   height: "unset",
                   p: 3,
                   fontWeight: 600,
-                  minHeight:200
-
+                  height: 385,
+                  
                 }}
               />
-            </Grid>
+            </Grid> */}
 
         </Grid>
       </Container>

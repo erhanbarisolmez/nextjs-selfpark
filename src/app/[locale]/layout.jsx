@@ -40,9 +40,11 @@ export default function RootLayout({ children, params: { locale }}) {
           <Header translateOptions={options}  locale = {locale} />
 
             {children}
-    
+            
         </ThemeProvider>
+
         </AuthProvider>
+
       </body>
 
 

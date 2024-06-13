@@ -4,9 +4,10 @@ import CardComponent from "@/components/CardComponent";
 import InputComponent from "@/components/InputComponent";
 import { useAuth } from "@/hooks/useAuth";
 import { useThemeHook } from "@/hooks/useThemeHook";
+import { FormLabel } from "@mui/joy";
 import Option from '@mui/joy/Option';
 import Select from '@mui/joy/Select';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { useState } from "react";
 import ServiceManager from "../../../../api/service_management/ServiceManager";
 const AddParkContent = ({ searchLngLat }) => {
@@ -59,7 +60,7 @@ const AddParkContent = ({ searchLngLat }) => {
           <Container>
 
             <form onSubmit={handleSubmit} method="POST">
-              <Grid item xs={12} sx={{ display: 'flex', flexDirection: { xs: 'column', md: "row" }, alignItems: 'center', alignContent: 'center' }}>
+              {/* <Grid item xs={12} sx={{ display: 'flex', flexDirection: { xs: 'column', md: "row" }, alignItems: 'center', alignContent: 'center' }}>
                 <Container>
                   <Typography variant="body1" xs sx={{ display: 'flex', alignItems: 'center', mt: 3, justifyContent: 'center' }} >
                     BİLGİ
@@ -81,86 +82,143 @@ const AddParkContent = ({ searchLngLat }) => {
                     disabled={true}
                   />
                 </Container>
-              </Grid>
-              <Grid item xs={12} mt={1}>
-                <InputComponent
-                  placeholder={"Otopark Adı"}
-                  name='parkName'
-                  value={formData.parkName}
-                  onChange={handleChange}
+              </Grid> */}
 
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputComponent
-                  placeholder={"Şehir"}
-                  name='city'
-                  value={formData.city}
-                  onChange={handleChange}
+              <Grid container item xs={12} sm={12} spacing={2} sx={{
+                display: 'flex',
+                flexDirection: {
+                  sm: 'row',
+                  xs: 'column'
+                },
+                justifyContent: 'space-between',
 
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputComponent
-                  placeholder={"İlçe"}
-                  name='district'
-                  value={formData.district}
-                  onChange={handleChange}
 
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <InputComponent
-                  placeholder={"Kapasite"}
-                  name='capacity'
-                  value={formData.capacity}
-                  onChange={handleChange}
-
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputComponent
-                  placeholder={"Boş Kapasite"}
-                  name='emptyCapacity'
-                  value={formData.emptyCapacity}
-                  onChange={handleChange}
-
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <InputComponent
-                  placeholder={"Çalışma Saatleri"}
-                  name='workHours'
-                  value={formData.workHours}
-                  onChange={handleChange}
-
-                />
-                <Grid item xs={12}>
+              }}>
+                <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>Park Name</FormLabel>
                   <InputComponent
-                    placeholder={"Ücretsiz Park Süresi"}
-                    name='freeTime'
-                    value={formData.freeTime}
+
+                    placeholder={"Park Name"}
+                    name='parkName'
+                    value={formData.parkName}
                     onChange={handleChange}
 
                   />
                 </Grid>
-                <Grid item xs={12} sx={{ display: 'flex', flexDirection: "column" }} >
-                  <Grid xs={12}>
+
+                <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>City</FormLabel>
+                  <InputComponent
+                    placeholder={"City"}
+                    name='city'
+                    value={formData.city}
+                    onChange={handleChange}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>District</FormLabel>
+                  <InputComponent
+                    placeholder={"District"}
+                    name='district'
+                    value={formData.district}
+                    onChange={handleChange}
+
+                  />
+                </Grid>
+
+
+                <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>Capacity</FormLabel>
+                  <InputComponent
+                    placeholder={"Capacity"}
+                    name='capacity'
+                    value={formData.capacity}
+                    onChange={handleChange}
+
+                  />
+                </Grid>
+
+
+
+
+                <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>Empty Capacity</FormLabel>
+                  <InputComponent
+                    placeholder={"Empty Capacity"}
+                    name='emptyCapacity'
+                    value={formData.emptyCapacity}
+                    onChange={handleChange}
+
+                  />
+                </Grid>
+
+
+                <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>Work Hours</FormLabel>
+                  <InputComponent
+                    placeholder={"Work Hours"}
+                    name='workHours'
+                    value={formData.workHours}
+                    onChange={handleChange}
+
+                  />
+                </Grid>
+
+                  <Grid item xs={12} sm={6} mt={1}>
+                    <FormLabel>Free Time</FormLabel>
                     <InputComponent
-                      placeholder={"Park Tipi - AÇIK/KAPALI"}
-                      name='parkType'
-                      value={formData.parkType}
+                      placeholder={"Free Time"}
+                      name='freeTime'
+                      value={formData.freeTime}
+                      onChange={handleChange}
+
+                    />
+
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} mt={1}>
+                  <FormLabel>Address</FormLabel>
+                    <InputComponent
+                      placeholder={"Address"}
+                      name='address'
+                      value={formData.address}
                       onChange={handleChange}
 
                     />
                   </Grid>
-                  <Grid xs={12}>
+
+
+
+                  <Grid item xs={12} mt={2}>
+                  <FormLabel>Park Type</FormLabel>
                     <Select
+                      variant="soft"
+                      placeholder="Park Type"
+                      value={enable}
+                      onChange={handleToggleChange(setEnable)}
+                      sx={{
+                        width: '100%'
+                      }}
+                    >
+                      <Option value={true}>
+                        Açık
+                      </Option>
+                      <Option value={false}>
+                        Kapalı
+                      </Option>
+                    </Select>
+                  </Grid>
+
+                  <Grid item xs={12} >
+                    <Select
+                      variant="soft"
                       placeholder="DURUM"
                       value={enable}
                       onChange={handleToggleChange(setEnable)}
+                      sx={{
+                        width: '100%'
+                      }}
                     >
                       <Option value={true}>
                         Etkin
@@ -170,11 +228,17 @@ const AddParkContent = ({ searchLngLat }) => {
                       </Option>
                     </Select>
                   </Grid>
-                  <Grid xs={12}>
+
+                  <Grid item xs={12}>
                     <Select
+                      variant="soft"
                       placeholder="DURUM"
                       value={isOpen}
                       onChange={handleToggleChange(setIsOpen)}
+                      sx={{
+
+                        width: '100%'
+                      }}
                     >
                       <Option value={true}>
                         Etkin
@@ -187,8 +251,11 @@ const AddParkContent = ({ searchLngLat }) => {
                   </Grid>
 
 
-                </Grid>
 
+
+
+
+                </Grid>
                 <Grid item xs={12} sx={{ textAlign: 'center', alignContent: 'center', alignItems: 'center', display: 'flex', justifyContent: 'center', mt: 2 }}>
                   <ButtonComponent
                     type="submit"
@@ -197,7 +264,12 @@ const AddParkContent = ({ searchLngLat }) => {
 
                   />
                 </Grid>
-              </Grid>
+           
+
+
+
+
+
             </form>
           </Container>
         </Grid>

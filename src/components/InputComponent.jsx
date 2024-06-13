@@ -5,6 +5,7 @@ const InputComponent = ({
   value,
   variant,
   onChange,
+  sx,
   ...props
 }) => {
   return (
@@ -13,7 +14,7 @@ const InputComponent = ({
       variant={variant || 'soft'}
       value={value}
       onChange={onChange}
-      sx={{mt:2}}      
+      sx={sx}      
       {...props}
     />
   )
