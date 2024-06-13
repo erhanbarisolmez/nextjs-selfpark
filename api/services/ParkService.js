@@ -1,4 +1,4 @@
-import ParkAddRequest from "../models/park/parkAddRequest";
+import ParkAddRequest from "../models/park/request/parkAddRequest";
 
 export default class ParkService {
   constructor() {
@@ -14,6 +14,7 @@ export default class ParkService {
     console.log("Add_park: ", parkData);
     try {
       const parkAddRequest = new ParkAddRequest(
+        
         parkData.parkName,
         parkData.district,
         parkData.city,
@@ -27,6 +28,9 @@ export default class ParkService {
         parkData.isOpen,
         parkData.enable
       );
+
+      console.log("request", parkAddRequest);
+      
       const requestOptions = {
         method: 'PUT',
         headers: {
@@ -44,12 +48,11 @@ export default class ParkService {
 
       if (response.ok) {
         const data = await response.json();
-
+        console.log("dönen data", data);
         return data;
       } else {
         console.log("parking not added")
       }
-
     } catch (error) {
       console.error("Error parking not added: ", error)
     }

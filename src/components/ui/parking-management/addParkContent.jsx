@@ -18,11 +18,11 @@ const AddParkContent = ({ searchLngLat }) => {
   const [enable, setEnable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const serviceManager = new ServiceManager();
-  const {token} = useAuth();
+  const { token } = useAuth();
 
-  const handleToggleChange = (setter) =>(event, newValue)=> {
+  const handleToggleChange = (setter) => (event, newValue) => {
     setter(newValue);
-  } 
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,8 +36,8 @@ const AddParkContent = ({ searchLngLat }) => {
     event.preventDefault();
     const parkData = {
       ...formData,
-      lat: lat,
-      lng: lng,
+      lat,
+      lng,
       isOpen,
       enable
     }
@@ -173,7 +173,7 @@ const AddParkContent = ({ searchLngLat }) => {
                   <Grid xs={12}>
                     <Select
                       placeholder="DURUM"
-                      value ={isOpen}
+                      value={isOpen}
                       onChange={handleToggleChange(setIsOpen)}
                     >
                       <Option value={true}>
