@@ -4,7 +4,8 @@ import AuthenticateResponse, { User } from "../models/auth/response/Authenticate
 class AuthenticateService {
   constructor() {
     this.api = process.env.NEXT_PUBLIC_API_BACKEND_URL;
-    this.login = '/api/v1/auth/authenticate'
+    this.login = '/api/v1/auth/authenticate',
+    this.tokenExp = '/api/v1/auth/isTokenExpired'
   }
 
   // service_management, routes/autenticate, components/ui/login-card 
@@ -51,6 +52,28 @@ class AuthenticateService {
     }
   }
 
-}
+  async tokenExpiredControl(token){
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'accept':'*/*',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({token})
+    }
+    const response = await fetch( `${this.api}${this.tokenExp}`, requestOptions);
+    if (response.ok) {
+      const data = await response.json();
+        return data;
+      }else{
+        return false;
+      }
+    }
+
+  }
+
+
 
 export default AuthenticateService;

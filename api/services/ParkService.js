@@ -1,4 +1,5 @@
 import ParkAddRequest from "../models/park/request/parkAddRequest";
+import ParkAddResponse from "../models/park/response/parkAddResponse";
 
 export default class ParkService {
   constructor() {
@@ -12,21 +13,23 @@ export default class ParkService {
 
   async add_park(parkData, token) {
     console.log("Add_park: ", parkData);
+    let parkAddResponse;
+    let parkAddRequest;
     try {
-      const parkAddRequest = new ParkAddRequest(
+       parkAddRequest = new ParkAddRequest(
         
-        parkData.parkName,
-        parkData.district,
-        parkData.city,
-        parkData.lat,
-        parkData.lng,
-        parkData.capacity,
-        parkData.emptyCapacity,
-        parkData.workHours,
-        parkData.parkType,
-        parkData.freeTime,
-        parkData.isOpen,
-        parkData.enable
+          parkData.parkName,
+          parkData.district,
+          parkData.city,
+          parkData.lat,
+          parkData.lng,
+          parkData.capacity,
+          parkData.emptyCapacity,
+          parkData.workHours,
+          parkData.parkType,
+          parkData.freeTime,
+          parkData.isOpen,
+          parkData.enable
       );
 
       console.log("request", parkAddRequest);
@@ -49,9 +52,34 @@ export default class ParkService {
       if (response.ok) {
         const data = await response.json();
         console.log("dönen data", data);
-        return data;
+
+        
+        if (data === true){
+          parkAddResponse = new ParkAddResponse(
+            parkData.parkName,
+            parkData.district,
+            parkData.city,
+            parkData.lat,
+            parkData.lng,
+            parkData.capacity,
+            parkData.emptyCapacity,
+            parkData.workHours,
+            parkData.parkType,
+            parkData.freeTime,
+            parkData.isOpen,
+            parkData.enable
+  
+          );
+        }else {
+          console.error("Unexpected response data:", data);
+        }
+   
+        console.log("response", parkAddResponse);
+        return parkAddResponse;
       } else {
         console.log("parking not added")
+        const errorData = await response.text();
+        console.error("Error:", errorData);
       }
     } catch (error) {
       console.error("Error parking not added: ", error)

@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useCallback, useEffect, useState } from 'react';
 import ServiceManager from '../../../../api/service_management/ServiceManager';
 import Park from "../../../../api/services/ParkService";
+import WebSocketService from '../../../../api/services/WebSocketService';
 
 
 export const ListParkContent = () => {
@@ -13,6 +14,16 @@ export const ListParkContent = () => {
   const { token } = useAuth();
   const serviceManager = new ServiceManager();
 
+  useEffect(() => {
+    fetchData();
+    WebSocketService.connect(token, onMessageReceived);
+
+    return () => {
+      
+      WebSocketService.disconnect();
+    };
+  }, [token]);
+
   const fetchData = useCallback(async () => {
     try {
       if (!token) {
@@ -20,14 +31,19 @@ export const ListParkContent = () => {
       }
       const parkList = await serviceManager.parkService.read_park_all(token);
       setParks(parkList);
+
+       WebSocketService.connect(token, onMessageReceived);
+
     } catch (error) {
       console.error("Error fetching park data : ", error)
     }
-  }, [serviceManager, parks]);
+  }, [serviceManager, token]);
 
-  useEffect(() => {
-    fetchData();
-  }, [parks]);
+  const onMessageReceived = useCallback((message) => {
+    const updatedParkInfos = JSON.parse(message.body);
+    console.log('updated park ınfos: ', updatedParkInfos);
+    setParks(updatedParkInfos);
+  }, [])
 
   const filterList = parks?.length > 0 ? parks.filter(item => item.parkName.toLowerCase().includes(search.toLowerCase())) : [];
 
