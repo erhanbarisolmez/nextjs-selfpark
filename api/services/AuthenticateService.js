@@ -53,7 +53,6 @@ class AuthenticateService {
   }
 
   async tokenExpiredControl(token){
-    
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -63,13 +62,18 @@ class AuthenticateService {
       },
       body: JSON.stringify({token})
     }
-    const response = await fetch( `${this.api}${this.tokenExp}`, requestOptions);
-    if (response.ok) {
-      const data = await response.json();
-        return data;
-      }else{
-        return false;
-      }
+    try {
+      const response = await fetch( `${this.api}${this.tokenExp}`, requestOptions);
+      if (response.ok) {
+        const data = await response.json();
+          return data;
+        }else{
+          return false;
+        }
+    } catch (error) {
+      console.error("Error during token validation", error);
+      return false;
+    }
     }
 
   }
