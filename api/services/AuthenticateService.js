@@ -35,7 +35,7 @@ class AuthenticateService {
         const { message, status, token, user } = data;
         const authResponse = new AuthenticateResponse(
           message, status, token, new User(
-            user.id, user.firstname, user.email, user.phone, user.registeredDate, user.role, user.username, user.authorities, user.accountNonLocked, user.credentialsNonExpired, user.enabled
+            user.id, user.firstName, user.email, user.phone, user.registeredDate, user.role, user.username, user.authorities, user.accountNonLocked, user.credentialsNonExpired, user.enabled
           )
         );
 

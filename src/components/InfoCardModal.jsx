@@ -50,7 +50,7 @@ export default function InfoCardModal({
   }
 
   const handleDeleteClick = () => {
-    console.log("seçilenin id: ", data.id);
+    console.log("seçilenin id: ", data.id); 
     setShowConfirmation(true);
   }
 
