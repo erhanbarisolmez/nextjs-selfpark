@@ -161,6 +161,7 @@ export default class ParkService {
         isOpen: data.isOpen,
         enable: data.enable
       }
+      console.log("Updated Data: ", updatedData);
 
       const requestOptions = {
         method: 'PUT',

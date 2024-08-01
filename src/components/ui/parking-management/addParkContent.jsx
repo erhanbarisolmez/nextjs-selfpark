@@ -252,7 +252,6 @@ const AddParkContent = ({ searchLngLat }) => {
                   type="submit"
                   text={"KAYDET"}
                   color={"neutral"}
-
                 />
               </Grid>
             </form>

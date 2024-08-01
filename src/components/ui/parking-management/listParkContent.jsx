@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useCallback, useEffect, useState } from 'react';
 import ServiceManager from '../../../../api/service_management/ServiceManager';
 import Park from "../../../../api/services/ParkService";
-import WebSocketService from '../../../../api/services/WebSocketService';
+import ParkWebSocketService from '../../../../api/websocket/ParkWebSocketService';
 
 
 export const ListParkContent = () => {
@@ -16,11 +16,11 @@ export const ListParkContent = () => {
 
   useEffect(() => {
     fetchData();
-    WebSocketService.connect(token, onMessageReceived);
+    ParkWebSocketService.connect(token, onMessageReceived);
 
     return () => {
       
-      WebSocketService.disconnect();
+      ParkWebSocketService.disconnect();
     };
   }, [token]);
 
@@ -32,18 +32,22 @@ export const ListParkContent = () => {
       const parkList = await serviceManager.parkService.read_park_all(token);
       setParks(parkList);
 
-       WebSocketService.connect(token, onMessageReceived);
+      ParkWebSocketService.connect(token, onMessageReceived);
 
     } catch (error) {
       console.error("Error fetching park data : ", error)
     }
   }, [serviceManager, token]);
 
-  const onMessageReceived = useCallback((message) => {
+  const onMessageReceived = useCallback((topic, message) => {
     const updatedParkInfos = JSON.parse(message.body);
     console.log('updated park ınfos: ', updatedParkInfos);
-    setParks(updatedParkInfos);
-  }, [])
+
+    if (topic == '/topic/parkInfos') {
+      setParks(updatedParkInfos);
+    }
+ 
+  }, []);
 
   const filterList = parks?.length > 0 ? parks.filter(item => item.parkName.toLowerCase().includes(search.toLowerCase())) : [];
 
@@ -62,7 +66,6 @@ export const ListParkContent = () => {
 
     if (parkId) {
       await serviceManager.parkService.delete_park(parkId, token);
-
       fetchData();
     }
   }
