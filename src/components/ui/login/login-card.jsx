@@ -39,20 +39,20 @@ const LoginCard = () => {
 
     try {
       const response = await fetch('/api/routes/authenticate/authenticate', {
-        method:'POST',
-        headers:{
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({email, password})
+        body: JSON.stringify({ email, password })
       })
 
-      if(response.ok){
+      if (response.ok) {
         const data = await response.json();
         const token = data.token;
         localStorage.setItem("token", token)
         window.location.href = "dashboard";
         console.log("login successful");
-      }else{
+      } else {
         console.error("login failed");
       }
     } catch (error) {
@@ -60,7 +60,7 @@ const LoginCard = () => {
     }
 
     // await serviceManager.authService.authenticate(email,password);
- 
+
   };
 
   return (
@@ -122,9 +122,9 @@ const LoginCard = () => {
         </Typography>
       </CardOverflow>
 
-      <CardContent sx={{ gap: 1.5, minWidth: 200 }}>
+      {/* <CardContent sx={{ gap: 1.5, minWidth: 200 }}>
         <form onSubmit={handleSubmit} method="POST">
-          <Grid sx={{ color: logoColor }}>
+          <Grid sx={{ color: logoColor}}>
             LOGIN
             <InputComponent
               name="email"
@@ -138,6 +138,34 @@ const LoginCard = () => {
               variant={"outlined"}
               onChange={(e)=> setPassword(e.target.value)}
             />
+          </Grid> */}
+
+      <CardContent sx={{ gap: 1.5, minWidth: 200 }}>
+        <form onSubmit={handleSubmit} method="POST">
+          <Grid sx={{ color: logoColor }}>
+            <Grid sx={{}}>
+              LOGIN
+            <InputComponent
+              name="email"
+              value={email}
+              placeholder={"E-Mail"}
+              variant={"outlined"}
+              onChange={(e) => setEmail(e.target.value)}
+              sx={{mt:3}}
+            />
+            
+            </Grid>
+            <Grid sx={{mt:0.5}}>
+            <InputComponent
+              name="password"
+              value={password}
+              placeholder={"Password"}
+              variant={"outlined"}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            </Grid>
+           
+    
           </Grid>
 
           {/* LOGIN BUTTON */}
@@ -150,7 +178,7 @@ const LoginCard = () => {
               borderColor: "primary.500",
               mx: "auto",
               color: buttonColor,
-              mt:3
+              mt: 3
             }}
           >
             Login

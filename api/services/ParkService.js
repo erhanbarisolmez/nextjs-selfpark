@@ -103,7 +103,7 @@ export default class ParkService {
       const response = await fetch(`${this.api}${this.readAll}`, requestOptions);
       if (response.ok) {
         const data = await response.json()
-        console.log(data);
+        console.log("read_park_all data: ", data);
 
         return data;
       } else {

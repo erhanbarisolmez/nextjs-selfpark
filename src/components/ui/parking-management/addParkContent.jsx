@@ -10,6 +10,8 @@ import Select from '@mui/joy/Select';
 import { Container, Grid } from '@mui/material';
 import { useState } from "react";
 import ServiceManager from "../../../../api/service_management/ServiceManager";
+
+
 const AddParkContent = ({ searchLngLat }) => {
 
   const [formData, setFormData] = useState({});
@@ -45,8 +47,8 @@ const AddParkContent = ({ searchLngLat }) => {
       parkType : parkType ? "açık" : "kapalı"
     }
 
-    await serviceManager.parkService.add_park(parkData, token);
-
+     await serviceManager.parkService.add_park(parkData, token);
+    
   }
 
   return (
@@ -59,30 +61,6 @@ const AddParkContent = ({ searchLngLat }) => {
           <Container>
 
             <form onSubmit={handleSubmit} method="POST">
-              {/* <Grid item xs={12} sx={{ display: 'flex', flexDirection: { xs: 'column', md: "row" }, alignItems: 'center', alignContent: 'center' }}>
-                <Container>
-                  <Typography variant="body1" xs sx={{ display: 'flex', alignItems: 'center', mt: 3, justifyContent: 'center' }} >
-                    BİLGİ
-                  </Typography>
-                  <Typography variant="body2" mt={1}>Longitude</Typography>
-                  <InputComponent
-                    xs={12} md={5}
-                    placeholder="Enlem"
-                    name="longitude"
-                    value={lng}
-                    disabled={true}
-                  />
-                  <Typography variant="body2" mt={2}>Latitude</Typography>
-                  <InputComponent
-                    xs={12} md={5}
-                    placeholder="Boylam"
-                    name="latitude"
-                    value={lat}
-                    disabled={true}
-                  />
-                </Container>
-              </Grid> */}
-
               <Grid container item xs={12} sm={12} spacing={2} sx={{
                 display: 'flex',
                 flexDirection: {
@@ -170,18 +148,6 @@ const AddParkContent = ({ searchLngLat }) => {
 
                 </Grid>
 
-                {/* <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel>Address</FormLabel>
-                    <InputComponent
-                      placeholder={"Address"}
-                      name='address'
-                      value={formData.address}
-                      onChange={handleChange}
-
-                    />
-                  </Grid> */}
-
-
 
                 <Grid item xs={12} sm={6} mt={1}>
                   <FormLabel sx={{ color:textColor}}>Park Type</FormLabel>
@@ -247,10 +213,37 @@ const AddParkContent = ({ searchLngLat }) => {
 
 
               </Grid>
+
+              <Grid item xs={12} sm={6}>
+
+                
+              </Grid>
+              {/* <Grid item xs={12} sm={6} mt={1} sx={{
+                display:'flex',
+                flexDirection:'column',
+                width:'100%'
+              }}>
+                  <FormLabel sx={{color:'white'}}>Address</FormLabel>
+                    <InputComponent
+                      placeholder={"Address"}
+                      name='address'
+                      value={formData.address}
+                      onChange={handleChange}
+                     sx={{
+                      width:'100%',
+                      height:50,
+                      borderRadius:5,
+                      padding:1,
+                   
+                     }}
+
+                    />
+                  </Grid> */}
+
               <Grid item xs={12} sx={{ textAlign: 'center', alignContent: 'center', alignItems: 'center', display: 'flex', justifyContent: 'center', mt: 3 }}>
                 <ButtonComponent
                   type="submit"
-                  text={"KAYDET"}
+                  text={"SAVE"}
                   color={"neutral"}
                 />
               </Grid>

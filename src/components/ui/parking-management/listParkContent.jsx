@@ -29,6 +29,8 @@ export const ListParkContent = () => {
       if (!token) {
         throw new Error("No token found.")
       }
+
+      
       const parkList = await serviceManager.parkService.read_park_all(token);
       setParks(parkList);
 

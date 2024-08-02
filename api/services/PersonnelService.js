@@ -38,7 +38,7 @@ export default class PersonnelService {
         const result = await response.json();
         console.log("data: ", result);
 
-        if (data == true) {
+        if (data === true) {
           personnelAddResponse = new PersonnelAddResponse(
             data.parkName,
             data.firstName,
