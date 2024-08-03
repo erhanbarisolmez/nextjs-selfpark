@@ -1,22 +1,23 @@
-import ParkAddRequest from "../models/park/request/parkAddRequest";
-import ParkAddResponse from "../models/park/response/parkAddResponse";
+import useRequestOptions from "@/utils/request/requestOptions";
+import CreateParkRequest from "../models/park/request/createParkRequest";
 
 export default class ParkService {
-  constructor() {
+  constructor(token) {
     this.api = process.env.NEXT_PUBLIC_API_BACKEND_URL;
     this.add = "/api/v1/parkInfo/add";
     this.delete = "/api/v1/parkInfo/delete";
     this.readAll = "/api/v1/parkInfo/getAll";
-    this.readId = "/read_park";
+    this.readId = "/api/v1/parkInfo/getParkById";
     this.update = "/api/v1/parkInfo/update";
+    this.token = token;
   }
 
-  async add_park(parkData, token) {
+  async add_park(parkData) {
     console.log("Add_park: ", parkData);
-    let parkAddResponse;
-    let parkAddRequest;
+    let createParkRequest;
+
     try {
-       parkAddRequest = new ParkAddRequest(
+       createParkRequest = new CreateParkRequest(
         
           parkData.parkName,
           parkData.district,
@@ -31,18 +32,11 @@ export default class ParkService {
           parkData.isOpen,
           parkData.enable
       );
-
-      console.log("request", parkAddRequest);
+      console.log("request", createParkRequest);
       
-      const requestOptions = {
-        method: 'PUT',
-        headers: {
-          'accept': '*/*',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(parkAddRequest)
-      }
+
+      const requestOptions = useRequestOptions('PUT', '*/*', createParkRequest, this.token);
+    
       const response = await fetch(
         `${this.api}${this.add}`,
         requestOptions
@@ -51,31 +45,24 @@ export default class ParkService {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("dönen data", data);
 
         
-        if (data === true){
-          parkAddResponse = new ParkAddResponse(
-            parkData.parkName,
-            parkData.district,
-            parkData.city,
-            parkData.lat,
-            parkData.lng,
-            parkData.capacity,
-            parkData.emptyCapacity,
-            parkData.workHours,
-            parkData.parkType,
-            parkData.freeTime,
-            parkData.isOpen,
-            parkData.enable
-  
+
+        getCreateParkResponse = new GetCreateParkResponse(
+            data.parkName,
+            data.district,
+            data.city,
+            data.lat,
+            data.lng,
+            data.capacity,
+            data.emptyCapacity,
+            data.workHours,
+            data.parkType,
+            data.freeTime,
+            data.isOpen,
+            data.enable
           );
-        }else {
-          console.error("Unexpected response data:", data);
-        }
-   
-        console.log("response", parkAddResponse);
-        return parkAddResponse;
+      return getCreateParkResponse;
       } else {
         console.log("parking not added")
         const errorData = await response.text();
@@ -88,18 +75,11 @@ export default class ParkService {
   }
 
   // service_management, components/ui/parking-management, listParkContent 
-  async read_park_all(token) {
+  async read_park_all() {
     try {
 
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      }
-
+      const requestOptions = useRequestOptions('GET', '*/*', undefined,this.token);
+     
       const response = await fetch(`${this.api}${this.readAll}`, requestOptions);
       if (response.ok) {
         const data = await response.json()
@@ -115,18 +95,12 @@ export default class ParkService {
     }
   }
 
-  async read_park_id(id, token) {
+  async read_park_id(id) {
 
     try {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          "accept": "application/json",
-          "Content-Type": 'application/json',
-          "Authorization": `Bearer ${token}`
-        },
-      }
-      const response = await fetch(`${this.api}${this.readAll}`, requestOptions);
+
+      const requestOptions  = useRequestOptions('GET', '*/*', undefined, this.token);
+      const response = await fetch(`${this.api}${this.readId}/${id}`, requestOptions);
 
       if (response.ok) {
         const park = await response.json();
@@ -142,9 +116,7 @@ export default class ParkService {
   }
 
 
-  async update_park(id, data, token) {
-    console.log("Update Park Token: ", token)
-
+  async update_park(id, data) {
     try {
       const updatedData = {
         id: id,
@@ -162,26 +134,17 @@ export default class ParkService {
         enable: data.enable
       }
       console.log("Updated Data: ", updatedData);
+      console.log("TOKEN UPDATE PARK", this.token);
 
-      const requestOptions = {
-        method: 'PUT',
-        headers: {
-          'accept': '*/*',
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+      const requestOptions = useRequestOptions('PUT', 'application/json', updatedData, this.token);
 
-        },
-        body: JSON.stringify(
-          updatedData
-        )
-      }
       console.log("body:", requestOptions.body)
       const response = await fetch(`${this.api}${this.update}`, requestOptions);
 
       if (response.ok) {
-        const updatedData = await response.json();
-        console.log("güncellenene data", updatedData)
-        return updatedData;
+        const result = await response.json();
+        console.log("güncellenene data", result)
+        return result;
       } else {
         console.log("Error update", response.status, response.statusText);
       }
@@ -192,19 +155,12 @@ export default class ParkService {
   }
 
   // service_management, components/ui/parking-management, listParkContent 
-  async delete_park(id, token) {
-    console.log(id);
-    console.log(token);
+  async delete_park(parkId) {
+ 
     try {
-      const requestOptions = {
-        method: "DELETE",
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(id)
-      }
+
+      const requestOptions = useRequestOptions('DELETE','application/json', parkId, this.token);
+      console.log("REQUEST TOKEN: ",this.token);
 
       const response = await fetch(
         `${this.api}${this.delete}`, requestOptions);

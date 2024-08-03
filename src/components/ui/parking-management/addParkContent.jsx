@@ -14,16 +14,27 @@ import ServiceManager from "../../../../api/service_management/ServiceManager";
 
 const AddParkContent = ({ searchLngLat }) => {
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    parkName: '',
+    city: '',
+    district: '',
+    capacity:'',
+    emptyCapacity:'',
+    workHours:'',
+    freeTime:'',
+    parkType:'',
+    enable:'',
+    isOpen:'',
+  });
+  const { token } = useAuth();
+  const serviceManager = new ServiceManager(token);
   const { lat, lng } = searchLngLat || {};
   const { getModalStyles } = useThemeHook();
-  const { modalDialogBackground, textColor} = getModalStyles();
+  const { modalDialogBackground, textColor } = getModalStyles();
   const [enable, setEnable] = useState(false);
   const [parkType, setParkType] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const serviceManager = new ServiceManager();
-  const { token } = useAuth();
-  
+
   const handleToggleChange = (setter) => (event, newValue) => {
     setter(newValue);
   }
@@ -44,11 +55,11 @@ const AddParkContent = ({ searchLngLat }) => {
       lng,
       isOpen,
       enable,
-      parkType : parkType ? "açık" : "kapalı"
+      parkType: parkType ? "açık" : "kapalı"
     }
 
-     await serviceManager.parkService.add_park(parkData, token);
-    
+    await serviceManager.parkService.add_park(parkData);
+
   }
 
   return (
@@ -70,7 +81,7 @@ const AddParkContent = ({ searchLngLat }) => {
                 justifyContent: 'space-between',
               }}>
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>Park Name</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>Park Name</FormLabel>
                   <InputComponent
                     placeholder={"Park Name"}
                     name='parkName'
@@ -81,7 +92,7 @@ const AddParkContent = ({ searchLngLat }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>City</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>City</FormLabel>
                   <InputComponent
                     placeholder={"City"}
                     name='city'
@@ -91,7 +102,7 @@ const AddParkContent = ({ searchLngLat }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>District</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>District</FormLabel>
                   <InputComponent
                     placeholder={"District"}
                     name='district'
@@ -103,7 +114,7 @@ const AddParkContent = ({ searchLngLat }) => {
 
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>Capacity</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>Capacity</FormLabel>
                   <InputComponent
                     placeholder={"Capacity"}
                     name='capacity'
@@ -114,7 +125,7 @@ const AddParkContent = ({ searchLngLat }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>Empty Capacity</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>Empty Capacity</FormLabel>
                   <InputComponent
                     placeholder={"Empty Capacity"}
                     name='emptyCapacity'
@@ -126,7 +137,7 @@ const AddParkContent = ({ searchLngLat }) => {
 
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>Work Hours</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>Work Hours</FormLabel>
                   <InputComponent
                     placeholder={"Work Hours"}
                     name='workHours'
@@ -137,7 +148,7 @@ const AddParkContent = ({ searchLngLat }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>Free Time</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>Free Time</FormLabel>
                   <InputComponent
                     placeholder={"Free Time"}
                     name='freeTime'
@@ -150,7 +161,7 @@ const AddParkContent = ({ searchLngLat }) => {
 
 
                 <Grid item xs={12} sm={6} mt={1}>
-                  <FormLabel sx={{ color:textColor}}>Park Type</FormLabel>
+                  <FormLabel sx={{ color: textColor }}>Park Type</FormLabel>
                   <Select
                     variant="soft"
                     placeholder="Parking  Type"
@@ -170,8 +181,8 @@ const AddParkContent = ({ searchLngLat }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6} mt={1}>
-                <FormLabel sx={{ color:textColor}}>Enabled</FormLabel>
-                <Select
+                  <FormLabel sx={{ color: textColor }}>Enabled</FormLabel>
+                  <Select
                     variant="soft"
                     placeholder="DURUM"
                     value={enable}
@@ -190,8 +201,8 @@ const AddParkContent = ({ searchLngLat }) => {
                 </Grid>
 
                 <Grid item xs={12} sm={6} mt={1}>
-                <FormLabel sx={{ color:textColor}}>Is Open</FormLabel>
-                <Select
+                  <FormLabel sx={{ color: textColor }}>Is Open</FormLabel>
+                  <Select
                     variant="soft"
                     placeholder="DURUM"
                     value={isOpen}
@@ -216,7 +227,7 @@ const AddParkContent = ({ searchLngLat }) => {
 
               <Grid item xs={12} sm={6}>
 
-                
+
               </Grid>
               {/* <Grid item xs={12} sm={6} mt={1} sx={{
                 display:'flex',

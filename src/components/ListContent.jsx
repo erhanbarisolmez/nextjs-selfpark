@@ -83,7 +83,7 @@ export function ListContent({
 
   function _row(index, item, row1, row2, row3, row4) {
     return <Grid item xs={11} key={index} sx={{ display: 'flex', p: 1, alignItems: 'center' }}>
-      <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', }}>
+      <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
         <Grid item xs={3}> <Typography>{item[row1]}</Typography></Grid>
         <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row2]}</Typography></Grid>
         <Grid item xs={3} sx={{ ml: 2 }}> <Typography>{item[row3]}</Typography></Grid>

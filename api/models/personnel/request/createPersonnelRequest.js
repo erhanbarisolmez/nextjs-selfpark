@@ -1,12 +1,11 @@
-export default class PersonnelAddResponse{
+export default class CreatePersonnelRequest{
   constructor(
     parkName,
     firstName,
     lastName,
     email,
     phone,
-    task,
-    
+    task
   ){
     this.parkName = parkName;
     this.firstName = firstName;
@@ -16,3 +15,4 @@ export default class PersonnelAddResponse{
     this.task = task;
   }
 }
+

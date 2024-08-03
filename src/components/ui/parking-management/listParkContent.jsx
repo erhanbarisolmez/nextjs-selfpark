@@ -3,7 +3,6 @@ import { ListContent } from '@/components/ListContent';
 import { useAuth } from '@/hooks/useAuth';
 import { useCallback, useEffect, useState } from 'react';
 import ServiceManager from '../../../../api/service_management/ServiceManager';
-import Park from "../../../../api/services/ParkService";
 import ParkWebSocketService from '../../../../api/websocket/ParkWebSocketService';
 
 
@@ -12,7 +11,7 @@ export const ListParkContent = () => {
   const [parks, setParks] = useState([]);
   const [selectedParkId, setSelectedParkId] = useState(null);
   const { token } = useAuth();
-  const serviceManager = new ServiceManager();
+  const serviceManager = new ServiceManager(token);
 
   useEffect(() => {
     fetchData();
@@ -67,15 +66,15 @@ export const ListParkContent = () => {
     console.log("state id: ", parkId);
 
     if (parkId) {
-      await serviceManager.parkService.delete_park(parkId, token);
+      await serviceManager.parkService.delete_park(parkId);
       fetchData();
     }
   }
-  // SAVE
+
   const handleSaveClick = async (id, data) => {
     try {
-      const park = new Park();
-      await park.update_park(id, data, token);
+      
+      await serviceManager.parkService.update_park(id, data)
 
       fetchData();
     } catch (error) {

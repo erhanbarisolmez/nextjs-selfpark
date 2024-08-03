@@ -1,4 +1,4 @@
-export default class ParkAddResponse{
+export default class CreateParkRequest{
   
   constructor(parkName,district, city,lat,lng,capacity,emptyCapacity,workHours,parkType,freeTime,isOpen, enable ){
     this.parkName = parkName;

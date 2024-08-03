@@ -1,12 +1,11 @@
-export default class PersonnelAddRequest{
+export default class GetAddPersonnelResponse{
   constructor(
     parkName,
     firstName,
     lastName,
     email,
     phone,
-    task,
-    
+    task
   ){
     this.parkName = parkName;
     this.firstName = firstName;

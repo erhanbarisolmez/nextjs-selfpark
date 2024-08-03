@@ -1,6 +1,7 @@
-import PersonnelAddRequest from "../models/personnel/request/personnelAddRequest";
+
+import CreatePersonnelRequest from "../models/personnel/request/createPersonnelRequest";
 import UpdatePersonnelRequest from "../models/personnel/request/updatePersonnelRequest";
-import PersonnelAddResponse from "../models/personnel/response/personnelAddResponse";
+import GetPersonnelAddResponse from "../models/personnel/response/getAddPersonnelResponse";
 
 export default class PersonnelService {
   constructor() {
@@ -12,10 +13,10 @@ export default class PersonnelService {
   }
 
   async addPersonnel(data, token) {
-    let personnelAddRequest;
-    let personnelAddResponse;
+    let createPersonnelRequest;
+    let getPersonnelAddResponse;
     try {
-      personnelAddRequest = new PersonnelAddRequest(
+      createPersonnelRequest = new CreatePersonnelRequest(
         data.parkName,
         data.firstName,
         data.lastName,
@@ -23,34 +24,33 @@ export default class PersonnelService {
         data.phone,
         data.task
       );
-
+      console.log("request DATA: ",data);
+      console.log("addPersonnel TOKEN: ", token);
+      console.log("MODEL DATA",createPersonnelRequest);
       const requestOptions = {
         method: "POST",
         headers: {
-          'accept': '*/*',
+  
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization':`Bearer ${token}`
         },
-        body: JSON.stringify(personnelAddRequest)
+        body: JSON.stringify(createPersonnelRequest)
       }
       const response = await fetch(`${this.api}${this.create}`, requestOptions);
       if (response.ok) {
         const result = await response.json();
-        console.log("data: ", result);
+        console.log("RESULT data: ", result);
 
-        if (data === true) {
-          personnelAddResponse = new PersonnelAddResponse(
-            data.parkName,
-            data.firstName,
-            data.lastName,
-            data.email,
-            data.phone,
-            data.task
+          getPersonnelAddResponse = new GetPersonnelAddResponse(
+            result.parkName,
+            result.firstName,
+            result.lastName,
+            result.email,
+            result.phone,
+            result.task
           );
-        } else {
-          console.error("Unexpected response data:", result);
-        }
-        return personnelAddResponse;
+
+        return getPersonnelAddResponse;
       } else {
         const errorData = await response.text();
         console.error("Error:", errorData);
@@ -146,5 +146,7 @@ export default class PersonnelService {
       console.error("Error personnel delete: ", error);
     }
   }
+
+
 
 }
