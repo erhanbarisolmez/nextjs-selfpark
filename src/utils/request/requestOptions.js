@@ -8,11 +8,12 @@ const options = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
   },
-  ...( method === 'DELETE' && body &&{body:JSON.stringify(body)})
+  ...( method === "DELETE" &&body &&{body:JSON.stringify(body)})
 };
 
 if(method === 'DELETE' && body){
   options.body = JSON.stringify(body);
 }
+
 return options;
 }

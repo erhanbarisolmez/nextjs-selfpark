@@ -1,5 +1,6 @@
 import useRequestOptions from "@/utils/request/requestOptions";
 import CreateParkRequest from "../models/park/request/createParkRequest";
+import GetCreateParkResponse from "../models/park/response/getCreateParkResponse";
 
 export default class ParkService {
   constructor(token) {
@@ -15,6 +16,7 @@ export default class ParkService {
   async add_park(parkData) {
     console.log("Add_park: ", parkData);
     let createParkRequest;
+    let getCreateParkResponse;
 
     try {
        createParkRequest = new CreateParkRequest(
@@ -45,8 +47,7 @@ export default class ParkService {
 
       if (response.ok) {
         const data = await response.json();
-
-        
+        console.log("response: ", data);
 
         getCreateParkResponse = new GetCreateParkResponse(
             data.parkName,
@@ -119,7 +120,7 @@ export default class ParkService {
   async update_park(id, data) {
     try {
       const updatedData = {
-        id: id,
+        id: data.id,
         parkName: data.parkName,
         district: data.district,
         city: data.city,
@@ -138,7 +139,7 @@ export default class ParkService {
 
       const requestOptions = useRequestOptions('PUT', 'application/json', updatedData, this.token);
 
-      console.log("body:", requestOptions.body)
+      
       const response = await fetch(`${this.api}${this.update}`, requestOptions);
 
       if (response.ok) {
