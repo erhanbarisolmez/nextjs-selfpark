@@ -1,18 +1,20 @@
 
+import useRequestOptions from "@/utils/request/requestOptions";
 import CreatePersonnelRequest from "../models/personnel/request/createPersonnelRequest";
 import UpdatePersonnelRequest from "../models/personnel/request/updatePersonnelRequest";
 import GetPersonnelAddResponse from "../models/personnel/response/getAddPersonnelResponse";
 
 export default class PersonnelService {
-  constructor() {
+  constructor(token) {
     this.api = process.env.NEXT_PUBLIC_API_BACKEND_URL;
     this.create = "/api/v1/personnel/add";
     this.read = "/api/v1/personnel/getAll";
     this.update = "/api/v1/personnel/update";
     this.delete = "/api/v1/personnel/delete";
+    this.token = token;
   }
 
-  async addPersonnel(data, token) {
+  async addPersonnel(data) {
     let createPersonnelRequest;
     let getPersonnelAddResponse;
     try {
@@ -24,18 +26,8 @@ export default class PersonnelService {
         data.phone,
         data.task
       );
-      console.log("request DATA: ",data);
-      console.log("addPersonnel TOKEN: ", token);
-      console.log("MODEL DATA",createPersonnelRequest);
-      const requestOptions = {
-        method: "POST",
-        headers: {
-  
-          'Content-Type': 'application/json',
-          'Authorization':`Bearer ${token}`
-        },
-        body: JSON.stringify(createPersonnelRequest)
-      }
+    
+      const requestOptions = useRequestOptions('POST', '*/*', createPersonnelRequest, this.token);
       const response = await fetch(`${this.api}${this.create}`, requestOptions);
       if (response.ok) {
         const result = await response.json();

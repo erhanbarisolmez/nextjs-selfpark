@@ -18,8 +18,8 @@ const AddPersonnel = () => {
   });
   const { getModalStyles } = useThemeHook();
   const { modalCard, modalDialogBackground, textColor } = getModalStyles();
-  const serviceManager = new ServiceManager();
   const { token } = useAuth();
+  const serviceManager = new ServiceManager(token);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,9 +36,8 @@ const AddPersonnel = () => {
       ...formData
 
     }
-    await serviceManager.personnelService.addPersonnel(data, token);
+    await serviceManager.personnelService.addPersonnel(data);
     console.log("handleSubmit: ", data);
-
   }
 
   return (

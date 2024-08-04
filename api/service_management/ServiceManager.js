@@ -7,7 +7,7 @@ export default class ServiceManager{
   constructor(token){
     this.authService = new AuthenticateService();
     this.parkService = new ParkService(token);
-    this.personnelService = new PersonnelService();
+    this.personnelService = new PersonnelService(token);
 
   }
  
