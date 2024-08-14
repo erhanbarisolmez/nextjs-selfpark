@@ -21,7 +21,8 @@ export function ListContent({
   propertiesShow,
   propertiesName,
   deleteOnClick,
-   handleSaveClick
+   handleSaveClick,
+   searchPlaceholder 
 }) {
   const {getModalStyles} = useThemeHook();
   const {modalCard, textColor, dividerBackgroundColor} = getModalStyles();
@@ -30,7 +31,7 @@ export function ListContent({
     return <Grid item xs={12}>
       <InputComponent
         onChange={(e) => setSearch(e.target.value)}
-        placeholder={'Search Park'}
+        placeholder={searchPlaceholder}
         endDecorator={<SearchOutlinedIcon color='red' fontSize='12px' />} />
     </Grid>;
   }
@@ -93,7 +94,7 @@ export function ListContent({
   }
 
   function _column(column1, column2, column3, column4) {
-    return <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+    return <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start'}}>
       <Grid item xs={3}>
         <Typography variant='subtitle2' fontWeight={600}>{column1}</Typography>
       </Grid>
@@ -102,7 +103,7 @@ export function ListContent({
         <Typography variant='subtitle2' fontWeight={600}>{column2}</Typography>
       </Grid>
 
-      <Grid item xs={3} sx={{ display: 'flex' }} justifyContent={'flex-end'}>
+      <Grid item xs={3} sx={{ display: 'flex' }} justifyContent={'flex-start'}>
         <Typography variant='subtitle2' fontWeight={600}>{column3}</Typography>
       </Grid>
       <Grid item xs={3} sx={{ display: 'flex' }} justifyContent={'flex-end'}>

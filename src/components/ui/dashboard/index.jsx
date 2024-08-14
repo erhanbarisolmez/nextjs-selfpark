@@ -2,7 +2,6 @@
 import CardComponent from "@/components/CardComponent";
 import { AreaChartTremor } from "@/components/ui/chart/AreaChartTremor";
 import { BarChartTremor } from "@/components/ui/chart/BarChartTremor";
-import { BarListTremor } from "@/components/ui/chart/BarListTremor";
 import { LineChartTremor } from "@/components/ui/chart/LineChartTremor";
 import { useAuth } from "@/hooks/useAuth";
 import { useThemeHook } from "@/hooks/useThemeHook";
@@ -58,7 +57,8 @@ const DashboardUI = () => {
           display: 'flex',
           flexDirection:'row',
           flexWrap: 'wrap',
-          mt:1,
+          mt:0.1,
+          mb:1,
           flexDirection: {
             xs: "column",
             md: "row",

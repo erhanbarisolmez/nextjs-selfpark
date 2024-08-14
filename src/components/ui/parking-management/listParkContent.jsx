@@ -71,11 +71,9 @@ export const ListParkContent = () => {
     }
   }
 
-  const handleSaveClick = async (id, data) => {
+  const handleSaveClick = async (id,data) => {
     try {
-      
-      await serviceManager.parkService.update_park(id, data)
-
+      await serviceManager.parkService.update_park(id,data);
       fetchData();
     } catch (error) {
       console.error("Error updating park: ", error)
@@ -95,6 +93,7 @@ export const ListParkContent = () => {
       propertiesName={propertiesName}
       deleteOnClick={handleConfirmDelete}
       handleSaveClick={handleSaveClick}
+      searchPlaceholder={"Search Park"}
     />
   )
 
