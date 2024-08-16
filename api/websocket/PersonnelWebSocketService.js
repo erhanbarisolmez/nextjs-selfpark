@@ -1,9 +1,10 @@
-const { default: WebSocketClient } = require("./WebSocketClient");
-
+import WebSocketClient from "./WebSocketClient";
 class PersonnelWebSocketService extends WebSocketClient{
-constructor(){
-  super("192.168.4.88:8080/ws");
-}
+
+  constructor() {
+    super("http://192.168.4.88:8080/ws");
+  }
+
 
 connect(token, onMessageReceived){
   super.connect(token, onMessageReceived, [

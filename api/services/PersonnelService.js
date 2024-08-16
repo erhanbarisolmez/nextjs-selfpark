@@ -11,7 +11,7 @@ export default class PersonnelService {
     this.create = "/api/v1/personnel/add";
     this.read = "/api/v1/personnel/getAll";
     this.update = "/api/v1/personnel/update";
-    this.delete = "/api/v1/personnel/delete";
+    this.delete = `/api/v1/personnel/delete`;
     this.token = token;
   }
 
@@ -86,7 +86,7 @@ export default class PersonnelService {
     let getUpdatePersonnelResponse;
     try {
       updatePersonnelRequest =  new UpdatePersonnelRequest(
-        data.id,
+        id,
         data.parkName,
         data.firstName,
         data.lastName,
@@ -94,23 +94,29 @@ export default class PersonnelService {
         data.phone,
         data.task
        );
-      
+
     const requestOptions = useRequestOptions("PUT", '*/*', updatePersonnelRequest, this.token );
 
     const response = await fetch(`${this.api}${this.update}`, requestOptions);
 
     if (response.ok) {
-      const result = await response.json();
-      getUpdatePersonnelResponse = new GetUpdatePersonnelResponse(
-        result.id,
-        result.parkName,
-        result.firstName,
-        result.lastName,
-        result.email,
-        result.phone,
-        result.task
-      );
-      return getUpdatePersonnelResponse;
+      try {
+        const result = await response.json();
+        getUpdatePersonnelResponse = new GetUpdatePersonnelResponse(
+          result.id,
+          result.parkName,
+          result.firstName,
+          result.lastName,
+          result.email,
+          result.phone,
+          result.task
+        );
+        return getUpdatePersonnelResponse;
+      } catch (error) {
+        console.log("No Json Response");
+        return null;
+      }
+     
     }else {
       console.log("Error update: ", response.status, response.statusText);
     }
@@ -119,22 +125,16 @@ export default class PersonnelService {
     }
   }
 
-  async delete_personnel(id, token){
+  async delete_personnel(id){
+    console.log("DELETE PERSONNEL ID:", id);
     try {
-      const requestOptions = {
-        method: 'DELETE',
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(id)
-      }
-
+      const requestOptions = useRequestOptions("DELETE", "*/*", id, this.token ); 
       const response = await fetch(`${this.delete}`, requestOptions);
+      console.log("response: ", response);
 
       if (response.ok) {
         const result = await response.json();
+        console.log("RESULT: ",result);
         return result;
       }else {
         console.log("Failed to delete the parking");

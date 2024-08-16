@@ -52,7 +52,6 @@ const nextConfig = {
         source: '/:locale/api/routes/authenticate/authenticate',
         destination: 'http://192.168.4.88:8080/api/v1/auth/authenticate',
       }
-     
 
     ]
   }

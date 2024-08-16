@@ -3,6 +3,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useThemeHook } from '@/hooks/useThemeHook';
 import { useCallback, useEffect, useState } from 'react';
 import ServiceManager from '../../../../api/service_management/ServiceManager';
+import PersonnelWebSocketService from '../../../../api/websocket/PersonnelWebSocketService';
 
 
 export const ListPersonnelContent = () => {
@@ -13,11 +14,15 @@ export const ListPersonnelContent = () => {
   const {token} = useAuth();
   const serviceManager = new ServiceManager(token);
   const { textColor, isDarkMode, buttonColor, backgroundColor } = getThemeStyles();
-
+     
   useEffect(() => {
 
     personnelData();
+    PersonnelWebSocketService.connect(token, onMessageReceived);
 
+    return () => {
+      PersonnelWebSocketService.disconnect();
+    }
   }, []);
 
   const personnelData = useCallback(async () => {
@@ -31,13 +36,39 @@ export const ListPersonnelContent = () => {
 
       console.error("Error fetching personnel data : ", error);
     }
-  }, [token, serviceManager])
+  }, [token, serviceManager]);
  
  
-  const filterList = personnel?.length > 0 ? personnel.filter(person =>
+ const filterList = personnel?.length > 0 ? personnel.filter(person =>
     person.firstName.toLowerCase().includes(search) ||
     person.phone.toLowerCase().includes(search)
   ) : [];
+
+  
+  const onMessageReceived = useCallback((topic, message) => {
+    const updatedPersonnelInfo = JSON.parse(message.body);
+    console.log("Updated personnel info:", updatedPersonnelInfo);
+  
+    switch (topic) {
+      case '/topic/addPersonnel':
+        setPersonnel(prevPersonnel => [...prevPersonnel, updatedPersonnelInfo]);
+        break;
+      case '/topic/updatePersonnel':
+        setPersonnel(prevPersonnel =>
+          prevPersonnel.map(person =>
+            person.id === updatedPersonnelInfo.id ? updatedPersonnelInfo : person
+          )
+        );
+        break;
+      case '/topic/deletePersonnel':
+        setPersonnel(prevPersonnel =>
+          prevPersonnel.filter(person => person.id !== updatedPersonnelInfo)
+        );
+        break;
+      default:
+        console.warn("Unknown topic received:", topic);
+    }
+  }, []);
 
 
   const propertiesName = {
@@ -52,16 +83,15 @@ export const ListPersonnelContent = () => {
 
   const handleConfirmDelete = async (id) => {
     setPersonnelId(id);
-    if (parkId) {
+    if (personnelId) {
       await serviceManager.personnelService.delete_personnel(id);
     }
   }
 
-  const handleSaveClick = async (id, data) => {
-    setPersonnelId(id)
+  const handleSave = async (id, data) => {
+    setPersonnelId(id);
     try {
       await serviceManager.personnelService.update_personnel(id, data);
-
     } catch (error) {
       console.error("Error updating personnel: ", error)
     }
@@ -83,7 +113,7 @@ export const ListPersonnelContent = () => {
       propertiesShow={["parkName", "firstName", "lastName", "email", "phone", "task"]}
       propertiesName={propertiesName}
       deleteOnClick={handleConfirmDelete}
-      handleSaveClick={handleSaveClick}
+      handleSaveClick={handleSave}
       searchPlaceholder={"Search Personnel"}
       infoCardHeader={"firstName"}
       />

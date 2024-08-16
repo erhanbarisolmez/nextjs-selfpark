@@ -28,7 +28,6 @@ export const ListParkContent = () => {
       if (!token) {
         throw new Error("No token found.")
       }
-
       
       const parkList = await serviceManager.parkService.read_park_all(token);
       setParks(parkList);
@@ -74,7 +73,6 @@ export const ListParkContent = () => {
   const handleSaveClick = async (id,data) => {
     try {
       await serviceManager.parkService.update_park(id,data);
-      fetchData();
     } catch (error) {
       console.error("Error updating park: ", error)
     }
