@@ -128,8 +128,8 @@ export default class PersonnelService {
   async delete_personnel(id){
     console.log("DELETE PERSONNEL ID:", id);
     try {
-      const requestOptions = useRequestOptions("DELETE", "*/*", id, this.token ); 
-      const response = await fetch(`${this.delete}`, requestOptions);
+      const requestOptions = useRequestOptions("DELETE", "*/*", undefined, this.token ); 
+      const response = await fetch(`${this.api}${this.delete}/${id}`, requestOptions);
       console.log("response: ", response);
 
       if (response.ok) {

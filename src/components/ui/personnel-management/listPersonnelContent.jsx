@@ -16,14 +16,17 @@ export const ListPersonnelContent = () => {
   const { textColor, isDarkMode, buttonColor, backgroundColor } = getThemeStyles();
      
   useEffect(() => {
-
-    personnelData();
+    
+    if (personnel) {
+       personnelData();
+    }
+   
     PersonnelWebSocketService.connect(token, onMessageReceived);
 
     return () => {
       PersonnelWebSocketService.disconnect();
     }
-  }, []);
+  }, [personnelId]);
 
   const personnelData = useCallback(async () => {
     try {
@@ -92,6 +95,7 @@ export const ListPersonnelContent = () => {
     setPersonnelId(id);
     try {
       await serviceManager.personnelService.update_personnel(id, data);
+
     } catch (error) {
       console.error("Error updating personnel: ", error)
     }
