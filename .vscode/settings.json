@@ -6,5 +6,8 @@
     "Optionstranslate"
   ],
   "i18n-ally.keystyle": "nested",
-  "diffEditor.hideUnchangedRegions.revealLineCount": 30
+  "diffEditor.hideUnchangedRegions.revealLineCount": 30,
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "default",
+  "workbench.editor.openSideBySideDirection": "right"
 }

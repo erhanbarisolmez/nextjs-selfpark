@@ -11,16 +11,16 @@ export const ListPersonnelContent = () => {
   const [personnel, setPersonnel] = useState([]);
   const { getThemeStyles } = useThemeHook();
   const [personnelId, setPersonnelId] = useState(null);
-  const {token} = useAuth();
+  const { token } = useAuth();
   const serviceManager = new ServiceManager(token);
   const { textColor, isDarkMode, buttonColor, backgroundColor } = getThemeStyles();
-     
+
   useEffect(() => {
-    
+
     if (personnel) {
-       personnelData();
+      personnelData();
     }
-   
+
     PersonnelWebSocketService.connect(token, onMessageReceived);
 
     return () => {
@@ -40,18 +40,18 @@ export const ListPersonnelContent = () => {
       console.error("Error fetching personnel data : ", error);
     }
   }, [token, serviceManager]);
- 
- 
- const filterList = personnel?.length > 0 ? personnel.filter(person =>
+
+
+  const filterList = personnel?.length > 0 ? personnel.filter(person =>
     person.firstName.toLowerCase().includes(search) ||
     person.phone.toLowerCase().includes(search)
   ) : [];
 
-  
+
   const onMessageReceived = useCallback((topic, message) => {
     const updatedPersonnelInfo = JSON.parse(message.body);
     console.log("Updated personnel info:", updatedPersonnelInfo);
-  
+
     switch (topic) {
       case '/topic/addPersonnel':
         setPersonnel(prevPersonnel => [...prevPersonnel, updatedPersonnelInfo]);
@@ -113,14 +113,14 @@ export const ListPersonnelContent = () => {
       row3={'phone'}
       column4={"Actions"}
       filterList={filterList}
-      setSearch={setSearch} 
+      setSearch={setSearch}
       propertiesShow={["parkName", "firstName", "lastName", "email", "phone", "task"]}
       propertiesName={propertiesName}
       deleteOnClick={handleConfirmDelete}
       handleSaveClick={handleSave}
       searchPlaceholder={"Search Personnel"}
       infoCardHeader={"firstName"}
-      />
+    />
 
 
   )

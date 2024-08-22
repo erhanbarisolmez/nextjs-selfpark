@@ -21,11 +21,11 @@ export function ListContent({
   propertiesShow,
   propertiesName,
   deleteOnClick,
-   handleSaveClick,
-   searchPlaceholder 
+  handleSaveClick,
+  searchPlaceholder
 }) {
-  const {getModalStyles} = useThemeHook();
-  const {modalCard, textColor, dividerBackgroundColor} = getModalStyles();
+  const { getModalStyles } = useThemeHook();
+  const { modalCard, textColor, dividerBackgroundColor } = getModalStyles();
 
   function _searchText(setSearch) {
     return <Grid item xs={12}>
@@ -35,15 +35,15 @@ export function ListContent({
         endDecorator={<SearchOutlinedIcon color='red' fontSize='12px' />} />
     </Grid>;
   }
-  
+
   return <CardComponent sx={{
     display: 'flex',
     p: {
-      xs:0,
-      sm:3
+      xs: 0,
+      sm: 3
     },
-    backgroundColor:modalCard,
-    color:textColor
+    backgroundColor: modalCard,
+    color: textColor
   }}>
     <Container>
       <Grid container spacing={2}>
@@ -60,7 +60,7 @@ export function ListContent({
           {filterList && filterList.map((item, index) => (
             <>
               <Grid container key={index} sx={{ mt: 1 }}>
-                <Grid item xs={12}><Divider orientation='horizontal' variant='fullWidth' sx={{backgroundColor:dividerBackgroundColor}}></Divider></Grid>
+                <Grid item xs={12}><Divider orientation='horizontal' variant='fullWidth' sx={{ backgroundColor: dividerBackgroundColor }}></Divider></Grid>
                 {/*List Row */}
                 {_row(index, item, row1, row2, row3, row4)}
                 <Grid item xs={1} sx={{ mt: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'row' }}>
@@ -94,7 +94,7 @@ export function ListContent({
   }
 
   function _column(column1, column2, column3, column4) {
-    return <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start'}}>
+    return <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
       <Grid item xs={3}>
         <Typography variant='subtitle2' fontWeight={600}>{column1}</Typography>
       </Grid>
